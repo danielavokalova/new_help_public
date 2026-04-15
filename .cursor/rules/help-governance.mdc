@@ -1,0 +1,13 @@
+---
+description: Apply shared collaboration and review workflow for help docs.
+alwaysApply: true
+---
+
+# Help Governance Rule
+
+- Use branch + pull request workflow for every content change.
+- Follow `.github/PULL_REQUEST_TEMPLATE.md` before merge.
+- Respect CODEOWNERS review requirements.
+- Do not introduce breaking IA changes without updating page navigation metadata.
+- Apply project skills from `.cursor/skills/` for consistent decisions, especially `help-project-playbook`.
+- For imported docs updates, prefer this command order: `import:md` -> `import:linked` -> `rewrite:links` -> `localize:images` -> `build`.

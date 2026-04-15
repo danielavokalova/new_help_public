@@ -1,0 +1,44 @@
+{
+  "baseUrl": "https://enhelp.golibe.com",
+  "markdownBaseUrl": "https://cee-systems.gitbook.io/enhelp-golibe",
+  "pages": [
+    {
+      "path": "/1.-gol-ibe/1.-gol-ibe-intro",
+      "markdownPath": "/1.-gol-ibe/1.-gol-ibe-intro.md",
+      "section": "getting-started",
+      "slug": "gol-ibe-intro",
+      "title": "GOL IBE - intro"
+    },
+    {
+      "path": "/2.-gol-ibe-basic-settings",
+      "markdownPath": "/1.-gol-ibe/3.-gol-ibe-basic-settings.md",
+      "section": "configuration",
+      "slug": "gol-ibe-basic-settings",
+      "title": "GOL IBE - basic settings"
+    },
+    {
+      "path": "/3.-gol-ibe-advanced-settings",
+      "markdownPath": "/1.-gol-ibe/4.-gol-ibe-advanced-settings.md",
+      "section": "configuration",
+      "slug": "gol-ibe-advanced-settings",
+      "title": "GOL IBE - advanced settings"
+    },
+    {
+      "path": "/4.-gol-ibe-step-by-step",
+      "markdownPath": "/1.-gol-ibe/2.-gol-ibe-step-by-step.md",
+      "section": "getting-started",
+      "slug": "gol-ibe-step-by-step",
+      "title": "GOL IBE - step by step"
+    },
+    {
+      "path": "/5.-gol-ibe-faqs",
+      "markdownPath": "/1.-gol-ibe/5.-gol-ibe-faqs.md",
+      "section": "troubleshooting",
+      "slug": "gol-ibe-faqs",
+      "title": "GOL IBE - FAQs"
+    }
+  ],
+  "notes": [
+    "GOL IBE - versions: source URL returns 404; add markdownPath when the page exists again."
+  ]
+}

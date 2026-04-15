@@ -1,0 +1,12 @@
+---
+description: Enforce neutral and consistent documentation writing.
+globs: content/docs/**/*.md
+alwaysApply: false
+---
+
+# Help Authoring Rule
+
+- Keep language neutral and instructional.
+- Use this page structure: Purpose, Prerequisites, Steps, Verification, Related articles.
+- Keep paragraphs short and use numbered steps for procedures.
+- Avoid duplicate content; prefer linking to canonical pages.

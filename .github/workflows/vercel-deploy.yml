@@ -1,0 +1,65 @@
+name: vercel-deploy
+
+on:
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    env:
+      VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN || secrets.MARTIN_VERCEL_GOL_HELP }}
+      VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+      VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Install
+        run: npm install
+
+      - name: Install Vercel CLI
+        run: npm i -g vercel@latest
+
+      - name: Pull preview env
+        if: github.event_name == 'pull_request'
+        run: vercel pull --yes --environment=preview --token=${{ env.VERCEL_TOKEN }}
+
+      - name: Build preview
+        if: github.event_name == 'pull_request'
+        run: vercel build --token=${{ env.VERCEL_TOKEN }}
+
+      - name: Deploy preview
+        if: github.event_name == 'pull_request'
+        run: |
+          for i in 1 2 3; do
+            vercel deploy --prebuilt --archive=tgz --token=${{ env.VERCEL_TOKEN }} && exit 0
+            echo "Preview deploy attempt $i failed. Retrying..."
+            sleep 10
+          done
+          echo "Preview deploy failed after retries."
+          exit 1
+
+      - name: Pull production env
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+        run: vercel pull --yes --environment=production --token=${{ env.VERCEL_TOKEN }}
+
+      - name: Build production
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+        run: vercel build --prod --token=${{ env.VERCEL_TOKEN }}
+
+      - name: Deploy production
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+        run: |
+          for i in 1 2 3; do
+            vercel deploy --prebuilt --prod --archive=tgz --token=${{ env.VERCEL_TOKEN }} && exit 0
+            echo "Production deploy attempt $i failed. Retrying..."
+            sleep 10
+          done
+          echo "Production deploy failed after retries."
+          exit 1

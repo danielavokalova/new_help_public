@@ -1,0 +1,7 @@
+# Replace with your GitHub handles/team names.
+* @your-org/docs-admins
+content/docs/getting-started/ @your-org/docs-team
+content/docs/configuration/ @your-org/docs-team
+content/docs/operations/ @your-org/docs-team
+content/docs/troubleshooting/ @your-org/support-team
+content/docs/release-notes/ @your-org/product-team

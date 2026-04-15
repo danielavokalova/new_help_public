@@ -1,0 +1,31 @@
+{
+  "name": "gol-help-en",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "scrape": "node scripts/scrape-help.mjs",
+    "transform": "node scripts/transform-to-mdx.mjs",
+    "import:md": "node scripts/import-markdown.mjs",
+    "import:linked": "node scripts/import-linked-pages.mjs",
+    "rewrite:links": "node scripts/rewrite-links.mjs",
+    "localize:images": "node scripts/localize-images.mjs"
+  },
+  "dependencies": {
+    "next": "latest",
+    "react": "latest",
+    "react-dom": "latest",
+    "react-markdown": "^10.1.0",
+    "remark-gfm": "^4.0.1"
+  },
+  "devDependencies": {
+    "@types/node": "25.5.0",
+    "@types/react": "19.2.14",
+    "cheerio": "^1.0.0",
+    "turndown": "^7.2.0",
+    "typescript": "6.0.2"
+  }
+}
