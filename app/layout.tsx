@@ -3,6 +3,7 @@ import Link from "next/link";
 import type { Metadata } from "next";
 
 import { getSiteUrl } from "@/lib/site";
+import { ContentWrapper } from "./_components/ContentWrapper";
 
 import "./globals.css";
 
@@ -41,7 +42,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
             </nav>
           </div>
         </header>
-        <main className="container content-shell">{children}</main>
+        <ContentWrapper>{children}</ContentWrapper>
       </body>
     </html>
   );
