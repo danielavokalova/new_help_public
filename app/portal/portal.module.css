@@ -69,7 +69,6 @@
   font-variant-numeric: tabular-nums;
   letter-spacing: 0.01em;
   white-space: nowrap;
-  line-height: 1.4;
 }
 
 /* ── Hero ───────────────────────────────────────────────── */
@@ -109,7 +108,6 @@
   transform: translateY(-50%);
   font-size: 15px;
   pointer-events: none;
-  line-height: 1;
 }
 
 .omnisearch {
@@ -148,63 +146,234 @@
   background: #fff;
 }
 
-.quickResultItem p {
-  margin: 0 0 4px;
+/* ── Two-column portal layout ───────────────────────────── */
+.portalLayout {
+  display: grid;
+  grid-template-columns: 216px 1fr;
+  gap: 0;
+  align-items: start;
+}
+
+/* ── LEFT SIDEBAR ───────────────────────────────────────── */
+.sidebar {
+  position: sticky;
+  top: 80px;
+  max-height: calc(100vh - 110px);
+  overflow-y: auto;
+  padding-right: 12px;
+  border-right: 1px solid #e8edf2;
+  scrollbar-width: thin;
+  scrollbar-color: #d2d2d7 transparent;
+}
+
+.sidebar::-webkit-scrollbar {
+  width: 4px;
+}
+
+.sidebar::-webkit-scrollbar-thumb {
+  background: #d2d2d7;
+  border-radius: 4px;
+}
+
+.sidebarLabel {
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.09em;
+  color: #94a3b8;
+  padding: 4px 10px 8px;
+}
+
+.sidebarSection {
+  margin-bottom: 1px;
+}
+
+.sidebarItem {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 7px 10px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 500;
+  color: #3b3b3f;
+  background: none;
+  border: none;
+  text-align: left;
+  font-family: inherit;
+  transition: background 120ms, color 120ms;
+}
+
+.sidebarItem:hover {
+  background: #f5f5f7;
+  color: #1d1d1f;
+}
+
+.sidebarItemActive {
+  background: #eff6ff;
+  color: #1d4ed8;
+}
+
+.sidebarItemActive:hover {
+  background: #dbeafe;
+  color: #1d4ed8;
+}
+
+.sidebarItemLeft {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}
+
+.sidebarItemIcon {
+  font-size: 14px;
+  line-height: 1;
+  width: 18px;
+  text-align: center;
+}
+
+.sidebarChevron {
+  font-size: 14px;
+  color: #94a3b8;
+  transition: transform 160ms ease;
+  line-height: 1;
+  flex-shrink: 0;
+}
+
+.sidebarChevronOpen {
+  transform: rotate(90deg);
+  color: #1d4ed8;
+}
+
+.sidebarSubList {
+  list-style: none;
+  padding: 2px 0 4px 26px;
+  margin: 0;
+}
+
+.sidebarSubItem {
+  display: block;
+  padding: 4px 8px;
+  font-size: 12px;
+  color: #6e6e73;
+  text-decoration: none;
+  border-radius: 6px;
+  line-height: 1.4;
+  transition: background 100ms, color 100ms;
+}
+
+.sidebarSubItem:hover {
+  background: #f5f5f7;
+  color: #1d1d1f;
+}
+
+.sidebarSubItemAll {
+  font-weight: 600;
+  color: #0071e3;
+  margin-bottom: 2px;
+}
+
+.sidebarSubItemAll:hover {
+  color: #0062c3;
+}
+
+.sidebarDivider {
+  height: 1px;
+  background: #e8edf2;
+  margin: 10px 10px 8px;
+}
+
+.sidebarExternalLink {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 10px;
+  font-size: 12.5px;
+  font-weight: 500;
+  color: #0071e3;
+  text-decoration: none;
+  border-radius: 7px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-family: inherit;
+  width: 100%;
+  text-align: left;
+  transition: background 120ms;
+}
+
+.sidebarExternalLink:hover {
+  background: #eff6ff;
+  color: #0062c3;
+}
+
+/* ── RIGHT MAIN CONTENT ─────────────────────────────────── */
+.mainContent {
+  padding-left: 24px;
+  min-width: 0;
 }
 
 /* ── Section heading ────────────────────────────────────── */
 .sectionTitle {
-  font-size: 20px;
+  font-size: 19px;
   font-weight: 700;
   letter-spacing: -0.01em;
-  margin: 0 0 14px;
+  margin: 0 0 12px;
   color: #1d1d1f;
 }
 
-/* ── Topic Grid ─────────────────────────────────────────── */
+/* ── Topic Grid — 4 columns ─────────────────────────────── */
 .topicGrid {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 12px;
-  margin-bottom: 24px;
+  gap: 10px;
+  margin-bottom: 22px;
 }
 
 .catCard {
   background: #fff;
   border-radius: 12px;
-  padding: 16px 14px;
+  padding: 14px 12px;
   text-align: center;
   box-shadow: 0 1px 4px rgba(0, 0, 0, 0.07);
-  transition: transform 0.18s ease, box-shadow 0.18s ease;
-  text-decoration: none;
+  transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease;
   color: inherit;
   border: 1px solid #e2e8f0;
   display: flex;
   flex-direction: column;
   align-items: center;
+  cursor: pointer;
+  font-family: inherit;
 }
 
 .catCard:hover {
   transform: translateY(-3px);
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
-  color: inherit;
+  box-shadow: 0 5px 18px rgba(0, 0, 0, 0.1);
+}
+
+.catCardActive {
+  border-color: #93c5fd;
+  background: #eff6ff;
+  box-shadow: 0 0 0 2px #bfdbfe;
 }
 
 .catIcon {
-  font-size: 1.8rem;
+  font-size: 1.7rem;
   line-height: 1;
 }
 
 .catName {
   font-weight: 700;
-  font-size: 0.88rem;
+  font-size: 0.82rem;
   letter-spacing: 0.03em;
-  margin-top: 7px;
+  margin-top: 6px;
   color: #1d1d1f;
 }
 
 .catDesc {
-  font-size: 0.75rem;
+  font-size: 0.72rem;
   color: #64748b;
   margin-top: 3px;
   line-height: 1.4;
@@ -212,8 +381,8 @@
 
 .catLink {
   display: inline-block;
-  margin-top: 8px;
-  font-size: 0.8rem;
+  margin-top: 7px;
+  font-size: 0.78rem;
   font-weight: 600;
   color: #1d4ed8;
 }
@@ -230,41 +399,41 @@
   vertical-align: middle;
 }
 
-/* ── Panels Row (3 columns) ─────────────────────────────── */
+/* ── Panels Row ─────────────────────────────────────────── */
 .panelsRow {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
-  gap: 16px;
-  margin-bottom: 24px;
+  gap: 14px;
+  margin-bottom: 22px;
 }
 
 .panel {
   background: #fff;
   border-radius: 14px;
   border: 1px solid #e2e8f0;
-  padding: 18px 20px;
+  padding: 16px 18px;
   box-shadow: 0 1px 4px rgba(0, 0, 0, 0.06);
   display: flex;
   flex-direction: column;
-  min-height: 200px;
+  min-height: 190px;
 }
 
 .panelHeader {
   display: flex;
   align-items: center;
   gap: 8px;
-  margin-bottom: 12px;
-  padding-bottom: 10px;
+  margin-bottom: 10px;
+  padding-bottom: 9px;
   border-bottom: 1px solid #f0f0f5;
 }
 
 .panelIcon {
-  font-size: 1.25rem;
+  font-size: 1.2rem;
   line-height: 1;
 }
 
 .panelTitle {
-  font-size: 15px;
+  font-size: 14px;
   font-weight: 700;
   color: #1d1d1f;
   letter-spacing: -0.01em;
@@ -272,23 +441,23 @@
 
 .panelBody {
   flex: 1;
-  font-size: 13.5px;
+  font-size: 13px;
   color: #3b3b3f;
   line-height: 1.5;
 }
 
 /* ── What's New ─────────────────────────────────────────── */
 .releaseEntry {
-  margin-bottom: 12px;
+  margin-bottom: 10px;
 }
 
 .releaseVersion {
-  font-size: 11px;
+  font-size: 10.5px;
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.06em;
   color: #0071e3;
-  margin-bottom: 6px;
+  margin-bottom: 5px;
 }
 
 .releaseList {
@@ -298,9 +467,9 @@
 }
 
 .releaseList li {
-  padding: 5px 0 5px 18px;
+  padding: 4px 0 4px 16px;
   position: relative;
-  font-size: 13px;
+  font-size: 12.5px;
   color: #3b3b3f;
   border-bottom: 1px solid #f5f5f7;
   line-height: 1.45;
@@ -313,7 +482,7 @@
 .releaseList li::before {
   content: "•";
   position: absolute;
-  left: 5px;
+  left: 4px;
   color: #0ea5e9;
   font-weight: 700;
 }
@@ -326,25 +495,24 @@
   justify-content: center;
   text-align: center;
   flex: 1;
-  padding: 12px 8px;
-  gap: 8px;
-  color: #94a3b8;
+  padding: 10px 6px;
+  gap: 7px;
 }
 
 .comingSoonIcon {
-  font-size: 2.4rem;
-  opacity: 0.55;
+  font-size: 2.2rem;
+  opacity: 0.5;
   line-height: 1;
 }
 
 .comingSoonLabel {
-  font-size: 13.5px;
+  font-size: 13px;
   font-weight: 700;
   color: #64748b;
 }
 
 .comingSoonText {
-  font-size: 12.5px;
+  font-size: 12px;
   font-style: italic;
   color: #94a3b8;
   line-height: 1.5;
@@ -355,15 +523,15 @@
   background: #fff;
   border-radius: 14px;
   border: 1px solid #e2e8f0;
-  padding: 18px 20px;
+  padding: 16px 18px;
   box-shadow: 0 1px 4px rgba(0, 0, 0, 0.06);
-  margin-bottom: 24px;
+  margin-bottom: 22px;
 }
 
 .mostVisitedTitle {
-  font-size: 16px;
+  font-size: 15px;
   font-weight: 700;
-  margin: 0 0 14px;
+  margin: 0 0 12px;
   color: #1d1d1f;
 }
 
@@ -373,13 +541,13 @@
   margin: 0;
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 10px;
+  gap: 8px;
 }
 
 .mostVisitedItem {
   border: 1px solid #f0f0f5;
   border-radius: 10px;
-  padding: 10px 14px;
+  padding: 9px 12px;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -387,23 +555,18 @@
   background: #fafafa;
 }
 
-.mostVisitedItem p {
-  margin: 0;
-  font-size: 13.5px;
-  line-height: 1.4;
-}
-
 /* ── Action bar ─────────────────────────────────────────── */
 .actionBar {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 16px 0 4px;
+  padding: 14px 0 4px;
   border-top: 1px solid #e2e8f0;
   gap: 12px;
   flex-wrap: wrap;
 }
 
+/* ── Buttons ────────────────────────────────────────────── */
 .btnPrimary {
   display: inline-flex;
   align-items: center;
@@ -451,7 +614,7 @@
   border-color: #0062c3;
 }
 
-/* ── Zendesk Contact Modal ──────────────────────────────── */
+/* ── Contact Modal ──────────────────────────────────────── */
 .modalOverlay {
   position: fixed;
   inset: 0;
@@ -483,7 +646,6 @@
   font-size: 18px;
   color: #6e6e73;
   cursor: pointer;
-  line-height: 1;
   padding: 5px 7px;
   border-radius: 6px;
   transition: background 120ms;
@@ -530,7 +692,7 @@
   font-family: inherit;
   color: #1d1d1f;
   background: #fafafa;
-  transition: border-color 140ms ease, box-shadow 140ms ease;
+  transition: border-color 140ms, box-shadow 140ms;
   box-sizing: border-box;
   outline: none;
 }
@@ -555,7 +717,7 @@
   margin-top: 20px;
 }
 
-/* ── Success state ──────────────────────────────────────── */
+/* ── Success ────────────────────────────────────────────── */
 .successMsg {
   text-align: center;
   padding: 16px 0 8px;
@@ -569,7 +731,11 @@
 }
 
 /* ── Responsive ─────────────────────────────────────────── */
-@media (max-width: 900px) {
+@media (max-width: 1000px) {
+  .portalLayout {
+    grid-template-columns: 190px 1fr;
+  }
+
   .topicGrid {
     grid-template-columns: repeat(3, minmax(0, 1fr));
   }
@@ -579,7 +745,25 @@
   }
 }
 
-@media (max-width: 640px) {
+@media (max-width: 760px) {
+  .portalLayout {
+    grid-template-columns: 1fr;
+  }
+
+  .sidebar {
+    position: static;
+    max-height: none;
+    border-right: none;
+    border-bottom: 1px solid #e8edf2;
+    padding-right: 0;
+    padding-bottom: 12px;
+    margin-bottom: 18px;
+  }
+
+  .mainContent {
+    padding-left: 0;
+  }
+
   .topicGrid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
@@ -593,7 +777,7 @@
   }
 
   .hero {
-    padding: 28px 18px 24px;
+    padding: 26px 16px 22px;
   }
 
   .heroTitle {
