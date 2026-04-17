@@ -187,6 +187,9 @@ export default function PortalLayout({ children }: { children: ReactNode }) {
             >
               ⚙️ Admin Console ↗
             </a>
+            <Link href="/portal/admin" className={s.sidebarFooterBtn}>
+              ✨ Content Studio
+            </Link>
             <button className={s.sidebarFooterBtn} onClick={() => setShowContact(true)}>
               📧 Contact Help
             </button>
