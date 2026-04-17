@@ -18,27 +18,27 @@ const QUICK_RESULTS: QuickResult[] = [
   {
     icon: "🔑", title: "How to reset an agent password", category: "Users",
     summary: "Reset passwords from the Users section and enforce a secure first login.",
-    href: "/getting-started/1-gol-ibe-2-gol-ibe-step-by-step-users",
+    href: "/portal/getting-started/1-gol-ibe-2-gol-ibe-step-by-step-users",
   },
   {
     icon: "✈️", title: "Create your first air reservation", category: "Reservations",
     summary: "Follow the reservation flow and verify passenger, payment, and confirmation steps.",
-    href: "/getting-started/1-gol-ibe-2-gol-ibe-step-by-step-reservations",
+    href: "/portal/getting-started/1-gol-ibe-2-gol-ibe-step-by-step-reservations",
   },
   {
     icon: "💸", title: "Set up agency markup rules", category: "Prices & Markup",
     summary: "Configure markup by route and carrier, then validate calculations on sample bookings.",
-    href: "/getting-started/1-gol-ibe-2-gol-ibe-step-by-step-prices",
+    href: "/portal/getting-started/1-gol-ibe-2-gol-ibe-step-by-step-prices",
   },
   {
     icon: "📧", title: "Customise booking confirmation email", category: "Notifications",
     summary: "Edit templates and placeholders for customer and internal notification variants.",
-    href: "/getting-started/1-gol-ibe-2-gol-ibe-step-by-step-notifications",
+    href: "/portal/getting-started/1-gol-ibe-2-gol-ibe-step-by-step-notifications",
   },
   {
     icon: "🔌", title: "Connect a GDS / NDC source", category: "Advanced Settings",
     summary: "Set provider credentials, test connectivity, and verify availability responses.",
-    href: "/configuration/gol-ibe-advanced-settings",
+    href: "/portal/configuration/gol-ibe-advanced-settings",
   },
 ];
 

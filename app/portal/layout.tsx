@@ -25,8 +25,9 @@ export function usePortal() {
 
 /* ── Layout ─────────────────────────────────────────────── */
 export default function PortalLayout({ children }: { children: ReactNode }) {
-  const pathname = usePathname();
+  const rawPathname = usePathname();
   const router = useRouter();
+  const pathname = rawPathname.replace(/\/$/, "") || "/";
   const isPortalRoot = pathname === "/portal";
 
   const [selectedCat, setSelectedCat] = useState<Category | null>(null);
