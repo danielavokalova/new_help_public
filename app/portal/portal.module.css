@@ -25,7 +25,7 @@
 
 .searchWrap {
   position: relative;
-  max-width: 560px;
+  max-width: 100%;
 }
 
 .searchIcon {

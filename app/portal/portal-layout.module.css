@@ -526,6 +526,49 @@
   line-height: 1;
 }
 
+/* ── Floating Support button ─────────────────────────────── */
+.floatingSupport {
+  position: fixed;
+  bottom: 28px;
+  right: 28px;
+  z-index: 250;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: #e05a00;
+  color: #fff;
+  border: none;
+  border-radius: 30px;
+  padding: 11px 20px 11px 10px;
+  font-size: 15px;
+  font-weight: 700;
+  font-family: inherit;
+  cursor: pointer;
+  box-shadow: 0 4px 18px rgba(224,90,0,0.45);
+  transition: background 140ms, box-shadow 140ms, transform 120ms;
+  white-space: nowrap;
+}
+
+.floatingSupport:hover {
+  background: #c74e00;
+  box-shadow: 0 6px 24px rgba(224,90,0,0.55);
+  transform: translateY(-1px);
+}
+
+.floatingSupportIcon {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.28);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 17px;
+  font-weight: 700;
+  flex-shrink: 0;
+  line-height: 1;
+}
+
 /* ── Responsive ──────────────────────────────────────────── */
 @media (max-width: 860px) {
   .portalRoot { flex-direction: column; height: auto; overflow: visible; }

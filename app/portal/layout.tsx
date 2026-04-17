@@ -210,6 +210,12 @@ export default function PortalLayout({ children }: { children: ReactNode }) {
 
       </div>
 
+      {/* ══ FLOATING SUPPORT BUTTON ══════════════════════ */}
+      <button className={s.floatingSupport} onClick={() => setShowContact(true)}>
+        <span className={s.floatingSupportIcon}>?</span>
+        Support
+      </button>
+
       {/* ══ ZENDESK CONTACT MODAL ═════════════════════════ */}
       {showContact && (
         <div
