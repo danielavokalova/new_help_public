@@ -5,3 +5,4 @@ out/
 *.log
 scripts/import/
 .vercel
+tsconfig.tsbuildinfo
