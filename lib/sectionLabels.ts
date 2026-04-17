@@ -5,6 +5,5 @@ export const SECTION_LABELS: Record<Section, string> = {
   configuration: "Configuration",
   operations: "Operations",
   troubleshooting: "Troubleshooting",
-  "release-notes": "Release Notes",
-  "cee-hot-icon": "CEE Hot Icon"
+  "release-notes": "Release Notes"
 };

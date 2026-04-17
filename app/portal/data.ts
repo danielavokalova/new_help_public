@@ -154,14 +154,6 @@ export const CATEGORIES: Category[] = [
       { title: "Service fee from airline commission", href: "/portal/configuration/1-gol-ibe-4-gol-ibe-advanced-settings-servisni-poplatek-z-provize-letecke-spolecnosti" },
     ],
   },
-  {
-    icon: "🧭", name: "CEE Hot Icon",
-    desc: "PWA shortcut with branded icon for the taskbar",
-    href: "/portal/cee-hot-icon/overview",
-    articles: [
-      { title: "Overview & taskbar installation", href: "/portal/cee-hot-icon/overview" },
-    ],
-  },
 ];
 
 export const APP_TABS: AppTab[] = [
