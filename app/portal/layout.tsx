@@ -1,6 +1,7 @@
 "use client";
 
 import { createContext, useContext, useState, useEffect, type ReactNode } from "react";
+import { usePathname, useRouter } from "next/navigation";
 import Link from "next/link";
 import { CATEGORIES, APP_TABS, type Category } from "./data";
 import s from "./portal-layout.module.css";
@@ -24,6 +25,10 @@ export function usePortal() {
 
 /* ── Layout ─────────────────────────────────────────────── */
 export default function PortalLayout({ children }: { children: ReactNode }) {
+  const pathname = usePathname();
+  const router = useRouter();
+  const isPortalRoot = pathname === "/portal";
+
   const [selectedCat, setSelectedCat] = useState<Category | null>(null);
   const [expandedCat, setExpandedCat] = useState<string | null>(null);
   const [showContact, setShowContact] = useState(false);
@@ -36,6 +41,20 @@ export default function PortalLayout({ children }: { children: ReactNode }) {
     const t = setInterval(() => setNow(new Date()), 1000);
     return () => clearInterval(t);
   }, []);
+
+  /* Auto-expand and highlight the category matching the current article */
+  useEffect(() => {
+    if (!isPortalRoot) {
+      const match = CATEGORIES.find(
+        (cat) =>
+          cat.href === pathname ||
+          cat.articles.some((a) => a.href === pathname)
+      );
+      if (match) {
+        setExpandedCat(match.name);
+      }
+    }
+  }, [pathname, isPortalRoot]);
 
   function handleCatClick(cat: Category) {
     setSelectedCat(cat);
@@ -72,7 +91,10 @@ export default function PortalLayout({ children }: { children: ReactNode }) {
 
           {/* Brand + clock */}
           <div className={s.sidebarBrand}>
-            <button className={s.sidebarBrandBtn} onClick={() => setSelectedCat(null)}>
+            <button
+              className={s.sidebarBrandBtn}
+              onClick={() => { setSelectedCat(null); router.push("/portal"); }}
+            >
               ✈️ GOL IBE Help
             </button>
             {now && (
@@ -109,12 +131,15 @@ export default function PortalLayout({ children }: { children: ReactNode }) {
           <div className={s.sidebarTopics}>
             <span className={s.sidebarLabel}>Topics</span>
             {CATEGORIES.map((cat) => {
-              const isSelected = selectedCat?.name === cat.name;
+              const isCatActive =
+                cat.href === pathname ||
+                cat.articles.some((a) => a.href === pathname) ||
+                (isPortalRoot && selectedCat?.name === cat.name);
               const isExpanded = expandedCat === cat.name;
               return (
                 <div key={cat.name}>
                   <button
-                    className={`${s.sidebarItem} ${isSelected ? s.sidebarItemActive : ""}`}
+                    className={`${s.sidebarItem} ${isCatActive ? s.sidebarItemActive : ""}`}
                     onClick={() => handleCatClick(cat)}
                     aria-expanded={isExpanded}
                   >
@@ -130,14 +155,19 @@ export default function PortalLayout({ children }: { children: ReactNode }) {
                       <li>
                         <Link
                           href={cat.href}
-                          className={`${s.sidebarSubItem} ${s.sidebarSubItemAll}`}
+                          className={`${s.sidebarSubItem} ${s.sidebarSubItemAll} ${cat.href === pathname ? s.sidebarSubItemActive : ""}`}
                         >
                           All {cat.name} articles →
                         </Link>
                       </li>
                       {cat.articles.map((a) => (
                         <li key={a.href}>
-                          <Link href={a.href} className={s.sidebarSubItem}>{a.title}</Link>
+                          <Link
+                            href={a.href}
+                            className={`${s.sidebarSubItem} ${a.href === pathname ? s.sidebarSubItemActive : ""}`}
+                          >
+                            {a.title}
+                          </Link>
                         </li>
                       ))}
                     </ul>
@@ -167,7 +197,7 @@ export default function PortalLayout({ children }: { children: ReactNode }) {
 
         {/* ══ MAIN CONTENT ══════════════════════════════════ */}
         <div className={s.portalMain}>
-          {selectedCat ? (
+          {selectedCat && isPortalRoot ? (
             <CategoryView cat={selectedCat} onBack={() => setSelectedCat(null)} />
           ) : (
             children

@@ -228,6 +228,17 @@
   background: #eff6ff;
 }
 
+.sidebarSubItemActive {
+  background: #eff6ff;
+  color: #1d4ed8;
+  font-weight: 600;
+}
+
+.sidebarSubItemActive:hover {
+  background: #dbeafe;
+  color: #1d4ed8;
+}
+
 /* Sidebar footer */
 .sidebarFooter {
   flex-shrink: 0;
@@ -265,6 +276,12 @@
   height: 100%;
   overflow-y: auto;
   min-width: 0;
+}
+
+/* ── ARTICLE PAGE WRAPPER ────────────────────────────────── */
+.articleWrap {
+  padding: 32px 48px 56px;
+  max-width: 860px;
 }
 
 /* ── CATEGORY VIEW ───────────────────────────────────────── */
