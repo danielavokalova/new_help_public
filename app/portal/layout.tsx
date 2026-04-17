@@ -96,7 +96,7 @@ export default function PortalLayout({ children }: { children: ReactNode }) {
               className={s.sidebarBrandBtn}
               onClick={() => { setSelectedCat(null); router.push("/portal"); }}
             >
-              ✈️ GOL IBE Help
+              GOL IBE Help
             </button>
             {now && (
               <div className={s.datetimeBadge}>
@@ -186,13 +186,13 @@ export default function PortalLayout({ children }: { children: ReactNode }) {
               rel="noopener noreferrer"
               className={s.sidebarFooterBtn}
             >
-              ⚙️ Admin Console ↗
+              Admin Console ↗
             </a>
             <Link href="/portal/admin" className={s.sidebarFooterBtn}>
-              ✨ Content Studio
+              Content Studio
             </Link>
             <button className={s.sidebarFooterBtn} onClick={() => setShowContact(true)}>
-              📧 Contact Help
+              Contact Help
             </button>
           </div>
 
@@ -232,7 +232,7 @@ export default function PortalLayout({ children }: { children: ReactNode }) {
               </div>
             ) : (
               <>
-                <h2 className={s.modalTitle}>📧 Contact Help</h2>
+                <h2 className={s.modalTitle}>Contact Help</h2>
                 <p className={s.modalSub}>
                   Submit a support request — our team usually responds within one business day.
                 </p>
@@ -279,7 +279,6 @@ function CategoryView({ cat, onBack }: { cat: Category; onBack: () => void }) {
       <button className={s.backBtn} onClick={onBack}>← Back to overview</button>
 
       <div className={s.categoryHero}>
-        <span className={s.categoryEmoji}>{cat.icon}</span>
         <h1 className={s.categoryTitle}>{cat.name}</h1>
       </div>
       <p className={s.categoryDesc}>{cat.desc}</p>

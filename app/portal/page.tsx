@@ -61,7 +61,7 @@ export default function PortalOverviewPage() {
         <h2 className={s.heroTitle}>GOL IBE Help Portal</h2>
         <p className={s.heroSub}>Your smart guide to the GOL IBE Admin Console. Get answers instantly.</p>
         <div className={s.searchWrap}>
-          <span className={s.searchIcon}>🔍</span>
+          <span className={s.searchIcon}>&#9906;</span>
           <input
             className={s.omnisearch}
             placeholder="Search anything… e.g. add new user, configure markup, cancel reservation"
@@ -82,7 +82,7 @@ export default function PortalOverviewPage() {
               {filteredResults.map((item) => (
                 <li key={item.title} className={s.quickResultItem}>
                   <p>
-                    {item.icon} <strong>{item.title}</strong>
+                    <strong>{item.title}</strong>
                     <span className={s.badge}>{item.category}</span>
                   </p>
                   <p style={{ color: "#6e6e73", fontSize: 14 }}>{item.summary}</p>
@@ -116,7 +116,6 @@ export default function PortalOverviewPage() {
           {/* What's New */}
           <div className={s.panel}>
             <div className={s.panelHeader}>
-              <span className={s.panelIcon}>🆕</span>
               <span className={s.panelTitle}>What&apos;s New</span>
             </div>
             <div className={s.panelBody}>
@@ -137,11 +136,10 @@ export default function PortalOverviewPage() {
           {/* Walkthroughs */}
           <div className={s.panel}>
             <div className={s.panelHeader}>
-              <span className={s.panelIcon}>🚶</span>
               <span className={s.panelTitle}>Walkthroughs</span>
             </div>
             <div className={s.comingSoon}>
-              <span className={s.comingSoonIcon}>🗺️</span>
+              <span className={s.comingSoonIcon}></span>
               <span className={s.comingSoonLabel}>Coming soon</span>
               <span className={s.comingSoonText}>
                 Step-by-step guided paths — first booking, markup rules, notifications setup, and more.
@@ -152,11 +150,10 @@ export default function PortalOverviewPage() {
           {/* Agency Health Check */}
           <div className={s.panel}>
             <div className={s.panelHeader}>
-              <span className={s.panelIcon}>💊</span>
               <span className={s.panelTitle}>Agency Health Check</span>
             </div>
             <div className={s.comingSoon}>
-              <span className={s.comingSoonIcon}>📊</span>
+              <span className={s.comingSoonIcon}></span>
               <span className={s.comingSoonLabel}>Coming soon</span>
               <span className={s.comingSoonText}>
                 Quick diagnostic — verify all agency configurations are complete and up to date.
@@ -168,12 +165,12 @@ export default function PortalOverviewPage() {
 
         {/* Most Visited */}
         <div className={s.mostVisited}>
-          <div className={s.mostVisitedTitle}>🔥 Most visited</div>
+          <div className={s.mostVisitedTitle}>Most visited</div>
           <ul className={s.mostVisitedList}>
             {QUICK_RESULTS.map((item) => (
               <li key={item.title} className={s.mostVisitedItem}>
                 <p>
-                  {item.icon} <strong>{item.title}</strong>
+                  <strong>{item.title}</strong>
                   <span className={s.badge}>{item.category}</span>
                 </p>
                 <Link href={item.href} style={{ whiteSpace: "nowrap", fontSize: 14 }}>Open →</Link>
@@ -185,10 +182,10 @@ export default function PortalOverviewPage() {
         {/* Action bar */}
         <div className={s.actionBar}>
           <a href="https://bo.golibe.com/" target="_blank" rel="noopener noreferrer" className={s.btnOutline}>
-            ⚙️ Open Admin Console ↗
+            Open Admin Console ↗
           </a>
           <button className={s.btnPrimary} onClick={openContact}>
-            📧 Contact Help
+            Contact Help
           </button>
         </div>
 

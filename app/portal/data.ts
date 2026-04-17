@@ -157,11 +157,11 @@ export const CATEGORIES: Category[] = [
 ];
 
 export const APP_TABS: AppTab[] = [
-  { label: "✈️ GOL IBE Help", href: "/portal", isActive: true },
-  { label: "⚙️ Admin Console", href: "https://bo.golibe.com/", isActive: false },
-  { label: "🌐 TCP", href: "https://www.travelcloudpro.com/#/login?returnTo=%2Fcbt%2Fcorporates", isActive: false },
-  { label: "👤 My Travelport", href: "https://auth.travelport.com/", isActive: false },
-  { label: "🏠 Our GOL IBE Web", href: "https://demo4.golibe.com/", isActive: false },
+  { label: "GOL IBE Help", href: "/portal", isActive: true },
+  { label: "Admin Console", href: "https://bo.golibe.com/", isActive: false },
+  { label: "TCP", href: "https://www.travelcloudpro.com/#/login?returnTo=%2Fcbt%2Fcorporates", isActive: false },
+  { label: "My Travelport", href: "https://auth.travelport.com/", isActive: false },
+  { label: "GOL IBE Web", href: "https://demo4.golibe.com/", isActive: false },
 ];
 
 export const RELEASE_NOTES: ReleaseNote[] = [
