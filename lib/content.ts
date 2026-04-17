@@ -6,7 +6,8 @@ export const SECTIONS = [
   "configuration",
   "operations",
   "troubleshooting",
-  "release-notes"
+  "release-notes",
+  "cee-hot-icon"
 ] as const;
 
 export type Section = (typeof SECTIONS)[number];
