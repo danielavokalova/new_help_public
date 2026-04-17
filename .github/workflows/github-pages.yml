@@ -2,7 +2,7 @@ name: github-pages
 
 on:
   push:
-    branches: [main, "claude/organize-help-panels-69mcs"]
+    branches: [main, "claude/organize-help-panels-69mcs", "claude/persist-left-menu-FrC8z"]
   workflow_dispatch:
 
 permissions:
