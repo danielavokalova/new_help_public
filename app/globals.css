@@ -33,7 +33,7 @@ body {
   top: 0;
   z-index: 20;
   background: var(--white);
-  border-bottom: 3px solid var(--orange);
+  border-bottom: 1px solid var(--border);
   height: 54px;
   display: flex;
   align-items: center;

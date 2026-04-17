@@ -1,20 +1,20 @@
 /* =========================================================
-   Portal overview page — GOL IBE Admin Console style
+   Portal overview — GOL IBE Admin Console style
    ========================================================= */
 
 /* ── Hero ──────────────────────────────────────────────── */
 .hero {
   background: #fff;
-  border-bottom: 1px solid #dde1ea;
-  padding: 32px 52px 28px;
+  border-bottom: 1px solid #d0d5e0;
+  padding: 36px 52px 30px;
 }
 
 .heroTitle {
   margin: 0 0 6px;
   color: #1a3668;
-  font-size: 28px;
-  letter-spacing: -0.02em;
-  font-weight: 800;
+  font-size: 30px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
 }
 
 .heroSub {
@@ -25,12 +25,12 @@
 
 .searchWrap {
   position: relative;
-  max-width: 580px;
+  max-width: 560px;
 }
 
 .searchIcon {
   position: absolute;
-  left: 14px;
+  left: 13px;
   top: 50%;
   transform: translateY(-50%);
   font-size: 14px;
@@ -40,9 +40,9 @@
 
 .omnisearch {
   width: 100%;
-  border: 1.5px solid #dde1ea;
-  border-radius: 6px;
-  padding: 12px 16px 12px 40px;
+  border: 1px solid #c8cfe0;
+  border-radius: 4px;
+  padding: 11px 14px 11px 38px;
   font-size: 15px;
   outline: none;
   font-family: inherit;
@@ -52,8 +52,8 @@
 }
 
 .omnisearch:focus {
-  border-color: #e05a00;
-  box-shadow: 0 0 0 3px rgba(224,90,0,0.12);
+  border-color: #1a3668;
+  box-shadow: 0 0 0 2px rgba(26,54,104,0.12);
 }
 
 /* ── Page body ─────────────────────────────────────────── */
@@ -65,27 +65,27 @@
 .quickResults {
   margin-bottom: 24px;
   background: #fff;
-  border-radius: 8px;
+  border-radius: 6px;
   padding: 18px 20px;
-  box-shadow: 0 2px 10px rgba(26,54,104,0.08);
+  box-shadow: 0 3px 16px rgba(26,54,104,0.10);
 }
 
 .quickResultsList { list-style: none; padding: 0; margin: 0; display: grid; gap: 10px; }
 
 .quickResultItem {
-  border: 1px solid #dde1ea;
-  border-radius: 6px;
+  border: 1px solid #d0d5e0;
+  border-radius: 4px;
   padding: 12px 16px;
   background: #fafbfc;
 }
 
 .quickResultItem p { margin: 0 0 4px; font-size: 15px; }
-.quickResultItem a { font-size: 13px; font-weight: 600; color: #e05a00; }
-.quickResultItem a:hover { color: #c74e00; text-decoration: none; }
+.quickResultItem a { font-size: 13px; font-weight: 600; color: #1a3668; }
+.quickResultItem a:hover { color: #e05a00; text-decoration: none; }
 
-/* ── Section heading ──────────────────────────────────── */
+/* ── Section heading (like PRODUCTION / UAPI SETTINGS) ─── */
 .sectionTitle {
-  font-size: 11px;
+  font-size: 12px;
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.1em;
@@ -93,23 +93,23 @@
   margin: 0 0 16px;
 }
 
-/* ── Topic grid ─────────────────────────────────────── */
+/* ── Topic grid ─────────────────────────────────────────── */
 .topicGrid {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 14px;
+  gap: 16px;
   margin-bottom: 32px;
 }
 
 .catCard {
   background: #fff;
   border: none;
-  border-radius: 8px;
-  padding: 20px 18px 16px;
+  border-radius: 6px;
+  padding: 22px 20px 18px;
   text-align: left;
   cursor: pointer;
   font-family: inherit;
-  box-shadow: 0 2px 12px rgba(26,54,104,0.10);
+  box-shadow: 0 3px 16px rgba(26,54,104,0.13);
   transition: box-shadow 160ms, transform 160ms;
   display: flex;
   flex-direction: column;
@@ -118,20 +118,20 @@
 
 .catCard:hover {
   transform: translateY(-3px);
-  box-shadow: 0 8px 28px rgba(26,54,104,0.16);
+  box-shadow: 0 10px 32px rgba(26,54,104,0.20);
 }
 
 .catIcon { display: none; }
 
 .catName {
-  font-size: 15px;
+  font-size: 16px;
   font-weight: 700;
   color: #1a3668;
   margin-bottom: 4px;
 }
 
 .catDesc {
-  font-size: 13px;
+  font-size: 14px;
   color: #6b7a99;
   line-height: 1.4;
   flex: 1;
@@ -142,10 +142,10 @@
   margin-top: 10px;
   font-size: 13px;
   font-weight: 600;
-  color: #e05a00;
+  color: #1a3668;
 }
 
-/* ── Three panels ─────────────────────────────────── */
+/* ── Three panels ─────────────────────────────────────── */
 .panelsRow {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -156,17 +156,17 @@
 .panel {
   background: #fff;
   border: none;
-  border-radius: 8px;
+  border-radius: 6px;
   overflow: hidden;
-  box-shadow: 0 2px 12px rgba(26,54,104,0.08);
+  box-shadow: 0 3px 16px rgba(26,54,104,0.10);
 }
 
 .panelHeader {
   display: flex;
   align-items: center;
   padding: 14px 18px;
-  border-bottom: 1px solid #dde1ea;
-  background: #fafbfc;
+  border-bottom: 1px solid #d0d5e0;
+  background: #f7f8fb;
 }
 
 .panelIcon { display: none; }
@@ -195,9 +195,9 @@
 .releaseList {
   margin: 0;
   padding-left: 16px;
-  font-size: 13.5px;
+  font-size: 14px;
   color: #2c3e5f;
-  line-height: 1.6;
+  line-height: 1.7;
 }
 
 .releaseList li { margin-bottom: 3px; }
@@ -221,27 +221,27 @@
   color: #6b7a99;
   background: #e8edf6;
   padding: 3px 10px;
-  border-radius: 4px;
+  border-radius: 3px;
 }
 
 .comingSoonText {
-  font-size: 13px;
+  font-size: 14px;
   color: #6b7a99;
   line-height: 1.5;
 }
 
-/* ── Most visited ─────────────────────────────────── */
+/* ── Most visited ─────────────────────────────────────── */
 .mostVisited {
   background: #fff;
   border: none;
-  border-radius: 8px;
+  border-radius: 6px;
   padding: 18px 20px;
   margin-bottom: 24px;
-  box-shadow: 0 2px 12px rgba(26,54,104,0.08);
+  box-shadow: 0 3px 16px rgba(26,54,104,0.10);
 }
 
 .mostVisitedTitle {
-  font-size: 11px;
+  font-size: 12px;
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.1em;
@@ -256,15 +256,15 @@
   align-items: center;
   justify-content: space-between;
   gap: 12px;
-  padding: 8px 10px;
-  border-radius: 6px;
+  padding: 9px 10px;
+  border-radius: 4px;
   transition: background 100ms;
 }
 
 .mostVisitedItem:hover { background: #e8edf6; }
-.mostVisitedItem p { margin: 0; font-size: 14.5px; }
+.mostVisitedItem p { margin: 0; font-size: 15px; }
 
-/* ── Action bar ─────────────────────────────────── */
+/* ── Action bar ─────────────────────────────────────── */
 .actionBar { display: flex; gap: 12px; flex-wrap: wrap; }
 
 .btnPrimary {
@@ -274,9 +274,9 @@
   background: #e05a00;
   color: #fff;
   border: none;
-  border-radius: 4px;
-  padding: 11px 24px;
-  font-size: 14px;
+  border-radius: 5px;
+  padding: 13px 26px;
+  font-size: 15px;
   font-weight: 600;
   cursor: pointer;
   text-decoration: none;
@@ -290,12 +290,12 @@
   display: inline-flex;
   align-items: center;
   gap: 7px;
-  background: transparent;
+  background: #fff;
   color: #e05a00;
   border: 1.5px solid #e05a00;
-  border-radius: 4px;
-  padding: 11px 24px;
-  font-size: 14px;
+  border-radius: 5px;
+  padding: 13px 26px;
+  font-size: 15px;
   font-weight: 600;
   cursor: pointer;
   text-decoration: none;
@@ -303,7 +303,7 @@
   font-family: inherit;
 }
 
-.btnOutline:hover { background: #fff4ee; color: #c74e00; border-color: #c74e00; text-decoration: none; }
+.btnOutline:hover { background: #fff4ee; text-decoration: none; }
 
 .badge {
   background: #e8edf6;
@@ -311,7 +311,7 @@
   font-size: 11px;
   font-weight: 600;
   padding: 2px 8px;
-  border-radius: 4px;
+  border-radius: 3px;
   margin-left: 6px;
   vertical-align: middle;
 }
