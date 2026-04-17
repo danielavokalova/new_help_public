@@ -86,9 +86,9 @@
   display: flex;
   align-items: center;
   gap: 7px;
-  padding: 6px 8px;
+  padding: 7px 8px;
   border-radius: 4px;
-  font-size: 14px;
+  font-size: 15px;
   font-weight: 500;
   color: #1a3668;
   text-decoration: none;
@@ -137,7 +137,7 @@
   align-items: center;
   justify-content: space-between;
   width: 100%;
-  padding: 9px 16px 9px 20px;
+  padding: 10px 16px 10px 20px;
   font-size: 15px;
   font-weight: 600;
   color: #1a3668;
@@ -194,7 +194,7 @@
 
 .sidebarSubItem {
   display: block;
-  padding: 5px 8px;
+  padding: 6px 8px;
   font-size: 14px;
   color: #2c3e5f;
   text-decoration: none;

@@ -10,17 +10,17 @@
 }
 
 .heroTitle {
-  margin: 0 0 6px;
+  margin: 0 0 8px;
   color: #1a3668;
-  font-size: 30px;
-  font-weight: 700;
-  letter-spacing: -0.01em;
+  font-size: 34px;
+  font-weight: 800;
+  letter-spacing: -0.02em;
 }
 
 .heroSub {
-  margin: 0 0 20px;
+  margin: 0 0 22px;
   color: #6b7a99;
-  font-size: 15px;
+  font-size: 16px;
 }
 
 .searchWrap {
@@ -40,20 +40,21 @@
 
 .omnisearch {
   width: 100%;
-  border: 1px solid #c8cfe0;
-  border-radius: 4px;
-  padding: 11px 14px 11px 38px;
-  font-size: 15px;
+  border: 2px solid #c8cfe0;
+  border-radius: 5px;
+  padding: 14px 16px 14px 42px;
+  font-size: 16px;
   outline: none;
   font-family: inherit;
   color: #1a3668;
   background: #fff;
+  box-shadow: 0 2px 8px rgba(26,54,104,0.08);
   transition: border-color 140ms, box-shadow 140ms;
 }
 
 .omnisearch:focus {
   border-color: #1a3668;
-  box-shadow: 0 0 0 2px rgba(26,54,104,0.12);
+  box-shadow: 0 2px 12px rgba(26,54,104,0.16);
 }
 
 /* ── Page body ─────────────────────────────────────────── */
@@ -124,25 +125,30 @@
 .catIcon { display: none; }
 
 .catName {
-  font-size: 16px;
+  font-size: 17px;
   font-weight: 700;
   color: #1a3668;
-  margin-bottom: 4px;
+  margin-bottom: 5px;
 }
 
 .catDesc {
   font-size: 14px;
   color: #6b7a99;
-  line-height: 1.4;
+  line-height: 1.45;
   flex: 1;
 }
 
 .catLink {
   display: inline-block;
-  margin-top: 10px;
+  margin-top: 14px;
+  padding: 8px 18px;
+  background: #e05a00;
+  color: #fff;
   font-size: 13px;
   font-weight: 600;
-  color: #1a3668;
+  border-radius: 5px;
+  text-align: center;
+  align-self: flex-start;
 }
 
 /* ── Three panels ─────────────────────────────────────── */

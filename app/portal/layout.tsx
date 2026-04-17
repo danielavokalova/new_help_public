@@ -122,7 +122,7 @@ export default function PortalLayout({ children }: { children: ReactNode }) {
                   rel="noopener noreferrer"
                   className={s.appLink}
                 >
-                  {tab.label} ↗
+                  {tab.label}
                 </a>
               )
             )}
@@ -186,7 +186,7 @@ export default function PortalLayout({ children }: { children: ReactNode }) {
               rel="noopener noreferrer"
               className={s.sidebarFooterBtn}
             >
-              Admin Console ↗
+              Admin Console
             </a>
             <Link href="/portal/admin" className={s.sidebarFooterBtn}>
               Content Studio

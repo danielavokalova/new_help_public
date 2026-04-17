@@ -105,7 +105,7 @@ export default function PortalOverviewPage() {
               <div className={s.catIcon}>{cat.icon}</div>
               <div className={s.catName}>{cat.name}</div>
               <div className={s.catDesc}>{cat.desc}</div>
-              <span className={s.catLink}>Explore →</span>
+              <span className={s.catLink}>Explore</span>
             </button>
           ))}
         </div>
