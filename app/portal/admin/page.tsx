@@ -231,6 +231,15 @@ export default function AdminPage() {
               </div>
             </div>
 
+            {viewMode === "edit" && (
+              <div className={s.editorToolbar}>
+                <span style={{ fontSize: 12, color: "#6b7a99", marginRight: 6 }}>Insert:</span>
+                <button className={s.insertBtn} onClick={() => setContent((c) => c + "\n\n![Popis obrázku](https://example.com/obrazek.jpg)\n")}>🖼 Obrázek</button>
+                <button className={s.insertBtn} onClick={() => setContent((c) => c + '\n\n<iframe src="https://www.youtube.com/embed/VIDEO_ID" width="560" height="315" allowfullscreen></iframe>\n')}>▶ YouTube</button>
+                <button className={s.insertBtn} onClick={() => setContent((c) => c + "\n\n<video src=\"URL_VIDEA\" controls></video>\n")}>🎬 Video soubor</button>
+              </div>
+            )}
+
             <div className={s.editorArea}>
               {viewMode === "edit" ? (
                 <textarea

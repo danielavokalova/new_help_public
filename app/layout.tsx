@@ -1,5 +1,4 @@
 import type { ReactNode } from "react";
-import Link from "next/link";
 import type { Metadata } from "next";
 
 import { getSiteUrl } from "@/lib/site";
@@ -29,19 +28,6 @@ export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="en">
       <body>
-        <header className="header">
-          <div className="container">
-            <h1 className="brand">✈️ New Help Portal</h1>
-            <nav className="top-nav">
-              <Link href="/" className="nav-link">Home</Link>
-              <Link href="/getting-started" className="nav-link">Getting Started</Link>
-              <Link href="/configuration" className="nav-link">Configuration</Link>
-              <Link href="/operations" className="nav-link">Operations</Link>
-              <Link href="/troubleshooting" className="nav-link">Troubleshooting</Link>
-              <Link href="/release-notes" className="nav-link">Release Notes</Link>
-            </nav>
-          </div>
-        </header>
         <ContentWrapper>{children}</ContentWrapper>
       </body>
     </html>
