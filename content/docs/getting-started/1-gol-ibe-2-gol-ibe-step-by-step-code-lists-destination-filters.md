@@ -1,53 +1,21 @@
-# Destination filters
+# Destination Filters
 
-***
+<!-- tags: destination, filter, country, airport, blacklist, whitelist, restrict -->
 
-Destination filter is the section where you can modify what destination you would like to hide or what destination you would like to have in the offer.
+Destination filters let you restrict or allow specific airports, countries or regions in search results.
 
-This update must be done from agency´s side only. 
+## Use cases
 
-1\. Log into admin console.
+- Hide destinations you don't sell (e.g. domestic routes)
+- Restrict bookings to specific regions for a dealer
+- Block politically restricted destinations
 
-2.Find section **Code list** - **Destination filters**.
+## How to add a filter
 
+1. Go to **Code Lists → Destination Filters → Add filter**.
+2. Select filter type: **Airport**, **Country**, or **Region**.
+3. Choose **Allow** or **Block**.
+4. Enter the IATA code or select from the list.
+5. Click **Save**.
 
-
-
-
-3.Find requested destination. 
-
-You may find it by inserting IATA code or simply by inserting the whole name in English. 
-
-Click at button **"Apply filter"** to confirm your search.
-
- 
-
-
-
-
-
-**a) to uncover the destination**
-
-* If it says **REMOVE FILTER** it means that it is hidden. 
-* To uncover requested destionation just click at expression REMOVE FILTER and filter will be removed = destination will be avialable on your frontend.
-
-
-
-
-
-**b) to hide destination**
-
-* If it says **FILTER** it means that now that exact city is available on your frontend. 
-* So, if you would like to **HIDE** it  just click at the word **FILTER** and it will be hidden.
-
-
-
-
-
-It is so easy! 
-
-> In case you do not have this section enabled in admin console just feel free to contact us at: [helpdesk@cee-systems.com](mailto:helpdesk@cee-systems.com)
-
-***
-
-📩 Feel free to contact us at: [gol_support@cee-systems.com](mailto:gol_support@cee-systems.com).
+> ℹ️ Filters apply system-wide unless assigned to a specific dealer.

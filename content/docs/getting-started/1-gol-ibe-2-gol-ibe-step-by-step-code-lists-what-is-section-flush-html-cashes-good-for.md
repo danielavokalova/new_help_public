@@ -1,9 +1,20 @@
-# What is section Flush HTML cashes good for?
+# Flush HTML Caches
 
-This section is dedicated to those agencies that use our HTML package.
+<!-- tags: HTML cache, flush, refresh, front-end, display, UI -->
 
-If you go to the section **Code list - Flush HTML** cashes you will refresh your GOL IBE site.
+HTML caches store the rendered pages of your booking engine front-end. Flush them after making visual or content changes.
 
-***
+## When to use
 
-📩 Feel free to contact us at: [gol_support@cee-systems.com](mailto:gol_support@cee-systems.com).
+- After updating supporting texts or terms & conditions
+- After changing branding (logo, colours)
+- After modifying email templates
+- When customers report seeing outdated content
+
+## How to flush
+
+1. Go to **Code Lists → Flush HTML Caches**.
+2. Click **Flush HTML cache**.
+
+The front-end reloads fresh content on the next visitor request.  
+This typically takes effect within 1–2 minutes.
