@@ -16,7 +16,7 @@
   --text-muted:  #6b7a99;
   --shadow-sm:   0 1px 4px rgba(26, 54, 104, 0.10);
   --shadow-md:   0 4px 16px rgba(26, 54, 104, 0.12);
-  --font: system-ui, -apple-system, "Segoe UI", Arial, sans-serif;
+  --font: var(--font-inter), "Inter", system-ui, -apple-system, "Segoe UI", Arial, sans-serif;
 }
 
 body {
