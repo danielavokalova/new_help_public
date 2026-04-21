@@ -3,19 +3,19 @@
 }
 
 :root {
-  --navy:        #1a3668;
-  --navy-mid:    #2d5097;
-  --navy-light:  #e8edf6;
-  --orange:      #e05a00;
-  --orange-hov:  #c74e00;
-  --orange-lite: #fff4ee;
-  --bg:          #f0f3f8;
+  --navy:        #131f6b;
+  --navy-mid:    #1a2d6e;
+  --navy-light:  #e8edf0;
+  --orange:      #e85e20;
+  --orange-hov:  #db4a17;
+  --orange-lite: #fff0e8;
+  --bg:          #eef3f6;
   --white:       #ffffff;
-  --border:      #dde1ea;
-  --text-body:   #2c3e5f;
-  --text-muted:  #6b7a99;
-  --shadow-sm:   0 1px 4px rgba(26, 54, 104, 0.10);
-  --shadow-md:   0 4px 16px rgba(26, 54, 104, 0.12);
+  --border:      #c0d9eb;
+  --text-body:   #131f6b;
+  --text-muted:  #5a6b8a;
+  --shadow-sm:   0 1px 4px rgba(19, 31, 107, 0.10);
+  --shadow-md:   0 4px 16px rgba(19, 31, 107, 0.12);
   --font: var(--font-inter), "Inter", system-ui, -apple-system, "Segoe UI", Arial, sans-serif;
 }
 
@@ -149,8 +149,8 @@ a:hover { color: var(--orange-hov); text-decoration: underline; }
   align-items: center;
   gap: 5px;
   background: none;
-  border: 1.5px solid #d0d5e0;
-  color: #1a3668;
+  border: 1.5px solid #c0d9eb;
+  color: #131f6b;
   font-size: 13px;
   font-weight: 600;
   cursor: pointer;
@@ -161,7 +161,7 @@ a:hover { color: var(--orange-hov); text-decoration: underline; }
   white-space: nowrap;
   flex-shrink: 0;
 }
-.back-btn:hover { border-color: #1a3668; background: #e8edf6; }
+.back-btn:hover { border-color: #131f6b; background: #e8edf0; }
 
 /* ── Share button ────────────────────────────────────────── */
 .share-btn {
@@ -169,8 +169,8 @@ a:hover { color: var(--orange-hov); text-decoration: underline; }
   align-items: center;
   gap: 6px;
   background: #fff;
-  border: 1.5px solid #d0d5e0;
-  color: #1a3668;
+  border: 1.5px solid #c0d9eb;
+  color: #131f6b;
   font-size: 13px;
   font-weight: 600;
   cursor: pointer;
@@ -181,7 +181,7 @@ a:hover { color: var(--orange-hov); text-decoration: underline; }
   flex-shrink: 0;
   transition: all 120ms;
 }
-.share-btn:hover { border-color: #1a3668; background: #e8edf6; }
+.share-btn:hover { border-color: #131f6b; background: #e8edf0; }
 
 .article-list { padding-left: 1.25rem; }
 .article-list li { margin: 10px 0; font-size: 16px; }
