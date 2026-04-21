@@ -1,6 +1,35 @@
 import Anthropic from "@anthropic-ai/sdk";
 import { NextRequest } from "next/server";
 
+const SYSTEM_PROMPT = `You are a professional technical writer for GOL IBE — an enterprise Internet Booking Engine used by travel agencies across Central and Eastern Europe.
+
+The help portal is organised into these sections:
+- Getting Started: first-time setup guides, onboarding walkthroughs
+- Configuration: GDS connectors, settings, customization
+- Operations: daily tasks — reservations, payments, users
+- Troubleshooting: FAQ, common errors, edge cases
+- Release Notes: changelog entries
+
+Key GOL IBE terminology:
+- "Admin Console" — the back-office management interface
+- "dealer" — a sub-agency or white-label partner under the main agency
+- "agent" — a user account (not a software agent)
+- "GDS" / "NDC" — flight content sources (Travelport, Amadeus, etc.)
+- "PCC" — Pseudo City Code (GDS office identifier)
+- "markup" / "service fee" — pricing add-ons on top of the ticket price
+- "promo code" — customer-facing discount code
+- "booking confirmation" — the email sent after successful reservation
+
+Writing rules:
+1. Start with a single H1 title — the only H1 in the document
+2. Write a short intro paragraph (2–3 sentences) immediately after H1
+3. For procedures: use numbered steps; bold all UI element names (**Settings**, **Menu > Submenu**)
+4. For reference content: use H2 sections with concise descriptions
+5. Use H2 for major sections, H3 for subsections only when needed
+6. Keep sentences short and action-oriented
+7. End with a practical tip, a note about common mistakes, or a brief summary
+8. Output ONLY valid Markdown — no wrapping code fences, no preamble`;
+
 export async function POST(request: NextRequest) {
   const apiKey = process.env.ANTHROPIC_API_KEY;
   if (!apiKey) {
@@ -20,22 +49,10 @@ export async function POST(request: NextRequest) {
     "release-notes": "Release Notes",
   };
 
-  const prompt = `You are a technical writer for GOL IBE — a professional travel booking engine used by travel agencies.
-Write a help article for the section "${sectionLabel[section] ?? section}".
+  const userMessage = `Write a help article for the "${sectionLabel[section] ?? section}" section.
 
 Topic: ${topic}
-Style: ${tone}
-${extraNotes ? `Extra notes: ${extraNotes}` : ""}
-
-Rules:
-- Start with a clear H1 title (the only H1)
-- Write a short intro paragraph (2-3 sentences)
-- Use numbered steps for procedures; use H2 for major sections
-- Use **bold** for button names, menu items, and field labels
-- Keep sentences concise and action-oriented
-- End with a practical tip or short summary
-
-Output ONLY the markdown. No preamble, no code fences around the whole thing — just the article.`;
+Style: ${tone}${extraNotes ? `\nExtra notes: ${extraNotes}` : ""}`;
 
   const client = new Anthropic({ apiKey });
   const encoder = new TextEncoder();
@@ -45,9 +62,16 @@ Output ONLY the markdown. No preamble, no code fences around the whole thing —
       try {
         const response = await client.messages.create({
           model: "claude-sonnet-4-6",
-          max_tokens: 2048,
+          max_tokens: 4096,
           stream: true,
-          messages: [{ role: "user", content: prompt }],
+          system: [
+            {
+              type: "text",
+              text: SYSTEM_PROMPT,
+              cache_control: { type: "ephemeral" },
+            },
+          ],
+          messages: [{ role: "user", content: userMessage }],
         });
         for await (const chunk of response) {
           if (

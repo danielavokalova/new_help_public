@@ -569,10 +569,139 @@
   line-height: 1;
 }
 
+/* ── Mobile top bar (hidden on desktop) ──────────────────── */
+.mobileTopBar {
+  display: none;
+}
+
+.hamburger {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  width: 36px;
+  height: 36px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 6px;
+  border-radius: 5px;
+  flex-shrink: 0;
+  transition: background 120ms;
+}
+
+.hamburger:hover { background: #e8edf6; }
+
+.hamburgerLine {
+  display: block;
+  height: 2px;
+  width: 100%;
+  background: #1a3668;
+  border-radius: 2px;
+}
+
+.mobileTopBarTitle {
+  font-size: 16px;
+  font-weight: 800;
+  color: #1a3668;
+  letter-spacing: -0.02em;
+}
+
+/* Mobile sidebar close button (hidden on desktop) */
+.sidebarCloseBtn {
+  display: none;
+}
+
+/* Mobile backdrop */
+.sidebarBackdrop {
+  display: none;
+}
+
 /* ── Responsive ──────────────────────────────────────────── */
 @media (max-width: 860px) {
-  .portalRoot { flex-direction: column; height: auto; overflow: visible; }
-  .sidebar { width: 100%; height: auto; border-right: none; border-bottom: 1px solid #d0d5e0; }
+
+  /* Mobile top bar */
+  .mobileTopBar {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 50px;
+    background: #fff;
+    border-bottom: 1px solid #d0d5e0;
+    padding: 0 16px;
+    z-index: 200;
+    flex-shrink: 0;
+  }
+
+  /* Offset page content below fixed top bar */
+  .portalRoot {
+    flex-direction: column;
+    height: auto;
+    overflow: visible;
+    padding-top: 50px;
+  }
+
+  /* Sidebar becomes slide-in overlay */
+  .sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 280px;
+    height: 100vh;
+    z-index: 400;
+    transform: translateX(-100%);
+    transition: transform 240ms ease;
+    border-right: 1px solid #d0d5e0;
+    overflow-y: auto;
+  }
+
+  .sidebarOpen {
+    transform: translateX(0);
+    box-shadow: 4px 0 24px rgba(26,54,104,0.18);
+  }
+
+  /* Backdrop shown when sidebar is open */
+  .sidebarBackdrop {
+    display: block;
+    position: fixed;
+    inset: 0;
+    background: rgba(26, 54, 104, 0.38);
+    z-index: 399;
+    backdrop-filter: blur(2px);
+    animation: backdropIn 200ms ease forwards;
+  }
+
+  @keyframes backdropIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+
+  /* Close button inside mobile sidebar */
+  .sidebarCloseBtn {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    position: absolute;
+    top: 10px;
+    right: 12px;
+    background: none;
+    border: none;
+    font-size: 16px;
+    color: #6b7a99;
+    cursor: pointer;
+    padding: 6px 8px;
+    border-radius: 4px;
+    font-family: inherit;
+    transition: background 120ms;
+    z-index: 1;
+  }
+
+  .sidebarCloseBtn:hover { background: #e8edf6; color: #1a3668; }
+
   .portalMain { height: auto; overflow: visible; }
   .categoryView, .articleWrap { padding: 20px 20px 40px; }
   .categoryTitle { font-size: 24px; }

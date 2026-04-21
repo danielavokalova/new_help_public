@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useRef, useCallback } from "react";
+import { useState, useRef, useCallback, useEffect, useMemo } from "react";
 import Link from "next/link";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
@@ -26,9 +26,13 @@ const TEMPLATES = [
   "Common issues with [topic] and how to fix them",
   "FAQ: [topic] for travel agency managers",
   "How to configure [setting] step by step",
+  "What is [feature] and when to use it",
 ];
 
 type Step = "configure" | "generate" | "publish";
+type ViewMode = "edit" | "split" | "preview";
+
+const DRAFT_KEY = "content-studio-draft-v2";
 
 function toSlug(text: string): string {
   return text
@@ -52,11 +56,59 @@ export default function AdminPage() {
   const [extraNotes, setExtraNotes] = useState("");
   const [content, setContent] = useState("");
   const [isGenerating, setIsGenerating] = useState(false);
-  const [viewMode, setViewMode] = useState<"edit" | "preview">("preview");
+  const [viewMode, setViewMode] = useState<ViewMode>("preview");
   const [slug, setSlug] = useState("");
   const [publishStatus, setPublishStatus] = useState<"idle" | "saving" | "done" | "error">("idle");
   const [savedPath, setSavedPath] = useState("");
+  const [copied, setCopied] = useState(false);
+  const [hasDraft, setHasDraft] = useState(false);
   const abortRef = useRef<AbortController | null>(null);
+
+  /* Load draft on mount */
+  useEffect(() => {
+    try {
+      const saved = localStorage.getItem(DRAFT_KEY);
+      if (saved) {
+        const d = JSON.parse(saved);
+        if (d.topic) { setTopic(d.topic); setHasDraft(true); }
+        if (d.section) setSection(d.section);
+        if (d.tone) setTone(d.tone);
+        if (d.extraNotes) setExtraNotes(d.extraNotes);
+        if (d.content) { setContent(d.content); setStep("generate"); }
+        if (d.slug) setSlug(d.slug);
+      }
+    } catch {}
+  }, []);
+
+  /* Auto-save draft whenever fields change */
+  useEffect(() => {
+    if (!topic && !content) return;
+    try {
+      localStorage.setItem(DRAFT_KEY, JSON.stringify({ topic, section, tone, extraNotes, content, slug }));
+      setHasDraft(true);
+    } catch {}
+  }, [topic, section, tone, extraNotes, content, slug]);
+
+  function clearDraft() {
+    try { localStorage.removeItem(DRAFT_KEY); } catch {}
+    setTopic(""); setSection("getting-started"); setTone("step-by-step guide");
+    setExtraNotes(""); setContent(""); setSlug("");
+    setStep("configure"); setPublishStatus("idle");
+    setHasDraft(false);
+  }
+
+  const wordCount = useMemo(
+    () => (content.trim() ? content.trim().split(/\s+/).length : 0),
+    [content]
+  );
+  const readingTime = Math.max(1, Math.round(wordCount / 200));
+
+  const handleCopy = () => {
+    navigator.clipboard.writeText(content).then(() => {
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    });
+  };
 
   const handleGenerate = useCallback(async () => {
     if (!topic.trim()) return;
@@ -115,12 +167,18 @@ export default function AdminPage() {
       if (!res.ok) throw new Error(data.error);
       setSavedPath(data.path);
       setPublishStatus("done");
+      try { localStorage.removeItem(DRAFT_KEY); } catch {}
     } catch {
       setPublishStatus("error");
     }
   };
 
   const stepIndex = { configure: 0, generate: 1, publish: 2 }[step];
+
+  function goToStep(target: Step) {
+    const idx = { configure: 0, generate: 1, publish: 2 }[target];
+    if (idx <= stepIndex) setStep(target);
+  }
 
   return (
     <div className={s.root}>
@@ -132,17 +190,23 @@ export default function AdminPage() {
             <span className={s.badge}>AI</span>
             <h1 className={s.title}>Content Studio</h1>
           </div>
+          {hasDraft && step === "configure" && (
+            <span className={s.draftIndicator}>Draft saved</span>
+          )}
         </div>
 
         <div className={s.stepBar}>
           {(["configure", "generate", "publish"] as Step[]).map((st, i) => (
-            <div
+            <button
               key={st}
               className={`${s.stepItem} ${step === st ? s.stepActive : ""} ${i < stepIndex ? s.stepDone : ""}`}
+              onClick={() => goToStep(st)}
+              disabled={i > stepIndex}
+              style={{ cursor: i <= stepIndex ? "pointer" : "default" }}
             >
               <span className={s.stepNum}>{i + 1}</span>
               <span className={s.stepLabel}>{st}</span>
-            </div>
+            </button>
           ))}
         </div>
       </header>
@@ -153,7 +217,14 @@ export default function AdminPage() {
         {/* ── Step 1: Configure ── */}
         {step === "configure" && (
           <div className={s.configPane}>
-            <h2 className={s.paneTitle}>What should this article explain?</h2>
+            <div className={s.configHeader}>
+              <h2 className={s.paneTitle}>What should this article explain?</h2>
+              {hasDraft && (
+                <button className={s.clearDraftBtn} onClick={clearDraft}>
+                  Clear draft
+                </button>
+              )}
+            </div>
 
             <div className={s.templates}>
               {TEMPLATES.map((t) => (
@@ -173,6 +244,7 @@ export default function AdminPage() {
                 rows={3}
                 autoFocus
               />
+              <div className={s.fieldHint}>{topic.length > 0 ? `${topic.length} chars` : "Describe the topic clearly for better results"}</div>
             </div>
 
             <div className={s.row}>
@@ -204,9 +276,16 @@ export default function AdminPage() {
               />
             </div>
 
-            <button className={s.btnPrimary} onClick={handleGenerate} disabled={!topic.trim()}>
-              ✨ Generate Article
-            </button>
+            <div className={s.configActions}>
+              <button className={s.btnPrimary} onClick={handleGenerate} disabled={!topic.trim()}>
+                Generate Article
+              </button>
+              {content && (
+                <button className={s.btnOutline} onClick={() => setStep("generate")}>
+                  Back to draft →
+                </button>
+              )}
+            </div>
           </div>
         )}
 
@@ -225,39 +304,64 @@ export default function AdminPage() {
                 )}
                 <span className={s.topicLabel}>{topic}</span>
               </div>
-              <div className={s.tabBar}>
-                <button className={`${s.tab} ${viewMode === "edit" ? s.tabActive : ""}`} onClick={() => setViewMode("edit")}>Edit</button>
-                <button className={`${s.tab} ${viewMode === "preview" ? s.tabActive : ""}`} onClick={() => setViewMode("preview")}>Preview</button>
+              <div className={s.toolbarRight}>
+                {!isGenerating && content && (
+                  <div className={s.contentStats}>
+                    <span>{wordCount} words</span>
+                    <span>{readingTime} min read</span>
+                  </div>
+                )}
+                <div className={s.tabBar}>
+                  <button className={`${s.tab} ${viewMode === "edit" ? s.tabActive : ""}`} onClick={() => setViewMode("edit")}>Edit</button>
+                  <button className={`${s.tab} ${viewMode === "split" ? s.tabActive : ""}`} onClick={() => setViewMode("split")}>Split</button>
+                  <button className={`${s.tab} ${viewMode === "preview" ? s.tabActive : ""}`} onClick={() => setViewMode("preview")}>Preview</button>
+                </div>
               </div>
             </div>
 
-            {viewMode === "edit" && (
+            {(viewMode === "edit" || viewMode === "split") && (
               <div className={s.editorToolbar}>
-                <span style={{ fontSize: 12, color: "#6b7a99", marginRight: 6 }}>Insert:</span>
-                <button className={s.insertBtn} onClick={() => setContent((c) => c + "\n\n![Popis obrázku](https://example.com/obrazek.jpg)\n")}>🖼 Obrázek</button>
-                <button className={s.insertBtn} onClick={() => setContent((c) => c + '\n\n<iframe src="https://www.youtube.com/embed/VIDEO_ID" width="560" height="315" allowfullscreen></iframe>\n')}>▶ YouTube</button>
-                <button className={s.insertBtn} onClick={() => setContent((c) => c + "\n\n<video src=\"URL_VIDEA\" controls></video>\n")}>🎬 Video soubor</button>
+                <span style={{ fontSize: 12, color: "#6b7a99", marginRight: 4 }}>Insert:</span>
+                <button className={s.insertBtn} onClick={() => setContent((c) => c + "\n\n![Image description](https://example.com/image.jpg)\n")}>Image</button>
+                <button className={s.insertBtn} onClick={() => setContent((c) => c + '\n\n<iframe src="https://www.youtube.com/embed/VIDEO_ID" width="560" height="315" allowfullscreen></iframe>\n')}>YouTube</button>
+                <button className={s.insertBtn} onClick={() => setContent((c) => c + "\n\n<video src=\"VIDEO_URL\" controls></video>\n")}>Video</button>
+                <div style={{ flex: 1 }} />
+                <button className={`${s.insertBtn} ${copied ? s.insertBtnCopied : ""}`} onClick={handleCopy} disabled={!content}>
+                  {copied ? "Copied!" : "Copy markdown"}
+                </button>
               </div>
             )}
 
-            <div className={s.editorArea}>
-              {viewMode === "edit" ? (
+            <div className={`${s.editorArea} ${viewMode === "split" ? s.editorAreaSplit : ""}`}>
+              {viewMode === "preview" ? (
+                <div className={s.mdPreview}>
+                  <ReactMarkdown remarkPlugins={[remarkGfm]}>{content}</ReactMarkdown>
+                </div>
+              ) : viewMode === "split" ? (
+                <>
+                  <textarea
+                    className={s.mdEditor}
+                    value={content}
+                    onChange={(e) => setContent(e.target.value)}
+                    spellCheck
+                  />
+                  <div className={`${s.mdPreview} ${s.splitPreview}`}>
+                    <ReactMarkdown remarkPlugins={[remarkGfm]}>{content}</ReactMarkdown>
+                  </div>
+                </>
+              ) : (
                 <textarea
                   className={s.mdEditor}
                   value={content}
                   onChange={(e) => setContent(e.target.value)}
                   spellCheck
                 />
-              ) : (
-                <div className={s.mdPreview}>
-                  <ReactMarkdown remarkPlugins={[remarkGfm]}>{content}</ReactMarkdown>
-                </div>
               )}
             </div>
 
             <div className={s.generateActions}>
-              <button className={s.btnOutline} onClick={() => { setStep("configure"); setContent(""); }}>
-                ← Start over
+              <button className={s.btnOutline} onClick={() => setStep("configure")}>
+                ← Settings
               </button>
               <button className={s.btnOutline} onClick={handleGenerate} disabled={isGenerating}>
                 Regenerate
@@ -316,7 +420,7 @@ export default function AdminPage() {
                   onClick={handlePublish}
                   disabled={publishStatus === "saving" || !slug.trim()}
                 >
-                  {publishStatus === "saving" ? "Saving…" : "💾 Save to disk"}
+                  {publishStatus === "saving" ? "Saving…" : "Save to disk"}
                 </button>
               </div>
 
@@ -339,7 +443,7 @@ export default function AdminPage() {
               <ol>
                 <li>Review the file in your editor</li>
                 <li>Add it to the sidebar in <code>app/portal/data.ts</code></li>
-                <li><code>git add . && git commit -m "Add: {slug}"</code></li>
+                <li><code>git add . && git commit -m &quot;Add: {slug}&quot;</code></li>
                 <li>Push → GitHub Actions deploys automatically</li>
               </ol>
             </div>
@@ -347,13 +451,7 @@ export default function AdminPage() {
             <div style={{ display: "flex", gap: 12, marginTop: 24, justifyContent: "center" }}>
               <button
                 className={s.btnOutline}
-                onClick={() => {
-                  setStep("configure");
-                  setContent("");
-                  setPublishStatus("idle");
-                  setTopic("");
-                  setSlug("");
-                }}
+                onClick={clearDraft}
               >
                 Create another article
               </button>

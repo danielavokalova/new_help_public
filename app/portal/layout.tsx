@@ -33,6 +33,7 @@ export default function PortalLayout({ children }: { children: ReactNode }) {
   const [selectedCat, setSelectedCat] = useState<Category | null>(null);
   const [expandedCat, setExpandedCat] = useState<string | null>(null);
   const [showContact, setShowContact] = useState(false);
+  const [showMobileSidebar, setShowMobileSidebar] = useState(false);
   const [form, setForm] = useState({ name: "", email: "", subject: "", message: "" });
   const [formSent, setFormSent] = useState(false);
   const [now, setNow] = useState<Date | null>(null);
@@ -42,6 +43,11 @@ export default function PortalLayout({ children }: { children: ReactNode }) {
     const t = setInterval(() => setNow(new Date()), 1000);
     return () => clearInterval(t);
   }, []);
+
+  /* Close mobile sidebar on navigation */
+  useEffect(() => {
+    setShowMobileSidebar(false);
+  }, [pathname]);
 
   /* Auto-expand and highlight the category matching the current article */
   useEffect(() => {
@@ -83,119 +89,154 @@ export default function PortalLayout({ children }: { children: ReactNode }) {
   const fmtTime = (d: Date) =>
     d.toLocaleTimeString("cs-CZ", { hour: "2-digit", minute: "2-digit", second: "2-digit" });
 
-  return (
-    <PortalContext.Provider value={{ selectedCat, setSelectedCat, openContact: () => setShowContact(true) }}>
-      <div className={s.portalRoot}>
+  const sidebarContent = (
+    <>
+      {/* Brand + clock */}
+      <div className={s.sidebarBrand}>
+        <button
+          className={s.sidebarBrandBtn}
+          onClick={() => { setSelectedCat(null); router.push("/portal"); }}
+        >
+          GOL IBE Help
+        </button>
+        {now && (
+          <div className={s.datetimeBadge}>
+            <div>{fmtDate(now)}</div>
+            <div>{fmtTime(now)}</div>
+          </div>
+        )}
+      </div>
 
-        {/* ══ LEFT SIDEBAR ══════════════════════════════════ */}
-        <aside className={s.sidebar}>
-
-          {/* Brand + clock */}
-          <div className={s.sidebarBrand}>
-            <button
-              className={s.sidebarBrandBtn}
-              onClick={() => { setSelectedCat(null); router.push("/portal"); }}
-            >
-              GOL IBE Help
+      {/* App switcher */}
+      <div className={s.sidebarApps}>
+        <span className={s.sidebarAppsLabel}>Switch to</span>
+        {APP_TABS.map((tab) =>
+          tab.isActive ? (
+            <button key={tab.label} className={`${s.appLink} ${s.appLinkActive}`}>
+              {tab.label}
             </button>
-            {now && (
-              <div className={s.datetimeBadge}>
-                <div>{fmtDate(now)}</div>
-                <div>{fmtTime(now)}</div>
-              </div>
-            )}
-          </div>
-
-          {/* App switcher */}
-          <div className={s.sidebarApps}>
-            <span className={s.sidebarAppsLabel}>Switch to</span>
-            {APP_TABS.map((tab) =>
-              tab.isActive ? (
-                <button key={tab.label} className={`${s.appLink} ${s.appLinkActive}`}>
-                  {tab.label}
-                </button>
-              ) : (
-                <a
-                  key={tab.label}
-                  href={tab.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className={s.appLink}
-                >
-                  {tab.label}
-                </a>
-              )
-            )}
-          </div>
-
-          {/* Topic navigation */}
-          <div className={s.sidebarTopics}>
-            <span className={s.sidebarLabel}>Topics</span>
-            {CATEGORIES.map((cat) => {
-              const isCatActive =
-                cat.href === pathname ||
-                cat.articles.some((a) => a.href === pathname) ||
-                (isPortalRoot && selectedCat?.name === cat.name);
-              const isExpanded = expandedCat === cat.name;
-              return (
-                <div key={cat.name}>
-                  <button
-                    className={`${s.sidebarItem} ${isCatActive ? s.sidebarItemActive : ""}`}
-                    onClick={() => handleCatClick(cat)}
-                    aria-expanded={isExpanded}
-                  >
-                    <span className={s.sidebarItemLeft}>
-                      <span className={s.sidebarItemIcon}>{cat.icon}</span>
-                      <span>{cat.name}</span>
-                    </span>
-                    <span className={`${s.sidebarChevron} ${isExpanded ? s.sidebarChevronOpen : ""}`}>›</span>
-                  </button>
-
-                  {isExpanded && (
-                    <ul className={s.sidebarSubList}>
-                      <li>
-                        <Link
-                          href={cat.href}
-                          className={`${s.sidebarSubItem} ${s.sidebarSubItemAll} ${cat.href === pathname ? s.sidebarSubItemActive : ""}`}
-                        >
-                          All {cat.name} articles →
-                        </Link>
-                      </li>
-                      {cat.articles.map((a) => (
-                        <li key={a.href}>
-                          <Link
-                            href={a.href}
-                            className={`${s.sidebarSubItem} ${a.href === pathname ? s.sidebarSubItemActive : ""}`}
-                          >
-                            {a.title}
-                          </Link>
-                        </li>
-                      ))}
-                    </ul>
-                  )}
-                </div>
-              );
-            })}
-          </div>
-
-          {/* Footer actions */}
-          <div className={s.sidebarFooter}>
+          ) : (
             <a
-              href="https://bo.golibe.com/"
+              key={tab.label}
+              href={tab.href}
               target="_blank"
               rel="noopener noreferrer"
-              className={s.sidebarFooterBtn}
+              className={s.appLink}
             >
-              Admin Console
+              {tab.label}
             </a>
-            <Link href="/portal/admin" className={s.sidebarFooterBtn}>
-              Content Studio
-            </Link>
-            <button className={s.sidebarFooterBtn} onClick={() => setShowContact(true)}>
-              Contact Help
-            </button>
-          </div>
+          )
+        )}
+      </div>
 
+      {/* Topic navigation */}
+      <div className={s.sidebarTopics}>
+        <span className={s.sidebarLabel}>Topics</span>
+        {CATEGORIES.map((cat) => {
+          const isCatActive =
+            cat.href === pathname ||
+            cat.articles.some((a) => a.href === pathname) ||
+            (isPortalRoot && selectedCat?.name === cat.name);
+          const isExpanded = expandedCat === cat.name;
+          return (
+            <div key={cat.name}>
+              <button
+                className={`${s.sidebarItem} ${isCatActive ? s.sidebarItemActive : ""}`}
+                onClick={() => handleCatClick(cat)}
+                aria-expanded={isExpanded}
+              >
+                <span className={s.sidebarItemLeft}>
+                  <span className={s.sidebarItemIcon}>{cat.icon}</span>
+                  <span>{cat.name}</span>
+                </span>
+                <span className={`${s.sidebarChevron} ${isExpanded ? s.sidebarChevronOpen : ""}`}>›</span>
+              </button>
+
+              {isExpanded && (
+                <ul className={s.sidebarSubList}>
+                  <li>
+                    <Link
+                      href={cat.href}
+                      className={`${s.sidebarSubItem} ${s.sidebarSubItemAll} ${cat.href === pathname ? s.sidebarSubItemActive : ""}`}
+                    >
+                      All {cat.name} articles →
+                    </Link>
+                  </li>
+                  {cat.articles.map((a) => (
+                    <li key={a.href}>
+                      <Link
+                        href={a.href}
+                        className={`${s.sidebarSubItem} ${a.href === pathname ? s.sidebarSubItemActive : ""}`}
+                      >
+                        {a.title}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              )}
+            </div>
+          );
+        })}
+      </div>
+
+      {/* Footer actions */}
+      <div className={s.sidebarFooter}>
+        <a
+          href="https://bo.golibe.com/"
+          target="_blank"
+          rel="noopener noreferrer"
+          className={s.sidebarFooterBtn}
+        >
+          Admin Console
+        </a>
+        <Link href="/portal/admin" className={s.sidebarFooterBtn}>
+          Content Studio
+        </Link>
+        <button className={s.sidebarFooterBtn} onClick={() => setShowContact(true)}>
+          Contact Help
+        </button>
+      </div>
+    </>
+  );
+
+  return (
+    <PortalContext.Provider value={{ selectedCat, setSelectedCat, openContact: () => setShowContact(true) }}>
+
+      {/* ══ MOBILE TOP BAR ════════════════════════════════ */}
+      <div className={s.mobileTopBar}>
+        <button
+          className={s.hamburger}
+          onClick={() => setShowMobileSidebar(true)}
+          aria-label="Open navigation menu"
+        >
+          <span className={s.hamburgerLine} />
+          <span className={s.hamburgerLine} />
+          <span className={s.hamburgerLine} />
+        </button>
+        <span className={s.mobileTopBarTitle}>GOL IBE Help</span>
+      </div>
+
+      <div className={s.portalRoot}>
+
+        {/* ══ MOBILE BACKDROP ═══════════════════════════════ */}
+        {showMobileSidebar && (
+          <div
+            className={s.sidebarBackdrop}
+            onClick={() => setShowMobileSidebar(false)}
+          />
+        )}
+
+        {/* ══ LEFT SIDEBAR ══════════════════════════════════ */}
+        <aside className={`${s.sidebar} ${showMobileSidebar ? s.sidebarOpen : ""}`}>
+          {/* Mobile close button */}
+          <button
+            className={s.sidebarCloseBtn}
+            onClick={() => setShowMobileSidebar(false)}
+            aria-label="Close menu"
+          >
+            ✕
+          </button>
+          {sidebarContent}
         </aside>
         {/* ══ END SIDEBAR ═══════════════════════════════════ */}
 
