@@ -316,3 +316,115 @@
 
 .btnOutline:hover { border-color: #1a3668; background: #e8edf6; color: #1a3668; text-decoration: none; }
 .btnOutline:disabled { opacity: 0.5; cursor: not-allowed; }
+
+/* ── Mode toggle ────────────────────────────────────────── */
+.modeToggle {
+  display: flex; gap: 4px;
+  background: #f0f3f8; padding: 3px; border-radius: 8px;
+}
+
+.modeBtn {
+  padding: 6px 16px; border: none; border-radius: 6px;
+  background: transparent; font-size: 13px; font-weight: 600;
+  color: #6b7a99; cursor: pointer; font-family: inherit; transition: all 120ms;
+  white-space: nowrap;
+}
+
+.modeBtn:hover { color: #1a3668; }
+.modeBtnActive { background: #fff; color: #1a3668; box-shadow: 0 1px 3px rgba(0,0,0,0.10); }
+
+/* ── Browse pane ─────────────────────────────────────────── */
+.browsePane { width: 100%; max-width: 760px; }
+
+.browseHeader {
+  display: flex; align-items: center; gap: 16px;
+  margin-bottom: 22px; flex-wrap: wrap;
+}
+
+.browseSearch {
+  flex: 1; min-width: 200px; max-width: 340px;
+  border: 1.5px solid #dde1ea; border-radius: 7px;
+  padding: 8px 13px; font-size: 14px; font-family: inherit;
+  color: #1a3668; background: #fff; outline: none;
+  transition: border-color 140ms, box-shadow 140ms;
+}
+
+.browseSearch:focus {
+  border-color: #e05a00;
+  box-shadow: 0 0 0 3px rgba(224,90,0,0.12);
+}
+
+.browseHint { font-size: 14px; color: #6b7a99; padding: 24px 0; text-align: center; }
+
+.browseSection { margin-bottom: 22px; }
+
+.browseSectionLabel {
+  display: flex; align-items: center; gap: 8px;
+  font-size: 12px; font-weight: 700; letter-spacing: 0.06em;
+  text-transform: uppercase; color: #6b7a99;
+  padding-bottom: 8px; border-bottom: 1px solid #dde1ea;
+  margin-bottom: 6px;
+}
+
+.browseCount {
+  background: #e8edf6; color: #1a3668;
+  font-size: 11px; font-weight: 700; padding: 1px 7px;
+  border-radius: 20px;
+}
+
+.browseList { list-style: none; margin: 0; padding: 0; }
+
+.browseItem {
+  display: flex; align-items: center; gap: 12px; width: 100%;
+  padding: 10px 14px; background: #fff;
+  border: 1px solid #dde1ea; border-radius: 7px;
+  margin-bottom: 5px; cursor: pointer; font-family: inherit;
+  text-align: left; transition: all 120ms;
+}
+
+.browseItem:hover { border-color: #e05a00; background: #fff4ee; }
+
+.browseItemTitle { font-size: 14px; font-weight: 600; color: #1a3668; flex: 1; }
+
+.browseItemSlug {
+  font-size: 12px; color: #94a3b8;
+  font-family: "SF Mono", "Fira Code", monospace;
+  white-space: nowrap;
+}
+
+.browseItemEdit {
+  font-size: 12px; font-weight: 600; color: #e05a00;
+  white-space: nowrap; flex-shrink: 0;
+}
+
+/* ── Category picker ─────────────────────────────────────── */
+.categoryGrid {
+  display: flex; flex-wrap: wrap; gap: 8px; margin-top: 6px;
+}
+
+.catPill {
+  padding: 6px 14px; border: 1.5px solid #dde1ea; border-radius: 20px;
+  background: #fff; font-size: 13px; font-weight: 500; color: #1a3668;
+  cursor: pointer; font-family: inherit; transition: all 120ms;
+}
+
+.catPill:hover { border-color: #e05a00; color: #e05a00; background: #fff4ee; }
+.catPillActive { border-color: #e05a00; background: #e05a00; color: #fff; }
+.catPillActive:hover { background: #c74e00; border-color: #c74e00; color: #fff; }
+
+/* ── Category hint box ───────────────────────────────────── */
+.categoryHintBox {
+  background: #f0f3f8; border: 1px solid #dde1ea; border-radius: 8px;
+  padding: 12px 16px; margin: 12px 0 18px;
+}
+
+.categoryHintLabel {
+  font-size: 12px; font-weight: 600; color: #6b7a99; margin-bottom: 6px;
+}
+
+.categoryHintCode {
+  display: block; font-family: "SF Mono", "Fira Code", monospace;
+  font-size: 12.5px; color: #1a3668; word-break: break-all;
+  background: #fff; border: 1px solid #dde1ea; border-radius: 5px;
+  padding: 8px 12px;
+}

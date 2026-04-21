@@ -2,6 +2,8 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 
 import { MarkdownBody } from "@/components/MarkdownBody";
+import { BackButton } from "@/components/BackButton";
+import { ShareButton } from "@/components/ShareButton";
 import { SECTIONS, getArticle, isSection, listArticleSlugs } from "@/lib/content";
 import { SECTION_LABELS } from "@/lib/sectionLabels";
 import s from "../../portal-layout.module.css";
@@ -44,15 +46,31 @@ export default async function PortalArticlePage({
 
   return (
     <div className={s.articleWrap}>
-      <nav className="breadcrumb" aria-label="Breadcrumb">
-        <Link href="/portal">Home</Link>
-        <span aria-hidden="true"> / </span>
-        <span>{label}</span>
-        <span aria-hidden="true"> / </span>
-        <span>{article.title}</span>
-      </nav>
-      <h2 className="article-title">{article.title}</h2>
-      <MarkdownBody>{article.bodyWithoutH1}</MarkdownBody>
+
+      {/* ── Header: breadcrumb + back + share ── */}
+      <div className={s.articlePageHeader}>
+        <div className={s.articleNav}>
+          <BackButton />
+          <nav className="breadcrumb" aria-label="Breadcrumb">
+            <Link href="/portal">Home</Link>
+            <span aria-hidden="true"> / </span>
+            <Link href="/portal">{label}</Link>
+            <span aria-hidden="true"> / </span>
+            <span>{article.title}</span>
+          </nav>
+        </div>
+        <div className={s.articleTitleRow}>
+          <h1 className={s.articleMainTitle}>{article.title}</h1>
+          <ShareButton />
+        </div>
+      </div>
+
+      {/* ── Body ── */}
+      <div className={s.articleBody}>
+        <MarkdownBody>{article.bodyWithoutH1}</MarkdownBody>
+      </div>
+
     </div>
   );
 }
+
