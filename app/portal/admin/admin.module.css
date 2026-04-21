@@ -336,15 +336,26 @@
 /* ── Browse pane ─────────────────────────────────────────── */
 .browsePane { width: 100%; max-width: 760px; }
 
-.browseHeader {
-  display: flex; align-items: center; gap: 16px;
-  margin-bottom: 22px; flex-wrap: wrap;
+.browseSearchRow {
+  display: flex; align-items: center; gap: 14px;
+  margin-bottom: 24px;
+}
+
+.browseSearchWrap {
+  flex: 1; position: relative; display: flex; align-items: center;
+}
+
+.browseSearchIcon {
+  position: absolute; left: 12px;
+  font-size: 17px; color: #9aa5b8; pointer-events: none;
+  font-style: normal;
 }
 
 .browseSearch {
-  flex: 1; min-width: 200px; max-width: 340px;
-  border: 1.5px solid #dde1ea; border-radius: 7px;
-  padding: 8px 13px; font-size: 14px; font-family: inherit;
+  width: 100%;
+  border: 1.5px solid #dde1ea; border-radius: 8px;
+  padding: 10px 36px 10px 36px;
+  font-size: 14px; font-family: inherit;
   color: #1a3668; background: #fff; outline: none;
   transition: border-color 140ms, box-shadow 140ms;
 }
@@ -354,22 +365,68 @@
   box-shadow: 0 0 0 3px rgba(224,90,0,0.12);
 }
 
+.browseClearBtn {
+  position: absolute; right: 10px;
+  background: none; border: none;
+  font-size: 17px; color: #9aa5b8;
+  cursor: pointer; padding: 4px 6px;
+  border-radius: 4px; line-height: 1;
+  transition: color 120ms, background 120ms;
+}
+
+.browseClearBtn:hover { color: #1a3668; background: #e8edf6; }
+
+.browseTotal {
+  font-size: 12px; font-weight: 600; color: #6b7a99;
+  white-space: nowrap; flex-shrink: 0;
+  background: #f0f3f8; padding: 4px 10px; border-radius: 20px;
+}
+
 .browseHint { font-size: 14px; color: #6b7a99; padding: 24px 0; text-align: center; }
 
-.browseSection { margin-bottom: 22px; }
+.browseEmpty {
+  text-align: center; padding: 48px 24px;
+  color: #6b7a99;
+}
+
+.browseEmptyIcon { display: block; font-size: 2.5rem; margin-bottom: 12px; line-height: 1; }
+.browseEmpty p { font-size: 14px; margin: 0 0 10px; color: #6b7a99; }
+.browseEmpty code { font-family: "SF Mono", monospace; font-size: 13px; background: #e8edf6; padding: 4px 10px; border-radius: 5px; color: #1a3668; }
+
+.browseClearBtn2 {
+  background: none; border: 1.5px solid #dde1ea; border-radius: 6px;
+  font-size: 13px; font-weight: 600; color: #6b7a99;
+  cursor: pointer; font-family: inherit;
+  padding: 7px 16px; margin-top: 6px;
+  transition: all 120ms;
+}
+.browseClearBtn2:hover { border-color: #e05a00; color: #e05a00; }
+
+.browseSection { margin-bottom: 24px; }
 
 .browseSectionLabel {
   display: flex; align-items: center; gap: 8px;
-  font-size: 12px; font-weight: 700; letter-spacing: 0.06em;
-  text-transform: uppercase; color: #6b7a99;
-  padding-bottom: 8px; border-bottom: 1px solid #dde1ea;
-  margin-bottom: 6px;
+  padding: 6px 0 8px;
+  border-bottom: 1px solid #dde1ea;
+  margin-bottom: 8px;
+}
+
+.browseCatIcon { font-size: 16px; line-height: 1; flex-shrink: 0; }
+
+.browseCatName {
+  font-size: 13px; font-weight: 700; letter-spacing: 0.02em;
+  color: #1a3668; flex: 1;
 }
 
 .browseCount {
   background: #e8edf6; color: #1a3668;
   font-size: 11px; font-weight: 700; padding: 1px 7px;
-  border-radius: 20px;
+  border-radius: 20px; flex-shrink: 0;
+}
+
+.browseCatDesc {
+  font-size: 12px; color: #94a3b8;
+  margin: -4px 0 8px; line-height: 1.5;
 }
 
 .browseList { list-style: none; margin: 0; padding: 0; }
@@ -383,18 +440,26 @@
 }
 
 .browseItem:hover { border-color: #e05a00; background: #fff4ee; }
+.browseItem:hover .browseItemEdit { color: #c74e00; }
 
-.browseItemTitle { font-size: 14px; font-weight: 600; color: #1a3668; flex: 1; }
+.browseItemInfo {
+  display: flex; flex-direction: column; gap: 2px; flex: 1; min-width: 0;
+}
 
-.browseItemSlug {
-  font-size: 12px; color: #94a3b8;
+.browseItemTitle {
+  font-size: 14px; font-weight: 600; color: #1a3668;
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+
+.browseItemPath {
+  font-size: 11px; color: #94a3b8;
   font-family: "SF Mono", "Fira Code", monospace;
-  white-space: nowrap;
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
 }
 
 .browseItemEdit {
   font-size: 12px; font-weight: 600; color: #e05a00;
-  white-space: nowrap; flex-shrink: 0;
+  white-space: nowrap; flex-shrink: 0; transition: color 120ms;
 }
 
 /* ── Category picker ─────────────────────────────────────── */

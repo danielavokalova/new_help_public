@@ -47,6 +47,30 @@ function deriveSlug(markdown: string, fallback: string): string {
 
 type ArticleEntry = { section: string; slug: string; title: string };
 
+type EnrichedArticle = ArticleEntry & {
+  href: string;
+  categoryName: string;
+  categoryIcon: string;
+  categoryDesc: string;
+};
+
+type GroupEntry = {
+  catName: string;
+  icon: string;
+  desc: string;
+  items: EnrichedArticle[];
+};
+
+/* Build href → category info map once from CATEGORIES */
+const HREF_TO_CAT = new Map<string, { name: string; icon: string; desc: string }>();
+for (const cat of CATEGORIES) {
+  for (const a of cat.articles) {
+    HREF_TO_CAT.set(a.href, { name: cat.name, icon: cat.icon, desc: cat.desc });
+  }
+}
+
+const CAT_ORDER = CATEGORIES.map((c) => c.name);
+
 export default function AdminPage() {
   const [mode, setMode] = useState<Mode>("new");
   const [step, setStep] = useState<Step>("configure");
@@ -114,7 +138,49 @@ export default function AdminPage() {
     setStep("configure"); setPublishStatus("idle"); setHasDraft(false); setIsEditMode(false);
   }
 
-  async function loadArticleForEdit(entry: ArticleEntry) {
+  /* Enrich articles with category info from CATEGORIES */
+  const enrichedArticles = useMemo((): EnrichedArticle[] => {
+    return articles.map((a) => {
+      const href = `/portal/${a.section}/${a.slug}`;
+      const catInfo = HREF_TO_CAT.get(href);
+      return {
+        ...a,
+        href,
+        categoryName: catInfo?.name ?? a.section,
+        categoryIcon: catInfo?.icon ?? "📁",
+        categoryDesc: catInfo?.desc ?? "",
+      };
+    });
+  }, [articles]);
+
+  /* Filter by title OR URL path */
+  const filteredArticles = useMemo((): EnrichedArticle[] => {
+    const q = browseFilter.trim().toLowerCase();
+    if (!q) return enrichedArticles;
+    return enrichedArticles.filter((a) =>
+      a.title.toLowerCase().includes(q) ||
+      a.href.toLowerCase().includes(q) ||
+      a.slug.toLowerCase().includes(q)
+    );
+  }, [enrichedArticles, browseFilter]);
+
+  /* Group by category, preserving CATEGORIES order */
+  const groupedArticles = useMemo((): GroupEntry[] => {
+    const map = new Map<string, GroupEntry>();
+    for (const cat of CATEGORIES) {
+      map.set(cat.name, { catName: cat.name, icon: cat.icon, desc: cat.desc, items: [] });
+    }
+    for (const a of filteredArticles) {
+      const key = a.categoryName;
+      if (!map.has(key)) {
+        map.set(key, { catName: key, icon: a.categoryIcon, desc: a.categoryDesc, items: [] });
+      }
+      map.get(key)!.items.push(a);
+    }
+    return [...map.values()].filter((g) => g.items.length > 0);
+  }, [filteredArticles]);
+
+  async function loadArticleForEdit(entry: EnrichedArticle) {
     const res = await fetch("/api/articles", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -127,6 +193,7 @@ export default function AdminPage() {
     setSection(entry.section);
     const h1 = loaded.match(/^#\s+(.+)$/m)?.[1]?.replace(/<!--.*?-->/g, "").trim() ?? entry.title;
     setTopic(h1);
+    setSelectedCategory(CAT_ORDER.includes(entry.categoryName) ? entry.categoryName : "");
     setIsEditMode(true);
     setMode("new");
     setStep("generate");
@@ -202,21 +269,6 @@ export default function AdminPage() {
 
   const stepIndex = { configure: 0, generate: 1, publish: 2 }[step];
 
-  const filteredArticles = useMemo(() => {
-    if (!browseFilter.trim()) return articles;
-    const q = browseFilter.toLowerCase();
-    return articles.filter(a => `${a.title} ${a.slug} ${a.section}`.toLowerCase().includes(q));
-  }, [articles, browseFilter]);
-
-  const groupedArticles = useMemo(() => {
-    const g: Record<string, ArticleEntry[]> = {};
-    for (const a of filteredArticles) {
-      if (!g[a.section]) g[a.section] = [];
-      g[a.section].push(a);
-    }
-    return g;
-  }, [filteredArticles]);
-
   const categoryHint = selectedCategory
     ? `{ title: "${topic || "Article Title"}", href: "/portal/${section}/${slug || "slug"}" }`
     : null;
@@ -275,37 +327,69 @@ export default function AdminPage() {
         {/* ── BROWSE MODE ── */}
         {mode === "browse" && (
           <div className={s.browsePane}>
-            <div className={s.browseHeader}>
-              <h2 className={s.paneTitle}>Browse & edit existing articles</h2>
-              <input
-                className={s.browseSearch}
-                placeholder="Filter by title or slug…"
-                value={browseFilter}
-                onChange={(e) => setBrowseFilter(e.target.value)}
-                autoFocus
-              />
+
+            {/* Search bar + count */}
+            <div className={s.browseSearchRow}>
+              <div className={s.browseSearchWrap}>
+                <span className={s.browseSearchIcon}>⌕</span>
+                <input
+                  className={s.browseSearch}
+                  placeholder="Search by title or URL path…"
+                  value={browseFilter}
+                  onChange={(e) => setBrowseFilter(e.target.value)}
+                  autoFocus
+                />
+                {browseFilter && (
+                  <button className={s.browseClearBtn} onClick={() => setBrowseFilter("")}>×</button>
+                )}
+              </div>
+              {articles.length > 0 && (
+                <span className={s.browseTotal}>
+                  {browseFilter
+                    ? `${filteredArticles.length} of ${articles.length} articles`
+                    : `${articles.length} articles`}
+                </span>
+              )}
             </div>
 
-            {browseLoading && <p className={s.browseHint}>Loading articles…</p>}
-
-            {!browseLoading && articles.length === 0 && (
-              <p className={s.browseHint}>
-                Article list is only available in dev mode (<code>npm run dev</code>).
-              </p>
+            {browseLoading && (
+              <p className={s.browseHint}>Loading articles…</p>
             )}
 
-            {!browseLoading && Object.entries(groupedArticles).map(([sec, items]) => (
-              <div key={sec} className={s.browseSection}>
+            {!browseLoading && articles.length === 0 && (
+              <div className={s.browseEmpty}>
+                <span className={s.browseEmptyIcon}>📂</span>
+                <p>Article list is only available in dev mode.</p>
+                <code>npm run dev</code>
+              </div>
+            )}
+
+            {!browseLoading && articles.length > 0 && filteredArticles.length === 0 && (
+              <div className={s.browseEmpty}>
+                <span className={s.browseEmptyIcon}>🔍</span>
+                <p>No articles match <strong>"{browseFilter}"</strong></p>
+                <button className={s.browseClearBtn2} onClick={() => setBrowseFilter("")}>Clear search</button>
+              </div>
+            )}
+
+            {!browseLoading && groupedArticles.map(({ catName, icon, desc, items }) => (
+              <div key={catName} className={s.browseSection}>
                 <div className={s.browseSectionLabel}>
-                  {SECTIONS.find(s => s.value === sec)?.label ?? sec}
+                  <span className={s.browseCatIcon}>{icon}</span>
+                  <span className={s.browseCatName}>{catName}</span>
                   <span className={s.browseCount}>{items.length}</span>
                 </div>
+                {desc && !browseFilter && (
+                  <p className={s.browseCatDesc}>{desc}</p>
+                )}
                 <ul className={s.browseList}>
                   {items.map((a) => (
-                    <li key={a.slug}>
+                    <li key={`${a.section}/${a.slug}`}>
                       <button className={s.browseItem} onClick={() => loadArticleForEdit(a)}>
-                        <span className={s.browseItemTitle}>{a.title}</span>
-                        <span className={s.browseItemSlug}>{a.slug}</span>
+                        <span className={s.browseItemInfo}>
+                          <span className={s.browseItemTitle}>{a.title}</span>
+                          <span className={s.browseItemPath}>{a.href}</span>
+                        </span>
                         <span className={s.browseItemEdit}>Edit →</span>
                       </button>
                     </li>
@@ -521,7 +605,7 @@ export default function AdminPage() {
                           onClick={() => setSelectedCategory(cat.name === selectedCategory ? "" : cat.name)}
                           type="button"
                         >
-                          {cat.name}
+                          {cat.icon} {cat.name}
                         </button>
                       ))}
                     </div>
