@@ -22,165 +22,111 @@ const TONES = [
   { value: "quick tip", label: "Quick tip" },
 ];
 
-const TEMPLATES = [
-  "How to set up [feature] in GOL IBE",
-  "Common issues with [topic] and how to fix them",
-  "FAQ: [topic] for travel agency managers",
-  "How to configure [setting] step by step",
-  "What is [feature] and when to use it",
-];
-
-type Step = "configure" | "generate" | "publish";
 type ViewMode = "edit" | "split" | "preview";
-type Mode = "new" | "browse";
-
-const DRAFT_KEY = "content-studio-draft-v2";
-
-function toSlug(text: string): string {
-  return text.toLowerCase().replace(/[^a-z0-9\s-]/g, "").trim().replace(/\s+/g, "-").slice(0, 80);
-}
-
-function deriveSlug(markdown: string, fallback: string): string {
-  const h1 = markdown.match(/^#\s+(.+)$/m)?.[1];
-  return toSlug(h1 ?? fallback);
-}
-
+type SaveStatus = "idle" | "saving" | "saved" | "error";
 type ArticleEntry = { section: string; slug: string; title: string };
-
 type EnrichedArticle = ArticleEntry & {
   href: string;
   categoryName: string;
   categoryIcon: string;
-  categoryDesc: string;
 };
+type GroupEntry = { catName: string; icon: string; items: EnrichedArticle[] };
 
-type GroupEntry = {
-  catName: string;
-  icon: string;
-  desc: string;
-  items: EnrichedArticle[];
-};
-
-/* Build href → category info map once from CATEGORIES */
-const HREF_TO_CAT = new Map<string, { name: string; icon: string; desc: string }>();
+/* Build href → category lookup once at module level */
+const HREF_TO_CAT = new Map<string, { name: string; icon: string }>();
 for (const cat of CATEGORIES) {
   for (const a of cat.articles) {
-    HREF_TO_CAT.set(a.href, { name: cat.name, icon: cat.icon, desc: cat.desc });
+    HREF_TO_CAT.set(a.href, { name: cat.name, icon: cat.icon });
   }
 }
-
 const CAT_ORDER = CATEGORIES.map((c) => c.name);
 
+function toSlug(text: string) {
+  return text.toLowerCase().replace(/[^a-z0-9\s-]/g, "").trim().replace(/\s+/g, "-").slice(0, 80);
+}
+function deriveSlug(md: string, fallback: string) {
+  return toSlug(md.match(/^#\s+(.+)$/m)?.[1] ?? fallback);
+}
+
 export default function AdminPage() {
-  const [mode, setMode] = useState<Mode>("new");
-  const [step, setStep] = useState<Step>("configure");
-  const [topic, setTopic] = useState("");
-  const [section, setSection] = useState("getting-started");
-  const [tone, setTone] = useState("step-by-step guide");
-  const [extraNotes, setExtraNotes] = useState("");
+  /* ── Editor state ── */
   const [content, setContent] = useState("");
-  const [isGenerating, setIsGenerating] = useState(false);
-  const [viewMode, setViewMode] = useState<ViewMode>("preview");
+  const [section, setSection] = useState("getting-started");
   const [slug, setSlug] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("");
-  const [publishStatus, setPublishStatus] = useState<"idle" | "saving" | "done" | "error">("idle");
+  const [isNewArticle, setIsNewArticle] = useState(false);
+  const [hasEditor, setHasEditor] = useState(false);
+
+  /* ── AI generation ── */
+  const [topic, setTopic] = useState("");
+  const [tone, setTone] = useState("step-by-step guide");
+  const [extraNotes, setExtraNotes] = useState("");
+  const [isGenerating, setIsGenerating] = useState(false);
+  const [aiExpanded, setAiExpanded] = useState(false);
+
+  /* ── View ── */
+  const [viewMode, setViewMode] = useState<ViewMode>("edit");
+
+  /* ── Save ── */
+  const [saveStatus, setSaveStatus] = useState<SaveStatus>("idle");
   const [savedPath, setSavedPath] = useState("");
   const [copied, setCopied] = useState(false);
-  const [hasDraft, setHasDraft] = useState(false);
-  const [isEditMode, setIsEditMode] = useState(false);
 
-  /* Browse state */
+  /* ── Browser ── */
   const [articles, setArticles] = useState<ArticleEntry[]>([]);
   const [browseLoading, setBrowseLoading] = useState(false);
-  const [browseFilter, setBrowseFilter] = useState("");
+  const [browserFilter, setBrowserFilter] = useState("");
+  const [selectedArticle, setSelectedArticle] = useState<EnrichedArticle | null>(null);
+  const [expandedCats, setExpandedCats] = useState<Set<string>>(
+    new Set(CATEGORIES.map((c) => c.name))
+  );
 
+  const editorRef = useRef<HTMLTextAreaElement>(null);
   const abortRef = useRef<AbortController | null>(null);
 
-  /* Load draft on mount */
+  /* Load article list on mount */
   useEffect(() => {
-    try {
-      const saved = localStorage.getItem(DRAFT_KEY);
-      if (saved) {
-        const d = JSON.parse(saved);
-        if (d.topic) { setTopic(d.topic); setHasDraft(true); }
-        if (d.section) setSection(d.section);
-        if (d.tone) setTone(d.tone);
-        if (d.extraNotes) setExtraNotes(d.extraNotes);
-        if (d.content) { setContent(d.content); setStep("generate"); }
-        if (d.slug) setSlug(d.slug);
-      }
-    } catch {}
-  }, []);
-
-  /* Auto-save draft */
-  useEffect(() => {
-    if (!topic && !content) return;
-    try {
-      localStorage.setItem(DRAFT_KEY, JSON.stringify({ topic, section, tone, extraNotes, content, slug }));
-      setHasDraft(true);
-    } catch {}
-  }, [topic, section, tone, extraNotes, content, slug]);
-
-  /* Load article list when browse mode opens */
-  useEffect(() => {
-    if (mode !== "browse") return;
     setBrowseLoading(true);
     fetch("/api/articles")
       .then((r) => r.json())
       .then((data) => { setArticles(data); setBrowseLoading(false); })
       .catch(() => setBrowseLoading(false));
-  }, [mode]);
+  }, []);
 
-  function clearDraft() {
-    try { localStorage.removeItem(DRAFT_KEY); } catch {}
-    setTopic(""); setSection("getting-started"); setTone("step-by-step guide");
-    setExtraNotes(""); setContent(""); setSlug(""); setSelectedCategory("");
-    setStep("configure"); setPublishStatus("idle"); setHasDraft(false); setIsEditMode(false);
-  }
-
-  /* Enrich articles with category info from CATEGORIES */
-  const enrichedArticles = useMemo((): EnrichedArticle[] => {
-    return articles.map((a) => {
+  /* Enrich with category info */
+  const enrichedArticles = useMemo((): EnrichedArticle[] =>
+    articles.map((a) => {
       const href = `/portal/${a.section}/${a.slug}`;
-      const catInfo = HREF_TO_CAT.get(href);
-      return {
-        ...a,
-        href,
-        categoryName: catInfo?.name ?? a.section,
-        categoryIcon: catInfo?.icon ?? "📁",
-        categoryDesc: catInfo?.desc ?? "",
-      };
-    });
-  }, [articles]);
+      const cat = HREF_TO_CAT.get(href);
+      return { ...a, href, categoryName: cat?.name ?? a.section, categoryIcon: cat?.icon ?? "📁" };
+    }),
+    [articles]
+  );
 
-  /* Filter by title OR URL path */
+  /* Filter */
   const filteredArticles = useMemo((): EnrichedArticle[] => {
-    const q = browseFilter.trim().toLowerCase();
+    const q = browserFilter.trim().toLowerCase();
     if (!q) return enrichedArticles;
     return enrichedArticles.filter((a) =>
       a.title.toLowerCase().includes(q) ||
       a.href.toLowerCase().includes(q) ||
       a.slug.toLowerCase().includes(q)
     );
-  }, [enrichedArticles, browseFilter]);
+  }, [enrichedArticles, browserFilter]);
 
-  /* Group by category, preserving CATEGORIES order */
+  /* Group in CATEGORIES order */
   const groupedArticles = useMemo((): GroupEntry[] => {
     const map = new Map<string, GroupEntry>();
-    for (const cat of CATEGORIES) {
-      map.set(cat.name, { catName: cat.name, icon: cat.icon, desc: cat.desc, items: [] });
-    }
+    for (const cat of CATEGORIES) map.set(cat.name, { catName: cat.name, icon: cat.icon, items: [] });
     for (const a of filteredArticles) {
-      const key = a.categoryName;
-      if (!map.has(key)) {
-        map.set(key, { catName: key, icon: a.categoryIcon, desc: a.categoryDesc, items: [] });
-      }
-      map.get(key)!.items.push(a);
+      if (!map.has(a.categoryName)) map.set(a.categoryName, { catName: a.categoryName, icon: a.categoryIcon, items: [] });
+      map.get(a.categoryName)!.items.push(a);
     }
     return [...map.values()].filter((g) => g.items.length > 0);
   }, [filteredArticles]);
 
-  async function loadArticleForEdit(entry: EnrichedArticle) {
+  /* Load an article for editing */
+  async function loadArticle(entry: EnrichedArticle) {
     const res = await fetch("/api/articles", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -188,28 +134,73 @@ export default function AdminPage() {
     });
     if (!res.ok) return;
     const { content: loaded } = await res.json();
+    const h1 = loaded.match(/^#\s+(.+)$/m)?.[1]?.replace(/<!--.*?-->/g, "").trim() ?? entry.title;
     setContent(loaded);
     setSlug(entry.slug);
     setSection(entry.section);
-    const h1 = loaded.match(/^#\s+(.+)$/m)?.[1]?.replace(/<!--.*?-->/g, "").trim() ?? entry.title;
     setTopic(h1);
     setSelectedCategory(CAT_ORDER.includes(entry.categoryName) ? entry.categoryName : "");
-    setIsEditMode(true);
-    setMode("new");
-    setStep("generate");
-    setViewMode("edit");
+    setSelectedArticle(entry);
+    setIsNewArticle(false);
+    setAiExpanded(false);
+    setSaveStatus("idle");
+    setHasEditor(true);
   }
 
-  const wordCount = useMemo(() => content.trim() ? content.trim().split(/\s+/).length : 0, [content]);
-  const readingTime = Math.max(1, Math.round(wordCount / 200));
+  /* Start a new blank article */
+  function startNew() {
+    setContent("");
+    setSlug("");
+    setSection("getting-started");
+    setTopic("");
+    setTone("step-by-step guide");
+    setExtraNotes("");
+    setSelectedCategory("");
+    setSelectedArticle(null);
+    setIsNewArticle(true);
+    setAiExpanded(true);
+    setSaveStatus("idle");
+    setHasEditor(true);
+    setTimeout(() => editorRef.current?.focus(), 50);
+  }
 
-  const handleCopy = () => {
-    navigator.clipboard.writeText(content).then(() => {
-      setCopied(true);
-      setTimeout(() => setCopied(false), 2000);
+  /* ── Formatting helpers ── */
+  function insertAtCursor(before: string, after = "", placeholder = "text") {
+    const ta = editorRef.current;
+    if (!ta) return;
+    ta.focus();
+    const start = ta.selectionStart ?? 0;
+    const end = ta.selectionEnd ?? 0;
+    const sel = content.slice(start, end) || placeholder;
+    const next = content.slice(0, start) + before + sel + after + content.slice(end);
+    setContent(next);
+    requestAnimationFrame(() => {
+      ta.setSelectionRange(start + before.length, start + before.length + sel.length);
     });
-  };
+  }
 
+  function insertBlock(text: string, cursorOffset?: number) {
+    const ta = editorRef.current;
+    if (!ta) return;
+    ta.focus();
+    const pos = ta.selectionStart ?? content.length;
+    const pre = pos > 0 && content[pos - 1] !== "\n" ? "\n\n" : "";
+    const next = content.slice(0, pos) + pre + text + "\n\n" + content.slice(pos);
+    setContent(next);
+    requestAnimationFrame(() => {
+      const c = pos + pre.length + (cursorOffset ?? text.length);
+      ta.setSelectionRange(c, c);
+    });
+  }
+
+  function handleKeyDown(e: React.KeyboardEvent<HTMLTextAreaElement>) {
+    const mod = e.ctrlKey || e.metaKey;
+    if (mod && e.key === "b") { e.preventDefault(); insertAtCursor("**", "**", "bold text"); }
+    if (mod && e.key === "i") { e.preventDefault(); insertAtCursor("*", "*", "italic text"); }
+    if (mod && e.key === "k") { e.preventDefault(); insertAtCursor("[", "](https://)", "link text"); }
+  }
+
+  /* ── AI generation ── */
   const handleGenerate = useCallback(async () => {
     if (!topic.trim()) return;
     abortRef.current?.abort();
@@ -217,7 +208,6 @@ export default function AdminPage() {
     abortRef.current = abort;
     setIsGenerating(true);
     setContent("");
-    setStep("generate");
     try {
       const res = await fetch("/api/generate", {
         method: "POST",
@@ -226,31 +216,31 @@ export default function AdminPage() {
         signal: abort.signal,
       });
       if (!res.ok) {
-        const err = await res.text();
-        setContent(`> **Cannot generate:** ${err}\n\nAdd \`ANTHROPIC_API_KEY\` to \`.env.local\` and run \`npm run dev\`.`);
+        setContent(`> **Cannot generate:** ${await res.text()}\n\nAdd \`ANTHROPIC_API_KEY\` to \`.env.local\`.`);
         return;
       }
       const reader = res.body!.getReader();
-      const decoder = new TextDecoder();
+      const dec = new TextDecoder();
       let acc = "";
-      while (true) {
+      for (;;) {
         const { done, value } = await reader.read();
         if (done) break;
-        acc += decoder.decode(value, { stream: true });
+        acc += dec.decode(value, { stream: true });
         setContent(acc);
       }
       setSlug(deriveSlug(acc, topic));
+      setAiExpanded(false);
     } catch (err: unknown) {
-      if (err instanceof Error && err.name !== "AbortError") {
-        setContent(`> **Error:** ${err.message}`);
-      }
+      if (err instanceof Error && err.name !== "AbortError") setContent(`> **Error:** ${err.message}`);
     } finally {
       setIsGenerating(false);
     }
   }, [topic, section, tone, extraNotes]);
 
-  const handlePublish = async () => {
-    setPublishStatus("saving");
+  /* ── Save ── */
+  async function handleSave() {
+    if (!slug.trim() || !content.trim()) return;
+    setSaveStatus("saving");
     try {
       const res = await fetch("/api/publish", {
         method: "POST",
@@ -260,22 +250,49 @@ export default function AdminPage() {
       const data = await res.json();
       if (!res.ok) throw new Error(data.error);
       setSavedPath(data.path);
-      setPublishStatus("done");
-      try { localStorage.removeItem(DRAFT_KEY); } catch {}
+      setSaveStatus("saved");
+      /* Refresh browser list after saving a new article */
+      if (isNewArticle) {
+        setIsNewArticle(false);
+        fetch("/api/articles").then((r) => r.json()).then(setArticles).catch(() => {});
+      }
     } catch {
-      setPublishStatus("error");
+      setSaveStatus("error");
     }
-  };
+  }
 
-  const stepIndex = { configure: 0, generate: 1, publish: 2 }[step];
+  function handleCopy() {
+    navigator.clipboard.writeText(content).then(() => {
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    });
+  }
+
+  function toggleCat(name: string) {
+    setExpandedCats((prev) => {
+      const n = new Set(prev);
+      n.has(name) ? n.delete(name) : n.add(name);
+      return n;
+    });
+  }
+
+  /* ── Derived ── */
+  const derivedTitle = useMemo(
+    () => content.match(/^#\s+(.+)$/m)?.[1]?.replace(/<!--.*?-->/g, "").trim() ?? "(No title)",
+    [content]
+  );
+  const wordCount = useMemo(() => (content.trim() ? content.trim().split(/\s+/).length : 0), [content]);
+  const readingTime = Math.max(1, Math.round(wordCount / 200));
 
   const categoryHint = selectedCategory
-    ? `{ title: "${topic || "Article Title"}", href: "/portal/${section}/${slug || "slug"}" }`
+    ? `{ title: "${derivedTitle}", href: "/portal/${section}/${slug || "slug"}" }`
     : null;
 
+  /* ─────────────────────────────────────────────────── */
   return (
     <div className={s.root}>
-      {/* Header */}
+
+      {/* ── Header ── */}
       <header className={s.header}>
         <div className={s.headerLeft}>
           <Link href="/portal" className={s.backLink}>← Portal</Link>
@@ -283,390 +300,284 @@ export default function AdminPage() {
             <span className={s.badge}>AI</span>
             <h1 className={s.title}>Content Studio</h1>
           </div>
-          {hasDraft && mode === "new" && step === "configure" && (
-            <span className={s.draftIndicator}>{isEditMode ? "Editing article" : "Draft saved"}</span>
+        </div>
+        <div className={s.headerRight}>
+          {saveStatus === "saved" && (
+            <span className={s.savedBadge}>✓ Saved — {savedPath}</span>
+          )}
+          {saveStatus === "error" && (
+            <span className={s.errorBadge}>Save failed — run npm run dev</span>
           )}
         </div>
-
-        {/* Mode toggle */}
-        <div className={s.modeToggle}>
-          <button
-            className={`${s.modeBtn} ${mode === "new" ? s.modeBtnActive : ""}`}
-            onClick={() => setMode("new")}
-          >
-            {isEditMode ? "Edit article" : "New article"}
-          </button>
-          <button
-            className={`${s.modeBtn} ${mode === "browse" ? s.modeBtnActive : ""}`}
-            onClick={() => setMode("browse")}
-          >
-            Browse & edit
-          </button>
-        </div>
-
-        {mode === "new" && (
-          <div className={s.stepBar}>
-            {(["configure", "generate", "publish"] as Step[]).map((st, i) => (
-              <button
-                key={st}
-                className={`${s.stepItem} ${step === st ? s.stepActive : ""} ${i < stepIndex ? s.stepDone : ""}`}
-                onClick={() => { if (i <= stepIndex) setStep(st); }}
-                disabled={i > stepIndex}
-                style={{ cursor: i <= stepIndex ? "pointer" : "default" }}
-              >
-                <span className={s.stepNum}>{i + 1}</span>
-                <span className={s.stepLabel}>{st}</span>
-              </button>
-            ))}
-          </div>
-        )}
       </header>
 
-      <div className={s.main}>
+      {/* ── Workspace: browser + editor ── */}
+      <div className={s.workspace}>
 
-        {/* ── BROWSE MODE ── */}
-        {mode === "browse" && (
-          <div className={s.browsePane}>
-
-            {/* Search bar + count */}
-            <div className={s.browseSearchRow}>
-              <div className={s.browseSearchWrap}>
-                <span className={s.browseSearchIcon}>⌕</span>
-                <input
-                  className={s.browseSearch}
-                  placeholder="Search by title or URL path…"
-                  value={browseFilter}
-                  onChange={(e) => setBrowseFilter(e.target.value)}
-                  autoFocus
-                />
-                {browseFilter && (
-                  <button className={s.browseClearBtn} onClick={() => setBrowseFilter("")}>×</button>
-                )}
-              </div>
-              {articles.length > 0 && (
-                <span className={s.browseTotal}>
-                  {browseFilter
-                    ? `${filteredArticles.length} of ${articles.length} articles`
-                    : `${articles.length} articles`}
-                </span>
+        {/* ── LEFT BROWSER ── */}
+        <aside className={s.browser}>
+          <div className={s.browserHead}>
+            <button className={s.newBtn} onClick={startNew}>＋ New article</button>
+            <div className={s.browserSearchWrap}>
+              <input
+                className={s.browserSearch}
+                placeholder="Search articles…"
+                value={browserFilter}
+                onChange={(e) => setBrowserFilter(e.target.value)}
+              />
+              {browserFilter && (
+                <button className={s.browserClearX} onClick={() => setBrowserFilter("")}>×</button>
               )}
             </div>
+          </div>
 
-            {browseLoading && (
-              <p className={s.browseHint}>Loading articles…</p>
-            )}
+          <div className={s.browserScroll}>
+            {browseLoading && <p className={s.browserHint}>Loading…</p>}
 
             {!browseLoading && articles.length === 0 && (
-              <div className={s.browseEmpty}>
-                <span className={s.browseEmptyIcon}>📂</span>
-                <p>Article list is only available in dev mode.</p>
-                <code>npm run dev</code>
-              </div>
+              <p className={s.browserHint}>
+                Available in dev mode only.<br /><code>npm run dev</code>
+              </p>
             )}
 
             {!browseLoading && articles.length > 0 && filteredArticles.length === 0 && (
-              <div className={s.browseEmpty}>
-                <span className={s.browseEmptyIcon}>🔍</span>
-                <p>No articles match <strong>"{browseFilter}"</strong></p>
-                <button className={s.browseClearBtn2} onClick={() => setBrowseFilter("")}>Clear search</button>
-              </div>
+              <p className={s.browserHint}>No match for "{browserFilter}"</p>
             )}
 
-            {!browseLoading && groupedArticles.map(({ catName, icon, desc, items }) => (
-              <div key={catName} className={s.browseSection}>
-                <div className={s.browseSectionLabel}>
-                  <span className={s.browseCatIcon}>{icon}</span>
-                  <span className={s.browseCatName}>{catName}</span>
-                  <span className={s.browseCount}>{items.length}</span>
-                </div>
-                {desc && !browseFilter && (
-                  <p className={s.browseCatDesc}>{desc}</p>
+            {!browseLoading && groupedArticles.map(({ catName, icon, items }) => (
+              <div key={catName} className={s.browserCatGroup}>
+                <button className={s.browserCatToggle} onClick={() => toggleCat(catName)}>
+                  <span className={s.browserCatIcon}>{icon}</span>
+                  <span className={s.browserCatName}>{catName}</span>
+                  <span className={s.browserCatCount}>{items.length}</span>
+                  <span className={`${s.browserChevron} ${expandedCats.has(catName) ? s.browserChevronOpen : ""}`}>›</span>
+                </button>
+                {expandedCats.has(catName) && (
+                  <div className={s.browserItems}>
+                    {items.map((a) => {
+                      const isActive = selectedArticle?.slug === a.slug && selectedArticle?.section === a.section;
+                      return (
+                        <button
+                          key={`${a.section}/${a.slug}`}
+                          className={`${s.browserItem} ${isActive ? s.browserItemActive : ""}`}
+                          onClick={() => loadArticle(a)}
+                          title={a.href}
+                        >
+                          {a.title}
+                        </button>
+                      );
+                    })}
+                  </div>
                 )}
-                <ul className={s.browseList}>
-                  {items.map((a) => (
-                    <li key={`${a.section}/${a.slug}`}>
-                      <button className={s.browseItem} onClick={() => loadArticleForEdit(a)}>
-                        <span className={s.browseItemInfo}>
-                          <span className={s.browseItemTitle}>{a.title}</span>
-                          <span className={s.browseItemPath}>{a.href}</span>
-                        </span>
-                        <span className={s.browseItemEdit}>Edit →</span>
-                      </button>
-                    </li>
-                  ))}
-                </ul>
               </div>
             ))}
           </div>
-        )}
+        </aside>
 
-        {/* ── NEW / EDIT MODE ── */}
-        {mode === "new" && (
+        {/* ── RIGHT EDITOR ── */}
+        <div className={s.editorPanel}>
 
-          <>
-            {/* Step 1: Configure */}
-            {step === "configure" && (
-              <div className={s.configPane}>
-                <div className={s.configHeader}>
-                  <h2 className={s.paneTitle}>
-                    {isEditMode ? "Edit article settings" : "What should this article explain?"}
-                  </h2>
-                  {hasDraft && (
-                    <button className={s.clearDraftBtn} onClick={clearDraft}>
-                      {isEditMode ? "Cancel edit" : "Clear draft"}
-                    </button>
-                  )}
+          {/* Empty state */}
+          {!hasEditor && (
+            <div className={s.editorEmpty}>
+              <span className={s.editorEmptyIcon}>✏️</span>
+              <p className={s.editorEmptyTitle}>Select an article to edit</p>
+              <p className={s.editorEmptyDesc}>Choose from the list on the left, or create a new article.</p>
+              <button className={s.btnPrimary} style={{ marginTop: 12 }} onClick={startNew}>
+                ＋ New article
+              </button>
+            </div>
+          )}
+
+          {/* Editor */}
+          {hasEditor && (
+            <>
+              {/* ── Top bar: title + meta ── */}
+              <div className={s.editorTopBar}>
+                <div className={s.editorTitleRow}>
+                  <span className={s.editorTitlePreview}>{derivedTitle}</span>
+                  <span className={`${s.editorStatusBadge} ${isNewArticle ? s.editorStatusNew : s.editorStatusEdit}`}>
+                    {isNewArticle ? "NEW" : "EDITING"}
+                  </span>
                 </div>
-
-                {!isEditMode && (
-                  <div className={s.templates}>
-                    {TEMPLATES.map((t) => (
-                      <button key={t} className={s.templateBtn} onClick={() => setTopic(t)}>{t}</button>
+                <div className={s.editorMetaRow}>
+                  <select className={s.metaSelect} value={section} onChange={(e) => setSection(e.target.value)}>
+                    {SECTIONS.map((sec) => (
+                      <option key={sec.value} value={sec.value}>{sec.label}</option>
                     ))}
-                  </div>
-                )}
-
-                <div className={s.field}>
-                  <label className={s.label}>Topic / description</label>
-                  <textarea
-                    className={s.textarea}
-                    placeholder="e.g. How to set up multi-currency for a dealer account"
-                    value={topic}
-                    onChange={(e) => setTopic(e.target.value)}
-                    rows={3}
-                    autoFocus
-                  />
-                  <div className={s.fieldHint}>{topic.length > 0 ? `${topic.length} chars` : "Describe the topic clearly for better results"}</div>
-                </div>
-
-                <div className={s.row}>
-                  <div className={s.field}>
-                    <label className={s.label}>Section (folder)</label>
-                    <select className={s.select} value={section} onChange={(e) => setSection(e.target.value)}>
-                      {SECTIONS.map((sec) => (
-                        <option key={sec.value} value={sec.value}>{sec.label}</option>
-                      ))}
-                    </select>
-                  </div>
-                  <div className={s.field}>
-                    <label className={s.label}>Style</label>
-                    <select className={s.select} value={tone} onChange={(e) => setTone(e.target.value)}>
-                      {TONES.map((t) => (
-                        <option key={t.value} value={t.value}>{t.label}</option>
-                      ))}
-                    </select>
-                  </div>
-                </div>
-
-                <div className={s.field}>
-                  <label className={s.label}>Extra notes <span style={{ fontWeight: 400, color: "#94a3b8" }}>(optional)</span></label>
+                  </select>
+                  <span className={s.metaSep}>/</span>
                   <input
-                    className={s.input}
-                    placeholder="e.g. Focus on agency managers, include a tip about caching"
-                    value={extraNotes}
-                    onChange={(e) => setExtraNotes(e.target.value)}
+                    className={s.metaSlug}
+                    placeholder="article-slug"
+                    value={slug}
+                    onChange={(e) => setSlug(e.target.value)}
                   />
-                </div>
-
-                <div className={s.configActions}>
-                  {isEditMode ? (
-                    <>
-                      <button className={s.btnOutline} onClick={() => { setStep("generate"); setViewMode("edit"); }}>
-                        Back to editor →
-                      </button>
-                      <button className={s.btnPrimary} onClick={handleGenerate} disabled={!topic.trim()}>
-                        Regenerate
-                      </button>
-                    </>
-                  ) : (
-                    <>
-                      <button className={s.btnPrimary} onClick={handleGenerate} disabled={!topic.trim()}>
-                        Generate Article
-                      </button>
-                      {content && (
-                        <button className={s.btnOutline} onClick={() => setStep("generate")}>
-                          Back to draft →
-                        </button>
-                      )}
-                    </>
-                  )}
+                  <span className={s.metaExt}>.md</span>
                 </div>
               </div>
-            )}
 
-            {/* Step 2: Generate + Edit */}
-            {step === "generate" && (
-              <div className={s.generatePane}>
-                <div className={s.generateToolbar}>
-                  <div className={s.generateInfo}>
-                    {isGenerating ? (
-                      <span className={s.generatingBadge}><span className={s.dot} />Generating…</span>
-                    ) : (
-                      <span className={s.doneBadge}>{isEditMode ? "Editing" : "Draft ready"}</span>
-                    )}
-                    <span className={s.topicLabel}>{topic}</span>
-                  </div>
-                  <div className={s.toolbarRight}>
-                    {!isGenerating && content && (
-                      <div className={s.contentStats}>
-                        <span>{wordCount} words</span>
-                        <span>{readingTime} min read</span>
-                      </div>
-                    )}
-                    <div className={s.tabBar}>
-                      <button className={`${s.tab} ${viewMode === "edit" ? s.tabActive : ""}`} onClick={() => setViewMode("edit")}>Edit</button>
-                      <button className={`${s.tab} ${viewMode === "split" ? s.tabActive : ""}`} onClick={() => setViewMode("split")}>Split</button>
-                      <button className={`${s.tab} ${viewMode === "preview" ? s.tabActive : ""}`} onClick={() => setViewMode("preview")}>Preview</button>
+              {/* ── AI panel (collapsible) ── */}
+              <div className={s.aiSection}>
+                <button
+                  className={`${s.aiToggle} ${aiExpanded ? s.aiToggleOpen : ""}`}
+                  onClick={() => setAiExpanded((v) => !v)}
+                >
+                  <span className={`${s.aiChevron} ${aiExpanded ? s.aiChevronOpen : ""}`}>›</span>
+                  ⚡ Generate with AI
+                  {isGenerating && <span className={s.aiGeneratingDot} />}
+                </button>
+
+                {aiExpanded && (
+                  <div className={s.aiBody}>
+                    <div className={s.field}>
+                      <label className={s.label}>Topic / description</label>
+                      <textarea
+                        className={s.textarea}
+                        rows={2}
+                        placeholder="e.g. How to set up multi-currency for a dealer account"
+                        value={topic}
+                        onChange={(e) => setTopic(e.target.value)}
+                        autoFocus
+                      />
                     </div>
-                  </div>
-                </div>
-
-                {(viewMode === "edit" || viewMode === "split") && (
-                  <div className={s.editorToolbar}>
-                    <span style={{ fontSize: 12, color: "#6b7a99", marginRight: 4 }}>Insert:</span>
-                    <button className={s.insertBtn} onClick={() => setContent((c) => c + "\n\n![Image description](https://example.com/image.jpg)\n")}>Image</button>
-                    <button className={s.insertBtn} onClick={() => setContent((c) => c + '\n\n<iframe src="https://www.youtube.com/embed/VIDEO_ID" width="560" height="315" allowfullscreen></iframe>\n')}>YouTube</button>
-                    <button className={s.insertBtn} onClick={() => setContent((c) => c + "\n\n<video src=\"VIDEO_URL\" controls></video>\n")}>Video</button>
-                    <div style={{ flex: 1 }} />
-                    <button className={`${s.insertBtn} ${copied ? s.insertBtnCopied : ""}`} onClick={handleCopy} disabled={!content}>
-                      {copied ? "Copied!" : "Copy markdown"}
-                    </button>
+                    <div className={s.aiRow}>
+                      <div className={s.field}>
+                        <label className={s.label}>Style</label>
+                        <select className={s.select} value={tone} onChange={(e) => setTone(e.target.value)}>
+                          {TONES.map((t) => <option key={t.value} value={t.value}>{t.label}</option>)}
+                        </select>
+                      </div>
+                      <div className={s.field}>
+                        <label className={s.label}>Extra notes <span className={s.optional}>(optional)</span></label>
+                        <input className={s.input} placeholder="Extra context…" value={extraNotes} onChange={(e) => setExtraNotes(e.target.value)} />
+                      </div>
+                    </div>
+                    <div className={s.aiActions}>
+                      <button className={s.btnPrimary} onClick={handleGenerate} disabled={!topic.trim() || isGenerating}>
+                        {isGenerating ? "Generating…" : "Generate article"}
+                      </button>
+                      {isGenerating && (
+                        <button className={s.btnOutline} onClick={() => abortRef.current?.abort()}>Stop</button>
+                      )}
+                    </div>
                   </div>
                 )}
-
-                <div className={`${s.editorArea} ${viewMode === "split" ? s.editorAreaSplit : ""}`}>
-                  {viewMode === "preview" ? (
-                    <div className={s.mdPreview}>
-                      <ReactMarkdown remarkPlugins={[remarkGfm]}>{content}</ReactMarkdown>
-                    </div>
-                  ) : viewMode === "split" ? (
-                    <>
-                      <textarea className={s.mdEditor} value={content} onChange={(e) => setContent(e.target.value)} spellCheck />
-                      <div className={`${s.mdPreview} ${s.splitPreview}`}>
-                        <ReactMarkdown remarkPlugins={[remarkGfm]}>{content}</ReactMarkdown>
-                      </div>
-                    </>
-                  ) : (
-                    <textarea className={s.mdEditor} value={content} onChange={(e) => setContent(e.target.value)} spellCheck />
-                  )}
-                </div>
-
-                <div className={s.generateActions}>
-                  <button className={s.btnOutline} onClick={() => setStep("configure")}>← Settings</button>
-                  {!isEditMode && <button className={s.btnOutline} onClick={handleGenerate} disabled={isGenerating}>Regenerate</button>}
-                  <button className={s.btnPrimary} onClick={() => setStep("publish")} disabled={isGenerating || !content.trim()}>
-                    Save Article →
-                  </button>
-                </div>
               </div>
-            )}
 
-            {/* Step 3: Publish */}
-            {step === "publish" && publishStatus !== "done" && (
-              <div className={s.publishPane}>
-                <h2 className={s.paneTitle}>Save article</h2>
+              {/* ── Format toolbar ── */}
+              <div className={s.fmtBar}>
+                {/* Headings */}
+                <button className={`${s.fmtBtn} ${s.fmtWide}`} onClick={() => insertAtCursor("# ", "", "Heading 1")} title="Heading 1">H1</button>
+                <button className={`${s.fmtBtn} ${s.fmtWide}`} onClick={() => insertAtCursor("## ", "", "Heading 2")} title="Heading 2">H2</button>
+                <button className={`${s.fmtBtn} ${s.fmtWide}`} onClick={() => insertAtCursor("### ", "", "Heading 3")} title="Heading 3">H3</button>
+                <span className={s.fmtSep} />
+                {/* Inline formatting */}
+                <button className={s.fmtBtn} onClick={() => insertAtCursor("**", "**", "bold")} title="Bold (Ctrl+B)"><b>B</b></button>
+                <button className={s.fmtBtn} onClick={() => insertAtCursor("*", "*", "italic")} title="Italic (Ctrl+I)"><i>I</i></button>
+                <button className={s.fmtBtn} onClick={() => insertAtCursor("~~", "~~", "text")} title="Strikethrough"><s>S</s></button>
+                <button className={`${s.fmtBtn} ${s.fmtMono}`} onClick={() => insertAtCursor("`", "`", "code")} title="Inline code">`c`</button>
+                <span className={s.fmtSep} />
+                {/* Lists */}
+                <button className={`${s.fmtBtn} ${s.fmtWide}`} onClick={() => insertAtCursor("- ", "", "item")} title="Bullet list">• List</button>
+                <button className={`${s.fmtBtn} ${s.fmtWide}`} onClick={() => insertAtCursor("1. ", "", "item")} title="Numbered list">1. List</button>
+                <button className={`${s.fmtBtn} ${s.fmtWide}`} onClick={() => insertAtCursor("- [ ] ", "", "task")} title="Task list">☐ Todo</button>
+                <span className={s.fmtSep} />
+                {/* Blocks */}
+                <button className={`${s.fmtBtn} ${s.fmtWide}`} onClick={() => insertAtCursor("> ", "", "quote")} title="Blockquote">" Quote</button>
+                <button className={`${s.fmtBtn} ${s.fmtWide} ${s.fmtMono}`} onClick={() => insertBlock("```\ncode here\n```", 4)} title="Code block">```</button>
+                <button className={`${s.fmtBtn} ${s.fmtWide}`} onClick={() => insertBlock("| Col 1 | Col 2 |\n|---|---|\n| Cell | Cell |")} title="Table">⊞ Table</button>
+                <span className={s.fmtSep} />
+                {/* Media */}
+                <button className={`${s.fmtBtn} ${s.fmtWide}`} onClick={() => insertAtCursor("[", "](https://)", "link text")} title="Link (Ctrl+K)">🔗 Link</button>
+                <button className={`${s.fmtBtn} ${s.fmtWide}`} onClick={() => insertAtCursor("![", "](https://example.com/img.jpg)", "alt")} title="Image">🖼 Image</button>
+                <button className={`${s.fmtBtn} ${s.fmtWide}`} onClick={() => insertBlock('<iframe src="https://www.youtube.com/embed/VIDEO_ID" width="560" height="315" allowfullscreen></iframe>')} title="YouTube embed">▶ Video</button>
+                <span className={s.fmtSep} />
+                <button className={`${s.fmtBtn} ${s.fmtWide}`} onClick={() => insertBlock("---")} title="Horizontal rule">— HR</button>
+                {/* Right side */}
+                <div className={s.fmtSpacer} />
+                <button className={`${s.fmtBtn} ${s.fmtWide} ${copied ? s.fmtCopied : ""}`} onClick={handleCopy} disabled={!content}>
+                  {copied ? "✓ Copied" : "Copy MD"}
+                </button>
+              </div>
 
-                <div className={s.publishPreview}>
-                  <div className={s.mdPreview}>
+              {/* ── View toggle ── */}
+              <div className={s.viewBar}>
+                <div className={s.viewTabs}>
+                  {(["edit", "split", "preview"] as ViewMode[]).map((m) => (
+                    <button
+                      key={m}
+                      className={`${s.viewTab} ${viewMode === m ? s.viewTabActive : ""}`}
+                      onClick={() => setViewMode(m)}
+                    >
+                      {m.charAt(0).toUpperCase() + m.slice(1)}
+                    </button>
+                  ))}
+                </div>
+                <div className={s.viewStats}>
+                  {wordCount > 0 && <><span>{wordCount} words</span><span>·</span><span>{readingTime} min read</span></>}
+                </div>
+                <span className={s.viewShortcuts}>Ctrl+B bold · Ctrl+I italic · Ctrl+K link</span>
+              </div>
+
+              {/* ── Editor area ── */}
+              <div className={`${s.editorArea} ${viewMode === "split" ? s.editorAreaSplit : ""}`}>
+                {viewMode !== "preview" && (
+                  <textarea
+                    ref={editorRef}
+                    className={s.mdTextarea}
+                    value={content}
+                    onChange={(e) => setContent(e.target.value)}
+                    onKeyDown={handleKeyDown}
+                    spellCheck
+                    placeholder={isNewArticle ? "# Article Title\n\nStart writing here…" : ""}
+                  />
+                )}
+                {viewMode !== "edit" && (
+                  <div className={`${s.mdPreview} ${viewMode === "split" ? s.mdPreviewSplit : ""}`}>
                     <ReactMarkdown remarkPlugins={[remarkGfm]}>{content}</ReactMarkdown>
                   </div>
-                </div>
-
-                <div className={s.publishForm}>
-                  <div className={s.row}>
-                    <div className={s.field}>
-                      <label className={s.label}>Section (folder)</label>
-                      <select className={s.select} value={section} onChange={(e) => setSection(e.target.value)}>
-                        {SECTIONS.map((sec) => (
-                          <option key={sec.value} value={sec.value}>{sec.label}</option>
-                        ))}
-                      </select>
-                    </div>
-                    <div className={s.field} style={{ flex: 2 }}>
-                      <label className={s.label}>Filename (slug)</label>
-                      <input className={s.input} value={slug} onChange={(e) => setSlug(e.target.value)} placeholder="article-slug" />
-                    </div>
-                  </div>
-
-                  <div className={s.pathPreview}>
-                    <code>content/docs/{section}/{slug || "article-slug"}.md</code>
-                  </div>
-
-                  {/* Sidebar category picker */}
-                  <div className={s.field} style={{ marginTop: 16 }}>
-                    <label className={s.label}>
-                      Sidebar category <span style={{ fontWeight: 400, color: "#94a3b8" }}>(which section will link to this?)</span>
-                    </label>
-                    <div className={s.categoryGrid}>
-                      {CATEGORIES.map((cat) => (
-                        <button
-                          key={cat.name}
-                          className={`${s.catPill} ${selectedCategory === cat.name ? s.catPillActive : ""}`}
-                          onClick={() => setSelectedCategory(cat.name === selectedCategory ? "" : cat.name)}
-                          type="button"
-                        >
-                          {cat.icon} {cat.name}
-                        </button>
-                      ))}
-                    </div>
-                  </div>
-
-                  {categoryHint && selectedCategory && (
-                    <div className={s.categoryHintBox}>
-                      <div className={s.categoryHintLabel}>Add to <strong>data.ts</strong> → {selectedCategory}:</div>
-                      <code className={s.categoryHintCode}>{categoryHint}</code>
-                    </div>
-                  )}
-
-                  <div className={s.publishActions}>
-                    <button className={s.btnOutline} onClick={() => setStep("generate")}>← Back to edit</button>
-                    <button className={s.btnPrimary} onClick={handlePublish} disabled={publishStatus === "saving" || !slug.trim()}>
-                      {publishStatus === "saving" ? "Saving…" : isEditMode ? "Save changes" : "Save to disk"}
-                    </button>
-                  </div>
-
-                  {publishStatus === "error" && (
-                    <p className={s.errorMsg}>Save failed — run the app in dev mode: <code>npm run dev</code></p>
-                  )}
-                </div>
+                )}
               </div>
-            )}
 
-            {/* Done */}
-            {publishStatus === "done" && (
-              <div className={s.donePane}>
-                <span className={s.doneIcon}>✅</span>
-                <h2 className={s.doneTitle}>{isEditMode ? "Article updated!" : "Article saved!"}</h2>
-                <p className={s.donePath}><code>{savedPath}</code></p>
+              {/* ── Save bar ── */}
+              <div className={s.saveBar}>
+                <div className={s.saveCatWrap}>
+                  <label className={s.saveCatLabel}>Category:</label>
+                  <select
+                    className={s.saveCatSelect}
+                    value={selectedCategory}
+                    onChange={(e) => setSelectedCategory(e.target.value)}
+                  >
+                    <option value="">— not in sidebar —</option>
+                    {CATEGORIES.map((cat) => (
+                      <option key={cat.name} value={cat.name}>{cat.icon} {cat.name}</option>
+                    ))}
+                  </select>
+                </div>
 
-                {!isEditMode && (
-                  <div className={s.doneSteps}>
-                    <p>Next steps to publish:</p>
-                    <ol>
-                      <li>Review the file in your editor</li>
-                      <li>
-                        {selectedCategory
-                          ? <>Add to <code>app/portal/data.ts</code> under <strong>{selectedCategory}</strong>: <code style={{ display: "block", marginTop: 4, wordBreak: "break-all" }}>{categoryHint}</code></>
-                          : <>Add it to the sidebar in <code>app/portal/data.ts</code></>
-                        }
-                      </li>
-                      <li><code>git add . && git commit -m &quot;Add: {slug}&quot;</code></li>
-                      <li>Push → GitHub Actions deploys automatically</li>
-                    </ol>
+                {categoryHint && (
+                  <div className={s.saveHint} title="Add this line to data.ts">
+                    <code>{categoryHint}</code>
                   </div>
                 )}
 
-                <div style={{ display: "flex", gap: 12, marginTop: 24, justifyContent: "center" }}>
-                  <button className={s.btnOutline} onClick={clearDraft}>
-                    {isEditMode ? "Done" : "Create another article"}
+                <div className={s.saveActions}>
+                  {!slug.trim() && (
+                    <span className={s.saveWarn}>Enter a slug first</span>
+                  )}
+                  <button
+                    className={s.btnPrimary}
+                    onClick={handleSave}
+                    disabled={saveStatus === "saving" || !slug.trim() || !content.trim()}
+                  >
+                    {saveStatus === "saving" ? "Saving…" : "Save article"}
                   </button>
-                  <Link href="/portal" className={s.btnPrimary}>Back to portal</Link>
                 </div>
               </div>
-            )}
-          </>
-        )}
-
+            </>
+          )}
+        </div>
       </div>
     </div>
   );
