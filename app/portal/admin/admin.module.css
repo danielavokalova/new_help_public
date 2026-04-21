@@ -99,6 +99,29 @@
 }
 .newBtn:hover { background: #db4a17; }
 
+.browserCount {
+  font-size: 11px; color: #5a6b8a;
+  padding: 0 2px;
+}
+
+.browserError {
+  display: flex; gap: 8px; align-items: flex-start;
+  background: #fef2f2; border: 1px solid #fecaca;
+  border-radius: 6px; padding: 10px 12px; margin: 8px 10px;
+  font-size: 12px; color: #b91c1c; line-height: 1.5; white-space: pre-line;
+}
+.browserError span { font-size: 14px; flex-shrink: 0; }
+.browserError p { margin: 0; }
+
+.browserItemLoading { opacity: 0.5; cursor: wait !important; }
+
+.devWarning {
+  font-size: 12px; font-weight: 600;
+  color: #92400e; background: #fef3c7;
+  border: 1px solid #fcd34d;
+  padding: 3px 10px; border-radius: 20px;
+}
+
 .browserSearchWrap { position: relative; }
 
 .browserSearch {
