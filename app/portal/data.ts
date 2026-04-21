@@ -24,6 +24,21 @@ export type ReleaseNote = {
   items: string[];
 };
 
+export type Walkthrough = {
+  title: string;
+  desc: string;
+  steps: number;
+  category: string;
+  href: string;
+};
+
+export type HealthCheck = {
+  label: string;
+  desc: string;
+  status: "ok" | "warning" | "pending";
+  href: string;
+};
+
 export const CATEGORIES: Category[] = [
   {
     icon: "🏢", name: "Agency",
@@ -162,6 +177,83 @@ export const APP_TABS: AppTab[] = [
   { label: "TCP", href: "https://www.travelcloudpro.com/#/login?returnTo=%2Fcbt%2Fcorporates", isActive: false },
   { label: "My Travelport", href: "https://auth.travelport.com/", isActive: false },
   { label: "GOL IBE Web", href: "https://demo4.golibe.com/", isActive: false },
+];
+
+export const WALKTHROUGHS: Walkthrough[] = [
+  {
+    title: "Set up your agency from scratch",
+    desc: "Configure profile, email, payment methods and first users",
+    steps: 6,
+    category: "Agency",
+    href: "/portal/getting-started/1-gol-ibe-2-gol-ibe-step-by-step-gol-ibe-agency",
+  },
+  {
+    title: "Create your first reservation",
+    desc: "Book a flight, assign passenger details and confirm payment",
+    steps: 5,
+    category: "Reservations",
+    href: "/portal/getting-started/1-gol-ibe-2-gol-ibe-step-by-step-reservations",
+  },
+  {
+    title: "Configure markup and service fees",
+    desc: "Add markup rules, service fees and promo codes",
+    steps: 4,
+    category: "Prices & Markup",
+    href: "/portal/getting-started/1-gol-ibe-2-gol-ibe-step-by-step-prices",
+  },
+  {
+    title: "Set up email notifications",
+    desc: "Edit templates, test sends and manage delivery logs",
+    steps: 4,
+    category: "Notifications",
+    href: "/portal/getting-started/1-gol-ibe-2-gol-ibe-step-by-step-notifications",
+  },
+  {
+    title: "Connect a GDS source",
+    desc: "Enter credentials, test connectivity and verify live results",
+    steps: 3,
+    category: "Advanced Settings",
+    href: "/portal/configuration/gol-ibe-advanced-settings",
+  },
+];
+
+export const HEALTH_CHECKS: HealthCheck[] = [
+  {
+    label: "GDS connector configured",
+    desc: "At least one active GDS or NDC source",
+    status: "ok",
+    href: "/portal/configuration/gol-ibe-advanced-settings",
+  },
+  {
+    label: "Working hours set",
+    desc: "Agency availability schedule defined",
+    status: "ok",
+    href: "/portal/configuration/1-gol-ibe-3-gol-ibe-basic-settings-how-to-set-up-working-hours-in-your-gol-ibe",
+  },
+  {
+    label: "Email notifications active",
+    desc: "Booking confirmation templates configured",
+    status: "warning",
+    href: "/portal/getting-started/1-gol-ibe-2-gol-ibe-step-by-step-notifications",
+  },
+  {
+    label: "Agent accounts created",
+    desc: "At least one non-admin user exists",
+    status: "ok",
+    href: "/portal/troubleshooting/1-gol-ibe-5-gol-ibe-faqs-how-to-create-a-new-user-s-access",
+  },
+  {
+    label: "Terms & conditions published",
+    desc: "Custom terms visible on front-end",
+    status: "pending",
+    href: "/portal/getting-started/1-gol-ibe-2-gol-ibe-step-by-step-gol-ibe-supporting-texts-how-to-manage-terms-and-conditions",
+  },
+  {
+    label: "Service fee configured",
+    desc: "Default service fee rules in place",
+    status: "warning",
+    href: "/portal/configuration/1-gol-ibe-3-gol-ibe-basic-settings-how-to-set-up-service-fee",
+  },
 ];
 
 export const RELEASE_NOTES: ReleaseNote[] = [
