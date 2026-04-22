@@ -1,1 +1,31 @@
-Page "1.-gol-ibe/2.-gol-ibe-step-by-step/gol-ibe-dealers/customization-via-dealer-edit/how-to-set-up-a-multi-currency" not found
+# How to set up multi-currency for a dealer?
+
+<!-- tags: multi-currency, currency, dealer, exchange rate, CZK, EUR, USD -->
+
+Multi-currency allows a dealer's front-end to display prices in a currency different from your agency's base currency.
+
+## Steps
+
+1. Log into the GOL IBE admin console.
+2. Go to **Dealers** and find the dealer you want to configure.
+3. Click **Edit**.
+4. Navigate to the **Currency** section.
+5. Enable **Multi-currency**.
+6. Select the **display currency** for the dealer's front-end (e.g. CZK, EUR, USD).
+7. Set the **exchange rate source**:
+   - **Automatic** — rates are updated daily from the European Central Bank
+   - **Manual** — you enter and maintain the exchange rate yourself
+8. If using manual rates, enter the current exchange rate.
+9. Click **Save**.
+
+## Result
+
+Customers visiting the dealer's booking engine will see all prices in the configured currency. The underlying transactions are still processed in your agency's base currency.
+
+## Notes
+
+- Exchange rate changes take effect on the next page load
+- Manual rates should be reviewed regularly to stay accurate
+- Multi-currency affects display only — settlement is in your base currency
+
+> 📩 Feel free to contact us at: [gol_support@cee-systems.com](mailto:gol_support@cee-systems.com)
