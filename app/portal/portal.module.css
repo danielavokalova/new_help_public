@@ -6,62 +6,67 @@
 .hero {
   background: #fff;
   border-bottom: 1px solid #c0d9eb;
-  padding: 36px 52px 30px;
+  padding: 52px 52px 40px;
+  text-align: center;
 }
 
 .heroTitle {
-  margin: 0 0 8px;
+  margin: 0 0 10px;
   color: #131f6b;
-  font-size: 34px;
+  font-size: 42px;
   font-weight: 800;
-  letter-spacing: -0.02em;
+  letter-spacing: -0.025em;
 }
 
 .heroSub {
-  margin: 0 0 22px;
+  margin: 0 0 28px;
   color: #6b7a99;
-  font-size: 16px;
+  font-size: 17px;
 }
 
 .searchWrap {
   position: relative;
-  max-width: 100%;
+  max-width: 620px;
+  margin: 0 auto 20px;
   display: flex;
   align-items: center;
 }
 
 .searchIcon {
   position: absolute;
-  left: 13px;
+  left: 18px;
   top: 50%;
   transform: translateY(-50%);
-  font-size: 14px;
+  font-size: 15px;
   pointer-events: none;
   color: #9aa5b8;
 }
 
 .omnisearch {
   width: 100%;
-  border: 2px solid #c8cfe0;
-  border-radius: 5px;
-  padding: 14px 16px 14px 42px;
+  border: 1.5px solid #c8cfe0;
+  border-radius: 999px;
+  padding: 16px 48px 16px 50px;
   font-size: 16px;
   outline: none;
   font-family: inherit;
   color: #131f6b;
-  background: #fff;
-  box-shadow: 0 2px 8px rgba(26,54,104,0.08);
-  transition: border-color 140ms, box-shadow 140ms;
+  background: #f4f6f9;
+  box-shadow: none;
+  transition: border-color 140ms, box-shadow 140ms, background 140ms;
 }
 
 .omnisearch:focus {
   border-color: #131f6b;
-  box-shadow: 0 2px 12px rgba(26,54,104,0.16);
+  background: #fff;
+  box-shadow: 0 2px 14px rgba(26,54,104,0.13);
 }
+
+.omnisearch::placeholder { color: #9aa5b8; }
 
 .searchClear {
   position: absolute;
-  right: 12px;
+  right: 16px;
   top: 50%;
   transform: translateY(-50%);
   background: none;
@@ -70,12 +75,39 @@
   color: #9aa5b8;
   cursor: pointer;
   padding: 4px 6px;
-  border-radius: 4px;
+  border-radius: 999px;
   font-family: inherit;
   transition: color 120ms, background 120ms;
 }
 
 .searchClear:hover { color: #131f6b; background: #e8edf0; }
+
+/* ── Quick-topic chips ──────────────────────────────────── */
+.heroChips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  justify-content: center;
+}
+
+.heroChip {
+  background: #fff;
+  border: 1.5px solid #c0d9eb;
+  border-radius: 999px;
+  padding: 6px 18px;
+  font-size: 13px;
+  font-weight: 500;
+  color: #131f6b;
+  cursor: pointer;
+  font-family: inherit;
+  transition: background 120ms, border-color 120ms, color 120ms;
+}
+
+.heroChip:hover {
+  background: #131f6b;
+  border-color: #131f6b;
+  color: #fff;
+}
 
 /* ── Page body ─────────────────────────────────────────── */
 .body {
