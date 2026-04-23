@@ -64,6 +64,9 @@ export default function PortalLayout({ children }: { children: ReactNode }) {
   }, [pathname, isPortalRoot]);
 
   function handleCatClick(cat: Category) {
+    if (!isPortalRoot) {
+      router.push(cat.href);
+    }
     setSelectedCat(cat);
     setExpandedCat((prev) => (prev === cat.name ? null : cat.name));
   }

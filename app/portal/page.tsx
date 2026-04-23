@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { useMemo, useState, useEffect } from "react";
 import { usePortal } from "./layout";
 import { CATEGORIES, RELEASE_NOTES, WALKTHROUGHS, HEALTH_CHECKS } from "./data";
@@ -27,7 +28,8 @@ const MOST_VISITED = ALL_ARTICLES.slice(0, 5);
 export default function PortalOverviewPage() {
   const [query, setQuery] = useState("");
   const [debouncedQuery, setDebouncedQuery] = useState("");
-  const { setSelectedCat, openContact } = usePortal();
+  const { openContact } = usePortal();
+  const router = useRouter();
 
   useEffect(() => {
     const t = setTimeout(() => setDebouncedQuery(query), 250);
@@ -129,7 +131,7 @@ export default function PortalOverviewPage() {
                 <button
                   key={cat.name}
                   className={s.catCard}
-                  onClick={() => setSelectedCat(cat)}
+                  onClick={() => router.push(cat.href)}
                 >
                   <div className={s.catIcon}>{cat.icon}</div>
                   <div className={s.catName}>{cat.name}</div>
