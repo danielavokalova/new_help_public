@@ -424,6 +424,22 @@
 
 .allArticlesLink:hover { background: #db4a17; color: #fff; text-decoration: none; }
 
+/* ── RELATED / ALL ARTICLES SECTION ─────────────────────── */
+.relatedSection {
+  padding: 32px 52px 52px;
+  border-top: 1px solid #c0d9eb;
+  background: #f7f8fb;
+}
+
+.relatedLabel {
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: #e85e20;
+  margin-bottom: 18px;
+}
+
 /* ── CONTACT MODAL ───────────────────────────────────────── */
 .modalOverlay {
   position: fixed;
@@ -741,6 +757,7 @@
   .categoryView { padding: 20px 20px 40px; }
   .articlePageHeader { padding: 16px 20px 14px; }
   .articleBody { padding: 20px 20px 40px; }
+  .relatedSection { padding: 24px 20px 40px; }
   .articleMainTitle { font-size: 26px; }
   .categoryTitle { font-size: 24px; }
 }
