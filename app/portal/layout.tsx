@@ -338,10 +338,6 @@ function CategoryView({ cat, onBack }: { cat: Category; onBack: () => void }) {
           </Link>
         ))}
       </div>
-
-      <Link href={cat.href} className={s.allArticlesLink}>
-        View all {cat.name} articles →
-      </Link>
     </div>
   );
 }

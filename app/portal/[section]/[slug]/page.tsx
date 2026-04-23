@@ -117,9 +117,6 @@ export default async function PortalArticlePage({
               </Link>
             ))}
           </div>
-          <Link href={parentCat!.href} className={s.allArticlesLink}>
-            All {parentCat!.name} articles →
-          </Link>
         </div>
       )}
 
