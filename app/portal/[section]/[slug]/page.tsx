@@ -90,10 +90,9 @@ export default async function PortalArticlePage({
         <MarkdownBody>{article.bodyWithoutH1}</MarkdownBody>
       </div>
 
-      {/* ── All articles grid (category overview pages) ── */}
+      {/* ── Articles grid (category overview pages) ── */}
       {isCategoryPage && parentCat && (
         <div className={s.relatedSection}>
-          <div className={s.relatedLabel}>All {parentCat.name} articles</div>
           <div className={s.articleGrid}>
             {parentCat.articles.map((a) => (
               <Link key={a.href} href={a.href} className={s.articleCard}>
@@ -108,7 +107,6 @@ export default async function PortalArticlePage({
       {/* ── Related articles (regular article pages) ── */}
       {!isCategoryPage && relatedArticles.length > 0 && (
         <div className={s.relatedSection}>
-          <div className={s.relatedLabel}>Related articles</div>
           <div className={s.articleGrid}>
             {relatedArticles.map((a) => (
               <Link key={a.href} href={a.href} className={s.articleCard}>
