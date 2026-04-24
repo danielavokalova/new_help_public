@@ -1,13 +1,16 @@
-# Prices
+# Prices & Markup
 
-***
+<!-- tags: prices, service fees, markup, discounts, promo codes, special offers, commissions -->
 
-1. [How to handle service fees? ](/getting-started/1-gol-ibe-2-gol-ibe-step-by-step-prices-how-to-handle-service-fees)
-2. [How to handle service fees for 2OWs? ](/getting-started/1-gol-ibe-2-gol-ibe-step-by-step-gol-ibe-prices-how-to-handle-service-fees-for-2ows)
-3. H[ow to manage promocodes?](/getting-started/1-gol-ibe-2-gol-ibe-step-by-step-prices-how-to-manage-promocodes)
-4. [What is section **Commissions and discounts** good for? ](/getting-started/1-gol-ibe-2-gol-ibe-step-by-step-prices-what-is-section-commissions-and-discounts-good-for)
-5. [How to handle **special offers**? ](/getting-started/1-gol-ibe-2-gol-ibe-step-by-step-prices-how-to-handle-special-offers)
+The **Prices** section controls everything related to how your agency earns on bookings made through GOL IBE — service fees, markups, commissions, discounts, and promotional codes.
 
-***
+## What you can configure here
 
-📩 Feel free to contact us at: [gol_support@cee-systems.com](mailto:gol_support@cee-systems.com).
+- **Service fees** — fixed or percentage fees added to every booking
+- **Markup rules** — price adjustments per route, carrier or passenger type
+- **Promo codes** — discount vouchers customers enter at checkout
+- **Commissions and discounts** — carrier-based commission rules
+- **Special offers** — highlighted deals published on your front-end
+- **2OW fees** — separate fee rules for one-way fares
+
+Correctly configured pricing ensures your agency earns the right margin on every transaction.

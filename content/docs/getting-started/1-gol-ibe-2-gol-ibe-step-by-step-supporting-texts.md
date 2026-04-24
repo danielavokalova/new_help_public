@@ -1,19 +1,15 @@
-# Supporting texts
+# Supporting Texts
 
-***
+<!-- tags: supporting texts, CSS, footer, menu, terms, ticket template, front-end content -->
 
-What all you will find in the section **Supporting texts**? 
+**Supporting Texts** is where you manage all custom content that appears on your GOL IBE front-end — navigation menus, footer, terms and conditions, ticket templates, and CSS styling.
 
-[1) How to edit your ticket itinerary template? ](/getting-started/1-gol-ibe-2-gol-ibe-step-by-step-gol-ibe-supporting-texts-how-to-edit-your-ticket-itinerary-template)
+## What you can customise here
 
-[2) How to manage terms & conditions?](/getting-started/1-gol-ibe-2-gol-ibe-step-by-step-gol-ibe-supporting-texts-how-to-manage-terms-and-conditions)
+- **CSS** — override colours, fonts and layout to match your branding
+- **Footer** — add contact details, links and legal information to the page footer
+- **Menu** — create or edit the navigation links shown in the header
+- **Ticket itinerary template** — customise the layout of e-ticket PDFs sent to customers
+- **Terms and conditions** — publish your booking terms visible at checkout
 
-[3) How to create menu on your front-end? ](/getting-started/1-gol-ibe-2-gol-ibe-step-by-step-gol-ibe-supporting-texts-how-to-create-menu-on-your-front-end)
-
-[4) How to handle CSS?  ](/getting-started/1-gol-ibe-2-gol-ibe-step-by-step-gol-ibe-supporting-texts-css)
-
-[5) How to create a footer? ](/getting-started/1-gol-ibe-2-gol-ibe-step-by-step-gol-ibe-supporting-texts-how-to-create-a-footer)
-
-***
-
-📩 Feel free to contact us at: [gol_support@cee-systems.com](mailto:gol_support@cee-systems.com).
+Changes to supporting texts require flushing **HTML caches** to appear immediately on the front-end.

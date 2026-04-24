@@ -1,13 +1,16 @@
-# 3. GOL IBE - basic settings
+# Basic Settings
 
-***
+<!-- tags: basic settings, service fee, working hours, design, notifications, search form -->
 
-1. [How to implement the air ticket search form into your agency website? ](/configuration/1-gol-ibe-3-gol-ibe-basic-settings-how-to-implement-the-air-ticket-search-form-into-your-agency-website)
-2. [How to set up service fees ? ](/configuration/1-gol-ibe-3-gol-ibe-basic-settings-how-to-set-up-service-fee)
-3. [How to design your GOL IBE site? ](/configuration/1-gol-ibe-3-gol-ibe-basic-settings-how-to-design-your-gol-ibe-site)
-4. [How to set up working hours in your GOL IBE ?](/configuration/1-gol-ibe-3-gol-ibe-basic-settings-how-to-set-up-working-hours-in-your-gol-ibe)
-5. [How to customize notifications in your GOL IBE ? ](/configuration/1-gol-ibe-3-gol-ibe-basic-settings-how-to-customize-notifications-in-your-gol-ibe)
+**Basic Settings** covers the core configuration of your GOL IBE booking engine. This is typically the first section to set up when launching a new GOL IBE instance.
 
-***
+## What you can configure here
 
-📩 Feel free to contact us at: [gol_support@cee-systems.com](mailto:gol_support@cee-systems.com).
+- **Implement the search form** — embed the GOL IBE flight search into your agency website
+- **Design your site** — set colours, logo and layout for the booking engine
+- **Working hours** — define when your front-end accepts new bookings
+- **Service fee** — configure a default fee applied to all bookings
+- **Notifications** — set up automated emails for customers and agents
+- **Auto-ticketing** — enable automatic ticket issuance after payment confirmation
+
+Getting Basic Settings right is the foundation for a well-functioning booking engine.

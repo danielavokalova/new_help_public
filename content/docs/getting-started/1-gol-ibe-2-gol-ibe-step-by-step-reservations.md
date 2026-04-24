@@ -1,11 +1,16 @@
 # Reservations
 
-***
+<!-- tags: reservations, bookings, create, modify, cancel, ticket, export -->
 
-[1) GOL IBE - How to handle bookings in admin console](/getting-started/1-gol-ibe-2-gol-ibe-step-by-step-reservations-gol-ibe-how-to-handle-bookings-in-admin-console)
+The **Reservations** section is where all flight bookings are managed — whether created by customers on your front-end or by agents directly in the admin console.
 
-[2) GOL IBE - How to manage bookings with clients](/getting-started/1-gol-ibe-2-gol-ibe-step-by-step-gol-ibe-reservations-gol-ibe-how-to-handle-bookings)
+## What you can do here
 
-***
+- **Create** new air reservations and assign passenger details
+- **Modify** existing bookings — change dates, names or services
+- **Cancel** bookings and process refunds where applicable
+- **Issue tickets** manually or trigger auto-ticketing
+- **Export** booking lists to CSV or Excel for reporting
+- **Block fake bookings** by configuring anti-abuse rules
 
-📩 Feel free to contact us at: [gol_support@cee-systems.com](mailto:gol_support@cee-systems.com).
+Use the articles below to learn how to handle each type of reservation action.

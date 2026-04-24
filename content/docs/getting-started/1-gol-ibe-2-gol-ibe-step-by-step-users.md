@@ -1,44 +1,15 @@
 # Users
 
-***
+<!-- tags: users, agents, roles, permissions, passwords, access -->
 
-How to create a new user´s acces?
+The **Users** section lets you manage all staff accounts that have access to the GOL IBE admin console. Each user gets their own login credentials and a role that defines what they can see and do.
 
-* Log into admin console.
-* Go to section **Users - New user.**
+## What you can do here
 
-![](/images/docs/6d007de20b16c0db.png)
+- **Create** new agent accounts with specific access rights
+- **Assign roles** — Admin, Agent, Read-only, or custom roles
+- **Reset passwords** for agents who have been locked out
+- **Deactivate** accounts for staff who have left the agency
+- **Manage your own account** — update your profile and password
 
-* Insert as many details about that specific user as you know.
-
-     Please allways mark the name of your Dealer in the right box (as per our printscreen).
-
-    This way system will recognize that the user´s account you are creating is for your agency.
-
-
-
-![](/images/docs/57129797a1474208.png)
-
-
-
-* Choose the **rights** user should have by clicking on the chosen right (the title).
-
-
-
-![](/images/docs/5e75eede31916bcf.png)
-
-
-
-
-
-![](/images/docs/678ab74167efdb65.png)
-
-
-
-* Save settings.
-
-> Any time you create such access, do not forget to provide your colleague with appropriate username and password and link to admin console ( [https://bo.golibe.com/](https://bo.golibe.com/)).
-
-***
-
-📩 Feel free to contact us at: [gol_support@cee-systems.com](mailto:gol_support@cee-systems.com).
+Keeping user accounts up to date ensures that only authorised staff can access your GOL IBE admin console.
