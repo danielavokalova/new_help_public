@@ -12,4 +12,21 @@
 - **Ticket itinerary template** — customise the layout of e-ticket PDFs sent to customers
 - **Terms and conditions** — publish your booking terms visible at checkout
 
-Changes to supporting texts require flushing **HTML caches** to appear immediately on the front-end.
+## Steps
+
+1. Log into the GOL IBE admin console.
+2. Go to **Supporting Texts** in the left-hand menu.
+3. Edit the relevant sub-section (CSS, Footer, Menu, Terms, Ticket template).
+4. Save your changes and then go to **Code Lists → Flush HTML caches** to publish immediately.
+
+## Results
+
+Your front-end displays your agency's branding, navigation and legal content correctly, giving customers a professional and consistent booking experience.
+
+## Tips
+
+- Changes to supporting texts require flushing **HTML caches** to appear immediately on the front-end
+- Edit **Terms and conditions** before going live — customers must accept them at checkout
+- Use **CSS** for visual tweaks only; structural changes require front-end development
+
+> 📩 Feel free to contact us at: [gol_support@cee-systems.com](mailto:gol_support@cee-systems.com)

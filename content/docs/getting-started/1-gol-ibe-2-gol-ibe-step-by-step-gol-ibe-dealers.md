@@ -2,16 +2,7 @@
 
 <!-- tags: dealers, sub-agents, resellers, commissions, multi-currency, frontend -->
 
-The **Dealers** section lets you manage your network of sub-agents and resellers who sell through your GOL IBE platform.
-
-## What is a Dealer?
-
-A dealer is a sub-agent or reseller who uses your GOL IBE booking engine — either directly or with their own customised front-end. Each dealer can have:
-
-- Their own **pricing rules** (commissions, markups)
-- Their own **front-end design** (logo, colours, background)
-- Their own **currency** settings
-- Separate **booking history** and **reports**
+The **Dealers** section lets you manage your network of sub-agents and resellers who sell through your GOL IBE platform. Each dealer can have their own pricing rules, front-end design, currency settings, and separate booking history.
 
 ## What you can manage in Dealers
 
@@ -23,10 +14,22 @@ A dealer is a sub-agent or reseller who uses your GOL IBE booking engine — eit
 | **Currency** | Enable multi-currency for the dealer |
 | **Booking access** | View and manage dealer's bookings |
 
-## How to access
+## Steps
 
 1. Log into the GOL IBE admin console.
 2. Go to **Dealers** in the left-hand menu.
 3. Click **Add dealer** to create a new one, or select an existing dealer to edit.
+4. Fill in the dealer profile, set commissions, and configure front-end settings as needed.
+
+## Results
+
+Each dealer operates independently within your platform — with their own branding, pricing and booking history — while you retain full visibility and control from the admin console.
+
+## Tips
+
+- Each dealer can have their own **pricing rules** (commissions, markups)
+- Each dealer can have their own **front-end design** (logo, colours, background)
+- Each dealer can have their own **currency** settings
+- Dealers have separate **booking history** and **reports**
 
 > 📩 Feel free to contact us at: [gol_support@cee-systems.com](mailto:gol_support@cee-systems.com)

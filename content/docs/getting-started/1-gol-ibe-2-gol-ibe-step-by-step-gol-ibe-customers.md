@@ -14,14 +14,23 @@ The **Customers** section in GOL IBE lets you build and manage a database of you
 | **Login / registration** | Customers register on the front-end and manage their own profile |
 | **Admin management** | Create and edit profiles directly in the admin console |
 
-## Why use a customer database?
+## Steps
+
+1. Log into the GOL IBE admin console.
+2. Go to **Customers → Customers** in the left-hand menu.
+3. Search for an existing customer or click **Add customer** to create a new profile.
+4. Fill in contact details, travel documents and any additional preferences.
+
+## Results
 
 For **customers**: pre-filled booking forms, faster checkout, access to booking history.
 
 For **you**: repeat bookings are easier to handle, fewer data-entry errors, better customer service.
 
-## Where to find it
+## Tips
 
-In the GOL IBE admin console, go to **Customers → Customers** to view, search, and manage all customer profiles.
+- Customers can register themselves on your front-end and manage their own profile
+- Agents can also create and edit profiles directly in the admin console
+- Travel document details saved in a customer profile are automatically used in future bookings
 
 > 📩 Feel free to contact us at: [gol_support@cee-systems.com](mailto:gol_support@cee-systems.com)

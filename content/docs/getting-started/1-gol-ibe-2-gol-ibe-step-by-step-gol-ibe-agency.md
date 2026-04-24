@@ -14,13 +14,17 @@ The **Agency** section is your central hub for managing your travel agency's pro
 | **Working hours** | Set when your booking engine accepts reservations |
 | **Users** | Manage staff access and roles |
 
-## Getting started
+## Steps
 
 1. Log into the GOL IBE admin console.
 2. Navigate to **Agency** in the left-hand menu.
 3. Work through each subsection to complete your agency setup.
 
-## Key settings to configure first
+## Results
+
+Once Agency is fully configured, your booking engine is ready to accept reservations, process payments, and send automated emails to customers at every stage of their booking.
+
+## Tips
 
 - **Agency profile** — fill in your company details and upload your logo
 - **Payment methods** — enable at least one payment option so customers can complete bookings

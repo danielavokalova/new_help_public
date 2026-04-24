@@ -13,4 +13,22 @@
 - **Notifications** — set up automated emails for customers and agents
 - **Auto-ticketing** — enable automatic ticket issuance after payment confirmation
 
-Getting Basic Settings right is the foundation for a well-functioning booking engine.
+## Steps
+
+1. Log into the GOL IBE admin console.
+2. Go to **Basic Settings** in the left-hand menu.
+3. Start with **Design** — upload your logo and set your brand colours.
+4. Set **Working hours** and configure a **Service fee**.
+5. Review **Notifications** and enable **Auto-ticketing** if required.
+
+## Results
+
+Getting Basic Settings right is the foundation for a well-functioning booking engine — your front-end is branded, the search form is live on your website, and bookings flow through correctly from search to ticket issuance.
+
+## Tips
+
+- Complete Basic Settings before going live — these settings affect every customer interaction
+- **Auto-ticketing** reduces manual work but requires a working payment integration first
+- After changing design settings, flush **HTML caches** so the front-end updates immediately
+
+> 📩 Feel free to contact us at: [gol_support@cee-systems.com](mailto:gol_support@cee-systems.com)

@@ -13,4 +13,21 @@ The **Prices** section controls everything related to how your agency earns on b
 - **Special offers** — highlighted deals published on your front-end
 - **2OW fees** — separate fee rules for one-way fares
 
-Correctly configured pricing ensures your agency earns the right margin on every transaction.
+## Steps
+
+1. Log into the GOL IBE admin console.
+2. Go to **Prices** in the left-hand menu.
+3. Start with **Service fees** to set a default booking fee.
+4. Configure **Markup rules**, **Promo codes** and **Special offers** as needed.
+
+## Results
+
+Correctly configured pricing ensures your agency earns the right margin on every transaction, with full control over discounts, promotions and carrier commissions.
+
+## Tips
+
+- Always test pricing rules after changing them to ensure the correct amounts apply at checkout
+- **Promo codes** can be time-limited — set an expiry date to prevent misuse
+- Use **Special offers** to highlight seasonal deals on your front-end
+
+> 📩 Feel free to contact us at: [gol_support@cee-systems.com](mailto:gol_support@cee-systems.com)
