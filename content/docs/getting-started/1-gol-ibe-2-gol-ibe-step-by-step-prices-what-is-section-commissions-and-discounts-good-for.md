@@ -134,10 +134,6 @@ If you wish to use the set commissions also for your other systems like Travelpo
 
 
 
-> Feel free to watch our videohelp at: 
-> 
-> [How to create discount for certain carrier and certain flight? ](/getting-started/1-gol-ibe-2-gol-ibe-step-by-step-gol-ibe-prices-how-to-create-discount-for-certain-carrier-and-certain-flight)
-
 ***
 
 📩 Feel free to contact us at: [gol_support@cee-systems.com](mailto:gol_support@cee-systems.com).

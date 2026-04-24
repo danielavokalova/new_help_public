@@ -1,20 +1,18 @@
-# 2. GOL IBE - step by step
+# GOL IBE – Step by Step
 
-***
+This guide walks you through the key areas of the GOL IBE admin console. Use the topic navigation on the left to jump to any section, or browse the articles below.
 
-1. [GOL IBE - Agency ](/getting-started/1-gol-ibe-2-gol-ibe-step-by-step-gol-ibe-agency)                                           
-2. [GOL IBE - Dealers](/getting-started/1-gol-ibe-2-gol-ibe-step-by-step-gol-ibe-dealers)
-3. [GOL IBE - Customers](https://app.gitbook.com/o/-LLoS2mTNvfQxKwv_onf/s/-LPjLiK_ydn4NIc66tQx/~/changes/ePMFANNwLqRshbIfo5Px/4.-gol-ibe-step-by-step/gol-ibe-customers)
-4. [GOL IBE - Reservations](/getting-started/1-gol-ibe-2-gol-ibe-step-by-step-reservations)
-5. [GOL IBE - Prices ](/getting-started/1-gol-ibe-2-gol-ibe-step-by-step-prices)
-6. [GOL IBE - Code lists](/getting-started/1-gol-ibe-2-gol-ibe-step-by-step-code-lists)
-7. [GOL IBE - Users](/getting-started/1-gol-ibe-2-gol-ibe-step-by-step-users)
-8. [GOL IBE - Notifications](/getting-started/1-gol-ibe-2-gol-ibe-step-by-step-notifications)
-9. [GOL IBE - Supporting texts](/getting-started/1-gol-ibe-2-gol-ibe-step-by-step-supporting-texts)
-10. [GOL IBE - Statistic ](/getting-started/1-gol-ibe-2-gol-ibe-step-by-step-statistics)                                                                             
+**Sections covered:**
 
-***
+- **Agency** — your agency profile, payment methods, working hours and email notifications
+- **Dealers** — manage sub-agents and their front-end customisation
+- **Customers** — build and manage a customer database
+- **Reservations** — create, modify, cancel and ticket bookings
+- **Prices** — service fees, markups, promo codes and special offers
+- **Code lists** — carriers, destination filters and cache management
+- **Users** — staff accounts, roles and access rights
+- **Notifications** — automated email templates sent to customers
+- **Supporting texts** — menus, footer, terms, ticket templates and CSS
+- **Statistics** — download and analyse booking data
 
-📩 Feel free to contact us at: [gol_support@cee-systems.com](mailto:gol_support@cee-systems.com).
-
-***
+> 📩 Feel free to contact us at: [gol_support@cee-systems.com](mailto:gol_support@cee-systems.com)
