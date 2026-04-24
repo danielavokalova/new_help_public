@@ -6,11 +6,13 @@ The **Dealers** section lets you manage your network of sub-agents and resellers
 
 ## What you can do here
 
-- **Dealer profile** — name, contact info, login credentials
-- **Commissions** — set dealer-specific commission rates
-- **Front-end settings** — custom logo, colours, background image
-- **Currency** — enable multi-currency for the dealer
-- **Booking access** — view and manage dealer's bookings
+| Feature | Description |
+|---------|-------------|
+| **Dealer profile** | Name, contact info, login credentials |
+| **Commissions** | Set dealer-specific commission rates |
+| **Front-end settings** | Custom logo, colours, background image |
+| **Currency** | Enable multi-currency for the dealer |
+| **Booking access** | View and manage dealer's bookings |
 
 ## Steps
 

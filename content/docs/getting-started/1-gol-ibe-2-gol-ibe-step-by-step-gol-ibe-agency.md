@@ -6,11 +6,13 @@ The **Agency** section is your central hub for managing your travel agency's pro
 
 ## What you can do here
 
-- **Agency profile** — company name, address, contact details, logo
-- **Payment methods** — enable/disable payment options, add surcharges per method
-- **E-mail notifications** — configure automated emails sent to customers
-- **Working hours** — set when your booking engine accepts reservations
-- **Users** — manage staff access and roles
+| Section | Purpose |
+|---------|---------|
+| **Agency profile** | Company name, address, contact details, logo |
+| **Payment methods** | Enable/disable payment options, add surcharges per method |
+| **E-mail notifications** | Configure automated emails sent to customers |
+| **Working hours** | Set when your booking engine accepts reservations |
+| **Users** | Manage staff access and roles |
 
 ## Steps
 
