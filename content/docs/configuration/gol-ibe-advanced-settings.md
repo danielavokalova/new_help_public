@@ -6,12 +6,14 @@
 
 ## What you can do here
 
-- **GDS / NDC connectors** — connect to Galileo, Amadeus, Sabre or NDC sources
-- **API access** — manage API keys and integration endpoints
-- **Multi-PCC queries** — search across multiple GDS office codes simultaneously
-- **Parallel queries** — run simultaneous searches for faster results
-- **MIR connector** — configure the MIR integration for specific markets
-- **Service fee from airline commission** — automatically calculate fees based on carrier incentives
+| Feature | Description |
+|---------|-------------|
+| **GDS / NDC connectors** | Connect to Galileo, Amadeus, Sabre or NDC sources |
+| **API access** | Manage API keys and integration endpoints |
+| **Multi-PCC queries** | Search across multiple GDS office codes simultaneously |
+| **Parallel queries** | Run simultaneous searches for faster results |
+| **MIR connector** | Configure the MIR integration for specific markets |
+| **Service fee from airline commission** | Automatically calculate fees based on carrier incentives |
 
 ## Steps
 

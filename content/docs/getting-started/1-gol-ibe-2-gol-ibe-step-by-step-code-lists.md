@@ -6,11 +6,13 @@
 
 ## What you can do here
 
-- **Carriers** — enable or disable airlines visible on your front-end
-- **Destination filters** — restrict or allow specific countries, airports or regions
-- **Blocked emails** — prevent specific addresses from making bookings
-- **Flush caches** — clear the search cache after configuration changes
-- **Flush HTML caches** — clear the front-end display cache after content changes
+| Feature | Description |
+|---------|-------------|
+| **Carriers** | Enable or disable airlines visible on your front-end |
+| **Destination filters** | Restrict or allow specific countries, airports or regions |
+| **Blocked emails** | Prevent specific addresses from making bookings |
+| **Flush caches** | Clear the search cache after configuration changes |
+| **Flush HTML caches** | Clear the front-end display cache after content changes |
 
 ## Steps
 

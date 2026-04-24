@@ -6,10 +6,12 @@ The **Notifications** section controls all automated emails sent to customers by
 
 ## What you can do here
 
-- **Notification templates** — customise the content and layout of each email type
-- **Sent notifications** — view a log of all emails sent to customers
-- **From email** — configure the sender name and reply-to address
-- **Most used types** — booking confirmation, payment due, ticket issued, cancellation
+| Feature | Description |
+|---------|-------------|
+| **Notification templates** | Customise the content and layout of each email type |
+| **Sent notifications** | View a log of all emails sent to customers |
+| **From email** | Configure the sender name and reply-to address |
+| **Most used types** | Booking confirmation, payment due, ticket issued, cancellation |
 
 ## Steps
 

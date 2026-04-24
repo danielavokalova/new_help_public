@@ -6,11 +6,13 @@ The **Users** section lets you manage all staff accounts that have access to the
 
 ## What you can do here
 
-- **Create** new agent accounts with specific access rights
-- **Assign roles** — Admin, Agent, Read-only, or custom roles
-- **Reset passwords** for agents who have been locked out
-- **Deactivate** accounts for staff who have left the agency
-- **Manage your own account** — update your profile and password
+| Action | Description |
+|--------|-------------|
+| **Create** | New agent accounts with specific access rights |
+| **Assign roles** | Admin, Agent, Read-only, or custom roles |
+| **Reset passwords** | For agents who have been locked out |
+| **Deactivate** | Accounts for staff who have left the agency |
+| **Manage own account** | Update your profile and password |
 
 ## Steps
 

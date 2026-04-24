@@ -6,12 +6,14 @@ The **Reservations** section is where all flight bookings are managed — whethe
 
 ## What you can do here
 
-- **Create** new air reservations and assign passenger details
-- **Modify** existing bookings — change dates, names or services
-- **Cancel** bookings and process refunds where applicable
-- **Issue tickets** manually or trigger auto-ticketing
-- **Export** booking lists to CSV or Excel for reporting
-- **Block fake bookings** by configuring anti-abuse rules
+| Action | Description |
+|--------|-------------|
+| **Create** | New air reservations with passenger details |
+| **Modify** | Change dates, names or services on existing bookings |
+| **Cancel** | Cancel bookings and process refunds where applicable |
+| **Issue tickets** | Issue manually or trigger auto-ticketing |
+| **Export** | Download booking lists to CSV or Excel for reporting |
+| **Block fake bookings** | Configure anti-abuse rules |
 
 ## Steps
 

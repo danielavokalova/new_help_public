@@ -6,12 +6,14 @@
 
 ## What you can do here
 
-- **Implement the search form** — embed the GOL IBE flight search into your agency website
-- **Design your site** — set colours, logo and layout for the booking engine
-- **Working hours** — define when your front-end accepts new bookings
-- **Service fee** — configure a default fee applied to all bookings
-- **Notifications** — set up automated emails for customers and agents
-- **Auto-ticketing** — enable automatic ticket issuance after payment confirmation
+| Feature | Description |
+|---------|-------------|
+| **Implement the search form** | Embed the GOL IBE flight search into your agency website |
+| **Design your site** | Set colours, logo and layout for the booking engine |
+| **Working hours** | Define when your front-end accepts new bookings |
+| **Service fee** | Configure a default fee applied to all bookings |
+| **Notifications** | Set up automated emails for customers and agents |
+| **Auto-ticketing** | Enable automatic ticket issuance after payment confirmation |
 
 ## Steps
 

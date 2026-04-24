@@ -6,10 +6,12 @@ The **Statistics** section gives you an overview of all bookings made through yo
 
 ## What you can do here
 
-- **Download booking data** as CSV or Excel with filters by date, carrier or route
-- **View sales reports** — total bookings, revenue, and passenger counts
-- **Export lists** for accounting, reconciliation or further analysis
-- **Filter by period** — daily, weekly, monthly or custom date ranges
+| Feature | Description |
+|---------|-------------|
+| **Download booking data** | CSV or Excel with filters by date, carrier or route |
+| **Sales reports** | Total bookings, revenue, and passenger counts |
+| **Export lists** | For accounting, reconciliation or further analysis |
+| **Filter by period** | Daily, weekly, monthly or custom date ranges |
 
 ## Steps
 

@@ -6,11 +6,13 @@
 
 ## What you can do here
 
-- **CSS** — override colours, fonts and layout to match your branding
-- **Footer** — add contact details, links and legal information to the page footer
-- **Menu** — create or edit the navigation links shown in the header
-- **Ticket itinerary template** — customise the layout of e-ticket PDFs sent to customers
-- **Terms and conditions** — publish your booking terms visible at checkout
+| Feature | Description |
+|---------|-------------|
+| **CSS** | Override colours, fonts and layout to match your branding |
+| **Footer** | Add contact details, links and legal information to the page footer |
+| **Menu** | Create or edit the navigation links shown in the header |
+| **Ticket itinerary template** | Customise the layout of e-ticket PDFs sent to customers |
+| **Terms and conditions** | Publish your booking terms visible at checkout |
 
 ## Steps
 

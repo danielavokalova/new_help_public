@@ -6,12 +6,14 @@ The **Prices** section controls everything related to how your agency earns on b
 
 ## What you can do here
 
-- **Service fees** — fixed or percentage fees added to every booking
-- **Markup rules** — price adjustments per route, carrier or passenger type
-- **Promo codes** — discount vouchers customers enter at checkout
-- **Commissions and discounts** — carrier-based commission rules
-- **Special offers** — highlighted deals published on your front-end
-- **2OW fees** — separate fee rules for one-way fares
+| Feature | Description |
+|---------|-------------|
+| **Service fees** | Fixed or percentage fees added to every booking |
+| **Markup rules** | Price adjustments per route, carrier or passenger type |
+| **Promo codes** | Discount vouchers customers enter at checkout |
+| **Commissions and discounts** | Carrier-based commission rules |
+| **Special offers** | Highlighted deals published on your front-end |
+| **2OW fees** | Separate fee rules for one-way fares |
 
 ## Steps
 
