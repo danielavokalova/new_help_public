@@ -1,12 +1,16 @@
-# 4. GOL IBE - advanced settings
+# Advanced Settings
 
-***
+<!-- tags: advanced settings, GDS, NDC, multi-PCC, parallel queries, MIR, connectors, API -->
 
-1. [How to handle Parallel requests? ](/configuration/1-gol-ibe-4-gol-ibe-advanced-settings-paraleleni-dotazovani)
-2. [What is MultiPCC request about?](/configuration/1-gol-ibe-4-gol-ibe-advanced-settings-multipcc-dotazovani)
-3. [How to handle MIR?](/configuration/1-gol-ibe-4-gol-ibe-advanced-settings-mir)
-4. [How to add a service fee from airline commission? ](/configuration/1-gol-ibe-4-gol-ibe-advanced-settings-servisni-poplatek-z-provize-letecke-spolecnosti)
+**Advanced Settings** contains the technical GDS and connectivity configuration for GOL IBE. These settings determine which flight content sources your booking engine uses and how queries are optimised.
 
-***
+## What you can configure here
 
-📩 Feel free to contact us at: [gol_support@cee-systems.com](mailto:gol_support@cee-systems.com).
+- **GDS / NDC connectors** — connect to Galileo, Amadeus, Sabre or NDC sources
+- **API access** — manage API keys and integration endpoints
+- **Multi-PCC queries** — search across multiple GDS office codes simultaneously
+- **Parallel queries** — run simultaneous searches for faster results
+- **MIR connector** — configure the MIR integration for specific markets
+- **Service fee from airline commission** — automatically calculate fees based on carrier incentives
+
+Advanced settings should only be changed by technical staff or in consultation with CEE Systems support.

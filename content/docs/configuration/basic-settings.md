@@ -18,6 +18,3 @@ Describe core configuration needed before production usage.
 
 Settings are saved and visible after refresh.
 
-## Related articles
-
-- `../getting-started/overview.md`

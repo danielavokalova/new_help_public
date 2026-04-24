@@ -19,6 +19,3 @@ Answer common usage and setup questions.
 
 Issue is resolved and does not reproduce.
 
-## Related articles
-
-- `../configuration/basic-settings.md`

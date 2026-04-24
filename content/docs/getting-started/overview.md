@@ -19,6 +19,3 @@ Explain what GOL IBE is and what users can do first.
 
 You can finish a basic task without support assistance.
 
-## Related articles
-
-- `configuration/basic-settings.md`

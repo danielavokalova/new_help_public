@@ -1,12 +1,14 @@
 # Notifications
 
-***
+<!-- tags: notifications, email templates, booking confirmation, sent notifications, from email -->
 
-There you will find two sub-sections under the menu Notifications: 
+The **Notifications** section controls all automated emails sent to customers by GOL IBE — from booking confirmations and payment reminders to ticket issuance and cancellation notices.
 
-1. [Notification templates](/getting-started/1-gol-ibe-2-gol-ibe-step-by-step-notifications-notification-templates)
-2. [Sent notifications ](/getting-started/1-gol-ibe-2-gol-ibe-step-by-step-notifications-sent-notifications)
+## What you can manage here
 
-***
+- **Notification templates** — customise the content and layout of each email type
+- **Sent notifications** — view a log of all emails sent to customers
+- **From email** — configure the sender name and reply-to address
+- **Most used types** — booking confirmation, payment due, ticket issued, cancellation
 
-📩 Feel free to contact us at: [gol_support@cee-systems.com](mailto:gol_support@cee-systems.com).
+Well-configured notifications keep customers informed at every stage of their booking and reduce inbound support queries.

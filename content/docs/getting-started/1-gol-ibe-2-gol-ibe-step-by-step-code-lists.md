@@ -1,13 +1,15 @@
-# Code lists
+# Code Lists
 
-***
+<!-- tags: code lists, carriers, destination filters, blocked emails, flush caches -->
 
-1. [Destination filters](/getting-started/1-gol-ibe-2-gol-ibe-step-by-step-code-lists-destination-filters)
-2. [Carriers](/getting-started/1-gol-ibe-2-gol-ibe-step-by-step-code-lists-carriers)
-3. [What section Flush cashes good for? ](/getting-started/1-gol-ibe-2-gol-ibe-step-by-step-code-lists-what-is-section-flush-cashes-good-for)
-4. [What is section Flush HTML cashes good for? ](/getting-started/1-gol-ibe-2-gol-ibe-step-by-step-code-lists-what-is-section-flush-html-cashes-good-for)
-5. [How about section Blocked e-mails? ](/getting-started/1-gol-ibe-2-gol-ibe-step-by-step-code-lists-how-about-section-blocked-e-mails)
+**Code Lists** contain the reference data that controls what appears on your GOL IBE front-end. This is where you fine-tune which airlines, destinations and customers have access to your booking engine.
 
-***
+## What you can manage here
 
-📩 Feel free to contact us at: [gol_support@cee-systems.com](mailto:gol_support@cee-systems.com).
+- **Carriers** — enable or disable airlines visible on your front-end
+- **Destination filters** — restrict or allow specific countries, airports or regions
+- **Blocked emails** — prevent specific addresses from making bookings
+- **Flush caches** — clear the search cache after configuration changes
+- **Flush HTML caches** — clear the front-end display cache after content changes
+
+Always flush the relevant cache after making changes so customers see the updated configuration immediately.

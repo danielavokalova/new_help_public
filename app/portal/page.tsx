@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { useMemo, useState, useEffect } from "react";
 import { usePortal } from "./layout";
 import { CATEGORIES, RELEASE_NOTES, WALKTHROUGHS, HEALTH_CHECKS } from "./data";
@@ -27,7 +28,8 @@ const MOST_VISITED = ALL_ARTICLES.slice(0, 5);
 export default function PortalOverviewPage() {
   const [query, setQuery] = useState("");
   const [debouncedQuery, setDebouncedQuery] = useState("");
-  const { setSelectedCat, openContact } = usePortal();
+  const { openContact } = usePortal();
+  const router = useRouter();
 
   useEffect(() => {
     const t = setTimeout(() => setDebouncedQuery(query), 250);
@@ -58,13 +60,13 @@ export default function PortalOverviewPage() {
     <>
       {/* ── Hero + Search ── */}
       <div className={s.hero}>
-        <h2 className={s.heroTitle}>GOL IBE Help Portal</h2>
-        <p className={s.heroSub}>Your smart guide to the GOL IBE Admin Console. Get answers instantly.</p>
+        <h2 className={s.heroTitle}>Hi, how can we help you?</h2>
+        <p className={s.heroSub}>Search the GOL IBE knowledge base or browse by topic below.</p>
         <div className={s.searchWrap}>
-          <span className={s.searchIcon}>&#9906;</span>
+          <span className={s.searchIcon}>🔍</span>
           <input
             className={s.omnisearch}
-            placeholder="Search anything… e.g. add new user, configure markup, cancel reservation"
+            placeholder="Search anything… e.g. add new user, service fee, working hours"
             value={query}
             onChange={(e) => setQuery(e.target.value)}
             aria-label="Search help articles"
@@ -74,6 +76,13 @@ export default function PortalOverviewPage() {
               ✕
             </button>
           )}
+        </div>
+        <div className={s.heroChips}>
+          {["Add user", "Service fee", "Working hours", "Email templates", "Cancel booking", "Flush caches"].map((chip) => (
+            <button key={chip} className={s.heroChip} onClick={() => setQuery(chip)}>
+              {chip}
+            </button>
+          ))}
         </div>
       </div>
 
@@ -122,7 +131,7 @@ export default function PortalOverviewPage() {
                 <button
                   key={cat.name}
                   className={s.catCard}
-                  onClick={() => setSelectedCat(cat)}
+                  onClick={() => router.push(cat.href)}
                 >
                   <div className={s.catIcon}>{cat.icon}</div>
                   <div className={s.catName}>{cat.name}</div>

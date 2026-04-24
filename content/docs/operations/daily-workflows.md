@@ -18,6 +18,3 @@ Document recurring operational tasks.
 
 All daily checks are complete and documented.
 
-## Related articles
-
-- `../troubleshooting/faq.md`

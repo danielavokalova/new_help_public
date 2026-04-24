@@ -1,77 +1,19 @@
 # Carriers
 
-***
+<!-- tags: carrier, airline, IATA code, preferred, blocked, logo -->
 
-We provide your frontend with certain list of carriers. It may happen that you will miss some of them or you would want to hide some. Below you may get to know how to handle the list of carriers  that appear on your search box.
+The Carriers list controls which airlines are available in search results and how they are displayed.
 
-* **How to HIDE carrier on your frontend**
+## Manage carriers
 
-1\) Log into the admin console.
+1. Go to **Code Lists → Carriers**.
+2. You can:
+   - **Enable / disable** specific airlines
+   - Set a carrier as **preferred** (shown first in results)
+   - Upload a custom **airline logo**
+   - Add a **display name** override
 
-2\) Go to the section **Code list - Carriers** .
+## Preferred carriers
 
-<div align="left">
-
-</div>
-
-3\) Insert carrier code you would like to hide into the section Carrier code:.
-
-4\) Press button **COPY** ( you will see it on the right side).
-
-
-
-
-
-5\) Tick button **HIDE** by content you would like to have it hidden for. GWS, Travelfusion, Lowcost).
-
-* **GWS** - GDS and basic content on your front-end.
-* **Travelfusion** - TF content 
-* **Lowcost** - TF content 
-
-
-
-
-
-6\) Save changes.
-
- ![](/images/docs/149f309c7f984ec8.png)
-
-* **How to UNCOVER carrier on your frontend**
-
-1\) Log into the admin console.
-
-2\) Go to the section **Code list - Carriers** .
-
-<div align="left">
-
-</div>
-
-3\) Insert carrier code you would like to hide into the section **Carrier code**.
-
-
-
-
-
-4\) Press button **COPY** ( you will see it on the right side).
-
-5\) Untick button **HIDE** by content you would like to have it hidden for. GWS, Travelfusion, Lowcost).
-
-* **GWS** - GDS and basic content on your front-end.
-* **Travelfusion** - TF content 
-* **Lowcost** - TF content 
-
-
-
-
-
-6\) Choose your agency name in section **Dealer:.**
-
-
-
-
-
-7\) Save changes.
-
-***
-
-📩 Feel free to contact us at: [gol_support@cee-systems.com](mailto:gol_support@cee-systems.com).
+Preferred carriers appear at the top of search results regardless of price.  
+Useful for commercial agreements with specific airlines.

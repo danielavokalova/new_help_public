@@ -64,6 +64,9 @@ export default function PortalLayout({ children }: { children: ReactNode }) {
   }, [pathname, isPortalRoot]);
 
   function handleCatClick(cat: Category) {
+    if (!isPortalRoot) {
+      router.push(cat.href);
+    }
     setSelectedCat(cat);
     setExpandedCat((prev) => (prev === cat.name ? null : cat.name));
   }
@@ -154,14 +157,6 @@ export default function PortalLayout({ children }: { children: ReactNode }) {
 
               {isExpanded && (
                 <ul className={s.sidebarSubList}>
-                  <li>
-                    <Link
-                      href={cat.href}
-                      className={`${s.sidebarSubItem} ${s.sidebarSubItemAll} ${cat.href === pathname ? s.sidebarSubItemActive : ""}`}
-                    >
-                      All {cat.name} articles →
-                    </Link>
-                  </li>
                   {cat.articles.map((a) => (
                     <li key={a.href}>
                       <Link
@@ -338,10 +333,6 @@ function CategoryView({ cat, onBack }: { cat: Category; onBack: () => void }) {
           </Link>
         ))}
       </div>
-
-      <Link href={cat.href} className={s.allArticlesLink}>
-        View all {cat.name} articles →
-      </Link>
     </div>
   );
 }
