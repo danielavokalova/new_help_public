@@ -157,14 +157,6 @@ export default function PortalLayout({ children }: { children: ReactNode }) {
 
               {isExpanded && (
                 <ul className={s.sidebarSubList}>
-                  <li>
-                    <Link
-                      href={cat.href}
-                      className={`${s.sidebarSubItem} ${s.sidebarSubItemAll} ${cat.href === pathname ? s.sidebarSubItemActive : ""}`}
-                    >
-                      All {cat.name} articles →
-                    </Link>
-                  </li>
                   {cat.articles.map((a) => (
                     <li key={a.href}>
                       <Link
