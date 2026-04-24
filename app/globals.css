@@ -116,8 +116,8 @@ h3 { font-size: 20px; margin: 22px 0 10px; }
 
 p { color: var(--text-body); margin: 0 0 14px; }
 
-a { color: var(--orange); text-decoration: none; }
-a:hover { color: var(--orange-hov); text-decoration: underline; }
+a { color: var(--navy); text-decoration: none; }
+a:hover { color: var(--orange); text-decoration: underline; }
 
 /* ── Breadcrumb ──────────────────────────────────────────── */
 .breadcrumb {
