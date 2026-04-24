@@ -4,15 +4,13 @@
 
 The **Customers** section in GOL IBE lets you build and manage a database of your clients. Registered customers can save their personal and travel document details, making future bookings faster and more accurate.
 
-## What you can do in the Customers section
+## What you can do here
 
-| Feature | Description |
-|---------|-------------|
-| **Customer database** | Store passenger profiles with contact and travel document details |
-| **Booking history** | View all bookings linked to a customer account |
-| **Travel documents** | Save passport, ID card, and visa details per passenger |
-| **Login / registration** | Customers register on the front-end and manage their own profile |
-| **Admin management** | Create and edit profiles directly in the admin console |
+- **Customer database** — store passenger profiles with contact and travel document details
+- **Booking history** — view all bookings linked to a customer account
+- **Travel documents** — save passport, ID card, and visa details per passenger
+- **Login / registration** — customers register on the front-end and manage their own profile
+- **Admin management** — create and edit profiles directly in the admin console
 
 ## Steps
 

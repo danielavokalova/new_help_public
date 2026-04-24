@@ -4,7 +4,7 @@
 
 **Code Lists** contain the reference data that controls what appears on your GOL IBE front-end. This is where you fine-tune which airlines, destinations and customers have access to your booking engine.
 
-## What you can manage here
+## What you can do here
 
 - **Carriers** — enable or disable airlines visible on your front-end
 - **Destination filters** — restrict or allow specific countries, airports or regions

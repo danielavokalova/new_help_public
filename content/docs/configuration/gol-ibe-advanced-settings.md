@@ -4,7 +4,7 @@
 
 **Advanced Settings** contains the technical GDS and connectivity configuration for GOL IBE. These settings determine which flight content sources your booking engine uses and how queries are optimised.
 
-## What you can configure here
+## What you can do here
 
 - **GDS / NDC connectors** — connect to Galileo, Amadeus, Sabre or NDC sources
 - **API access** — manage API keys and integration endpoints
@@ -17,9 +17,8 @@
 
 1. Log into the GOL IBE admin console.
 2. Go to **Advanced Settings** in the left-hand menu.
-3. Configure the GDS or NDC connector with your office code and credentials.
-4. Enable **Multi-PCC** or **Parallel queries** if your setup requires them.
-5. Test the connection by running a live search on your front-end.
+3. Configure the GDS or NDC connector and enable **Multi-PCC** or **Parallel queries** if needed.
+4. Test the connection by running a live search on your front-end.
 
 ## Results
 

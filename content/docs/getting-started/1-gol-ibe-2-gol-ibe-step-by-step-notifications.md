@@ -4,7 +4,7 @@
 
 The **Notifications** section controls all automated emails sent to customers by GOL IBE — from booking confirmations and payment reminders to ticket issuance and cancellation notices.
 
-## What you can manage here
+## What you can do here
 
 - **Notification templates** — customise the content and layout of each email type
 - **Sent notifications** — view a log of all emails sent to customers
@@ -15,9 +15,8 @@ The **Notifications** section controls all automated emails sent to customers by
 
 1. Log into the GOL IBE admin console.
 2. Go to **Notifications** in the left-hand menu.
-3. Open **Notification templates** and edit each email type you want to customise.
-4. Set the **From email** address and sender name.
-5. Use **Sent notifications** to verify that emails are being delivered correctly.
+3. Open **Notification templates**, edit each email type and set the **From email** address.
+4. Use **Sent notifications** to verify that emails are being delivered correctly.
 
 ## Results
 

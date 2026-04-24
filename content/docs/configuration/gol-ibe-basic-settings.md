@@ -4,7 +4,7 @@
 
 **Basic Settings** covers the core configuration of your GOL IBE booking engine. This is typically the first section to set up when launching a new GOL IBE instance.
 
-## What you can configure here
+## What you can do here
 
 - **Implement the search form** — embed the GOL IBE flight search into your agency website
 - **Design your site** — set colours, logo and layout for the booking engine
@@ -17,9 +17,8 @@
 
 1. Log into the GOL IBE admin console.
 2. Go to **Basic Settings** in the left-hand menu.
-3. Start with **Design** — upload your logo and set your brand colours.
-4. Set **Working hours** and configure a **Service fee**.
-5. Review **Notifications** and enable **Auto-ticketing** if required.
+3. Start with **Design** — upload your logo, set brand colours and configure **Working hours**.
+4. Set a **Service fee**, review **Notifications** and enable **Auto-ticketing** if required.
 
 ## Results
 

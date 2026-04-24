@@ -4,7 +4,7 @@
 
 The **Prices** section controls everything related to how your agency earns on bookings made through GOL IBE — service fees, markups, commissions, discounts, and promotional codes.
 
-## What you can configure here
+## What you can do here
 
 - **Service fees** — fixed or percentage fees added to every booking
 - **Markup rules** — price adjustments per route, carrier or passenger type

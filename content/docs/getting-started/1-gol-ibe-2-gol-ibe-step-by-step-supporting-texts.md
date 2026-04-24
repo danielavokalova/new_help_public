@@ -4,7 +4,7 @@
 
 **Supporting Texts** is where you manage all custom content that appears on your GOL IBE front-end — navigation menus, footer, terms and conditions, ticket templates, and CSS styling.
 
-## What you can customise here
+## What you can do here
 
 - **CSS** — override colours, fonts and layout to match your branding
 - **Footer** — add contact details, links and legal information to the page footer
