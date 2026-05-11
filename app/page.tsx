@@ -1,145 +1,129 @@
 "use client";
 
 import Link from "next/link";
-import { useMemo, useState } from "react";
+import { useState } from "react";
+import s from "./home.module.css";
 
-type Category = {
-  icon: string;
+type Product = {
+  emoji: string;
   name: string;
   desc: string;
-  href: string;
+  href?: string;
+  action: string;
+  comingSoon?: boolean;
 };
 
-type QuickResult = {
-  icon: string;
-  title: string;
-  category: string;
-  summary: string;
-  href: string;
-};
-
-const CATEGORIES: Category[] = [
-  { icon: "🏢", name: "Agency", desc: "Profile, settings, branding", href: "/getting-started" },
-  { icon: "🤝", name: "Dealers", desc: "Dealer accounts and commissions", href: "/getting-started" },
-  { icon: "👤", name: "Customers", desc: "Passenger profiles and loyalty data", href: "/operations" },
-  { icon: "🎫", name: "Reservations", desc: "Create, modify and cancel bookings", href: "/operations" },
-  { icon: "💰", name: "Prices & Markup", desc: "Fares, markups and surcharges", href: "/configuration" },
-  { icon: "📋", name: "Code Lists", desc: "Carriers, destinations, cache", href: "/configuration" },
-  { icon: "👥", name: "Users", desc: "Agents, roles, passwords", href: "/getting-started" },
-  { icon: "🔔", name: "Notifications", desc: "Email templates and alerts", href: "/troubleshooting" },
-  { icon: "📄", name: "Supporting Texts", desc: "Terms, conditions, content blocks", href: "/configuration" },
-  { icon: "📈", name: "Statistics", desc: "Reports and usage analytics", href: "/operations" },
-  { icon: "⚙️", name: "Basic Settings", desc: "First-time setup and core config", href: "/configuration" },
-  { icon: "🔬", name: "Advanced Settings", desc: "GDS connectors, APIs, webhooks", href: "/configuration" }
+const PRODUCTS: Product[] = [
+  {
+    emoji: "✈️",
+    name: "GOL IBE",
+    desc: "Admin Console help — users, bookings, markup rules, settings and more.",
+    href: "/portal/",
+    action: "Open help",
+  },
+  {
+    emoji: "🛫",
+    name: "LCC",
+    desc: "Low-cost carrier integration guides and configuration walkthroughs.",
+    action: "Coming soon",
+    comingSoon: true,
+  },
+  {
+    emoji: "🌐",
+    name: "NDC",
+    desc: "NDC offer & order management, airline connectivity and API references.",
+    action: "Coming soon",
+    comingSoon: true,
+  },
+  {
+    emoji: "🏨",
+    name: "Hotels",
+    desc: "Hotel search, property setup, rate management and booking flows.",
+    action: "Coming soon",
+    comingSoon: true,
+  },
 ];
 
-const QUICK_RESULTS: QuickResult[] = [
-  {
-    icon: "🔑",
-    title: "How to reset an agent password",
-    category: "Users",
-    summary: "Reset passwords from the users section and enforce a secure first login.",
-    href: "/getting-started"
-  },
-  {
-    icon: "✈️",
-    title: "Create your first air reservation",
-    category: "Reservations",
-    summary: "Follow the reservation flow and verify passenger, payment, and confirmation steps.",
-    href: "/operations"
-  },
-  {
-    icon: "💸",
-    title: "Set up agency markup rules",
-    category: "Prices & Markup",
-    summary: "Configure markup by route and carrier, then validate calculations on sample bookings.",
-    href: "/configuration"
-  },
-  {
-    icon: "📧",
-    title: "Customise booking confirmation email",
-    category: "Notifications",
-    summary: "Edit templates and placeholders for customer and internal notification variants.",
-    href: "/troubleshooting"
-  },
-  {
-    icon: "🔌",
-    title: "Connect a GDS / NDC source",
-    category: "Advanced Settings",
-    summary: "Set provider credentials, test connectivity, and verify availability responses.",
-    href: "/configuration"
-  }
-];
+const CHIPS = ["Add user", "Service fee", "Cancel booking", "Markup rules", "Email templates", "Flush caches"];
 
-export default function HomePage() {
+export default function HelpCenterHome() {
   const [query, setQuery] = useState("");
 
-  const filteredResults = useMemo(() => {
-    if (!query.trim()) return [];
-    const q = query.toLowerCase();
-    return QUICK_RESULTS.filter((item) =>
-      `${item.title} ${item.category} ${item.summary}`.toLowerCase().includes(q)
-    );
-  }, [query]);
+  function handleChip(label: string) {
+    window.location.href = `/portal/?q=${encodeURIComponent(label)}`;
+  }
+
+  function handleSearch(e: React.KeyboardEvent<HTMLInputElement>) {
+    if (e.key === "Enter" && query.trim()) {
+      window.location.href = `/portal/?q=${encodeURIComponent(query.trim())}`;
+    }
+  }
 
   return (
-    <section className="portal-home">
-      <div className="hero">
-        <h2>✈️ New Help Portal</h2>
-        <p>Your smart guide to the GOL IBE Admin Console. Get answers instantly.</p>
+    <div className={s.page}>
+      {/* Top bar */}
+      <div className={s.topBar}>
+        <span className={s.topBarBrand}>Help Center</span>
       </div>
 
-      <label htmlFor="omnisearch" className="sr-only">Omnisearch</label>
-      <input
-        id="omnisearch"
-        className="omnisearch"
-        placeholder="🔍  Search anything... e.g. add new user, configure markup, cancel reservation"
-        value={query}
-        onChange={(e) => setQuery(e.target.value)}
-      />
+      {/* Hero */}
+      <div className={s.hero}>
+        <h2 className={s.heroTitle}>Hi, how can we help you?</h2>
+        <p className={s.heroSub}>Search the knowledge base or choose your product below.</p>
 
-      {filteredResults.length > 0 && (
-        <div className="quick-results">
-          <h3>Quick results</h3>
-          <ul>
-            {filteredResults.map((item) => (
-              <li key={item.title}>
-                <p>
-                  {item.icon} <strong>{item.title}</strong> <span className="badge">{item.category}</span>
-                </p>
-                <p>{item.summary}</p>
-                <Link href={item.href}>Open full guide →</Link>
-              </li>
-            ))}
-          </ul>
+        <div className={s.searchWrap}>
+          <span className={s.searchIcon}>🔍</span>
+          <input
+            className={s.omnisearch}
+            placeholder="Search anything… e.g. add new user, service fee, cancel booking"
+            value={query}
+            onChange={(e) => setQuery(e.target.value)}
+            onKeyDown={handleSearch}
+            aria-label="Search help articles"
+          />
+          {query && (
+            <button className={s.searchClear} onClick={() => setQuery("")} aria-label="Clear search">
+              ✕
+            </button>
+          )}
         </div>
-      )}
 
-      <h3>Browse by topic</h3>
-      <div className="topic-grid">
-        {CATEGORIES.map((category) => (
-          <Link key={category.name} href={category.href} className="cat-card">
-            <div className="cat-icon">{category.icon}</div>
-            <div className="cat-name">{category.name}</div>
-            <div className="cat-desc">{category.desc}</div>
-            <span className="cat-link">Explore →</span>
-          </Link>
-        ))}
-      </div>
-
-      <div className="most-visited">
-        <h3>🔥 Most visited</h3>
-        <ul>
-          {QUICK_RESULTS.map((item) => (
-            <li key={`popular-${item.title}`}>
-              <p>
-                {item.icon} <strong>{item.title}</strong> <span className="badge">{item.category}</span>
-              </p>
-              <Link href={item.href}>Open →</Link>
-            </li>
+        <div className={s.heroChips}>
+          {CHIPS.map((chip) => (
+            <button key={chip} className={s.heroChip} onClick={() => handleChip(chip)}>
+              {chip}
+            </button>
           ))}
-        </ul>
+        </div>
       </div>
-    </section>
+
+      {/* Products */}
+      <div className={s.body}>
+        <p className={s.sectionLabel}>Browse by product</p>
+        <div className={s.productGrid}>
+          {PRODUCTS.map((p) =>
+            p.href ? (
+              <Link key={p.name} href={p.href} className={s.tile}>
+                <div className={s.tileEmoji}>{p.emoji}</div>
+                <div className={s.tileName}>{p.name}</div>
+                <div className={s.tileDesc}>{p.desc}</div>
+                <div className={s.tileFooter}>
+                  <span className={s.tileAction}>{p.action}</span>
+                </div>
+              </Link>
+            ) : (
+              <div key={p.name} className={`${s.tile} ${s.tileDisabled}`}>
+                <div className={s.tileEmoji}>{p.emoji}</div>
+                <div className={s.tileName}>{p.name}</div>
+                <div className={s.tileDesc}>{p.desc}</div>
+                <div className={s.tileFooter}>
+                  <span className={s.tileBadge}>Coming soon</span>
+                </div>
+              </div>
+            )
+          )}
+        </div>
+      </div>
+    </div>
   );
 }

@@ -7,8 +7,9 @@ import type { ReactNode } from "react";
 export function ContentWrapper({ children }: { children: ReactNode }) {
   const pathname = usePathname();
   const isPortal = pathname?.startsWith("/portal");
+  const isHome = pathname === "/" || pathname === "";
 
-  if (isPortal) {
+  if (isPortal || isHome) {
     return <>{children}</>;
   }
 

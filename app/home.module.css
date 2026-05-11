@@ -1,0 +1,277 @@
+/* =========================================================
+   Help-center landing page — GOL IBE Admin Console style
+   ========================================================= */
+
+/* ── Page wrapper ──────────────────────────────────────── */
+.page {
+  min-height: 100vh;
+  background: #eef3f6;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ── Top bar ───────────────────────────────────────────── */
+.topBar {
+  height: 54px;
+  background: #ffffff;
+  border-bottom: 1px solid #c0d9eb;
+  display: flex;
+  align-items: center;
+  padding: 0 40px;
+  flex-shrink: 0;
+}
+
+.topBarBrand {
+  font-size: 16px;
+  font-weight: 800;
+  color: #131f6b;
+  letter-spacing: -0.03em;
+  text-decoration: none;
+}
+
+/* ── Hero ──────────────────────────────────────────────── */
+.hero {
+  background: #ffffff;
+  border-bottom: 1px solid #c0d9eb;
+  padding: 64px 40px 48px;
+  text-align: center;
+}
+
+.heroTitle {
+  margin: 0 0 12px;
+  color: #131f6b;
+  font-size: 44px;
+  font-weight: 800;
+  letter-spacing: -0.025em;
+}
+
+.heroSub {
+  margin: 0 0 32px;
+  color: #6b7a99;
+  font-size: 17px;
+}
+
+/* ── Search ────────────────────────────────────────────── */
+.searchWrap {
+  position: relative;
+  max-width: 640px;
+  margin: 0 auto 22px;
+  display: flex;
+  align-items: center;
+}
+
+.searchIcon {
+  position: absolute;
+  left: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 15px;
+  pointer-events: none;
+  color: #9aa5b8;
+}
+
+.omnisearch {
+  width: 100%;
+  border: 1.5px solid #c8cfe0;
+  border-radius: 999px;
+  padding: 17px 50px 17px 52px;
+  font-size: 16px;
+  outline: none;
+  font-family: inherit;
+  color: #131f6b;
+  background: #f4f6f9;
+  box-shadow: none;
+  transition: border-color 140ms, box-shadow 140ms, background 140ms;
+}
+
+.omnisearch:focus {
+  border-color: #131f6b;
+  background: #ffffff;
+  box-shadow: 0 2px 14px rgba(26, 54, 104, 0.13);
+}
+
+.omnisearch::placeholder {
+  color: #9aa5b8;
+}
+
+.searchClear {
+  position: absolute;
+  right: 18px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  font-size: 14px;
+  color: #9aa5b8;
+  cursor: pointer;
+  padding: 4px 6px;
+  border-radius: 999px;
+  font-family: inherit;
+  transition: color 120ms, background 120ms;
+}
+
+.searchClear:hover {
+  color: #131f6b;
+  background: #e8edf0;
+}
+
+/* ── Quick-topic chips ─────────────────────────────────── */
+.heroChips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  justify-content: center;
+}
+
+.heroChip {
+  background: #ffffff;
+  border: 1.5px solid #c0d9eb;
+  border-radius: 999px;
+  padding: 6px 18px;
+  font-size: 13px;
+  font-weight: 500;
+  color: #131f6b;
+  cursor: pointer;
+  font-family: inherit;
+  transition: background 120ms, border-color 120ms, color 120ms;
+}
+
+.heroChip:hover {
+  background: #131f6b;
+  border-color: #131f6b;
+  color: #ffffff;
+}
+
+/* ── Body ──────────────────────────────────────────────── */
+.body {
+  padding: 40px 40px 64px;
+  max-width: 1100px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+/* ── Section heading ───────────────────────────────────── */
+.sectionLabel {
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: #e85e20;
+  margin: 0 0 18px;
+}
+
+/* ── Product grid ──────────────────────────────────────── */
+.productGrid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 18px;
+}
+
+/* ── Product tile ──────────────────────────────────────── */
+.tile {
+  background: #ffffff;
+  border: none;
+  border-radius: 8px;
+  padding: 28px 24px 22px;
+  text-align: left;
+  cursor: pointer;
+  font-family: inherit;
+  box-shadow: 0 3px 16px rgba(26, 54, 104, 0.13);
+  transition: box-shadow 160ms, transform 160ms;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  text-decoration: none;
+  color: inherit;
+}
+
+.tile:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 32px rgba(26, 54, 104, 0.22);
+  text-decoration: none;
+}
+
+.tileDisabled {
+  opacity: 0.6;
+  cursor: default;
+  pointer-events: none;
+}
+
+.tileEmoji {
+  font-size: 32px;
+  margin-bottom: 8px;
+  line-height: 1;
+}
+
+.tileName {
+  font-size: 20px;
+  font-weight: 800;
+  color: #131f6b;
+  letter-spacing: -0.02em;
+  margin-bottom: 2px;
+}
+
+.tileDesc {
+  font-size: 14px;
+  color: #6b7a99;
+  line-height: 1.45;
+  flex: 1;
+}
+
+.tileFooter {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 16px;
+}
+
+.tileAction {
+  display: inline-block;
+  padding: 7px 16px;
+  background: #e85e20;
+  color: #ffffff;
+  font-size: 13px;
+  font-weight: 600;
+  border-radius: 5px;
+  text-align: center;
+}
+
+.tileBadge {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: #6b7a99;
+  background: #e8edf0;
+  padding: 3px 10px;
+  border-radius: 3px;
+}
+
+/* ── Responsive ────────────────────────────────────────── */
+@media (max-width: 900px) {
+  .productGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .body {
+    padding: 28px 24px 48px;
+  }
+
+  .hero {
+    padding: 40px 24px 32px;
+  }
+
+  .heroTitle {
+    font-size: 32px;
+  }
+}
+
+@media (max-width: 520px) {
+  .productGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .heroTitle {
+    font-size: 26px;
+  }
+}
