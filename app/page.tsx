@@ -4,54 +4,45 @@ import Link from "next/link";
 import { useState } from "react";
 import s from "./home.module.css";
 
-type Product = {
-  emoji: string;
-  name: string;
-  desc: string;
-  href?: string;
-  action: string;
-  comingSoon?: boolean;
-};
-
-const PRODUCTS: Product[] = [
+const PRODUCTS = [
   {
     emoji: "✈️",
     name: "GOL IBE",
-    desc: "Admin Console help — users, bookings, markup rules, settings and more.",
+    desc: "Booking engine admin — users, reservations, markup rules, email templates and more.",
     href: "/portal/",
-    action: "Open help",
+    active: true,
   },
   {
     emoji: "🛫",
     name: "LCC",
-    desc: "Low-cost carrier integration guides and configuration walkthroughs.",
-    action: "Coming soon",
-    comingSoon: true,
+    desc: "Low-cost carrier integration, ancillaries and direct connect configuration.",
+    active: false,
   },
   {
     emoji: "🌐",
     name: "NDC",
     desc: "NDC offer & order management, airline connectivity and API references.",
-    action: "Coming soon",
-    comingSoon: true,
+    active: false,
   },
   {
     emoji: "🏨",
     name: "Hotels",
-    desc: "Hotel search, property setup, rate management and booking flows.",
-    action: "Coming soon",
-    comingSoon: true,
+    desc: "Hotel search, property setup, rate management and booking workflows.",
+    active: false,
   },
 ];
 
-const CHIPS = ["Add user", "Service fee", "Cancel booking", "Markup rules", "Email templates", "Flush caches"];
+const CHIPS = [
+  "Add user",
+  "Service fee",
+  "Cancel booking",
+  "Markup rules",
+  "Email templates",
+  "Flush caches",
+];
 
 export default function HelpCenterHome() {
   const [query, setQuery] = useState("");
-
-  function handleChip(label: string) {
-    window.location.href = `/portal/?q=${encodeURIComponent(label)}`;
-  }
 
   function handleSearch(e: React.KeyboardEvent<HTMLInputElement>) {
     if (e.key === "Enter" && query.trim()) {
@@ -59,17 +50,23 @@ export default function HelpCenterHome() {
     }
   }
 
+  function handleChip(label: string) {
+    window.location.href = `/portal/?q=${encodeURIComponent(label)}`;
+  }
+
   return (
     <div className={s.page}>
-      {/* Top bar */}
+      {/* ── Top bar ── */}
       <div className={s.topBar}>
-        <span className={s.topBarBrand}>Help Center</span>
+        <span className={s.topBarBrand}>
+          Help Center<span className={s.topBarDot} />
+        </span>
       </div>
 
-      {/* Hero */}
+      {/* ── Hero ── */}
       <div className={s.hero}>
-        <h2 className={s.heroTitle}>Hi, how can we help you?</h2>
-        <p className={s.heroSub}>Search the knowledge base or choose your product below.</p>
+        <h1 className={s.heroTitle}>Hi, how can we help you?</h1>
+        <p className={s.heroSub}>Search the knowledge base or pick your product below.</p>
 
         <div className={s.searchWrap}>
           <span className={s.searchIcon}>🔍</span>
@@ -82,46 +79,57 @@ export default function HelpCenterHome() {
             aria-label="Search help articles"
           />
           {query && (
-            <button className={s.searchClear} onClick={() => setQuery("")} aria-label="Clear search">
+            <button
+              className={s.searchClear}
+              onClick={() => setQuery("")}
+              aria-label="Clear search"
+            >
               ✕
             </button>
           )}
         </div>
 
-        <div className={s.heroChips}>
+        <div className={s.chips}>
           {CHIPS.map((chip) => (
-            <button key={chip} className={s.heroChip} onClick={() => handleChip(chip)}>
+            <button key={chip} className={s.chip} onClick={() => handleChip(chip)}>
               {chip}
             </button>
           ))}
         </div>
       </div>
 
-      {/* Products */}
-      <div className={s.body}>
+      {/* ── Products ── */}
+      <div className={s.products}>
         <p className={s.sectionLabel}>Browse by product</p>
-        <div className={s.productGrid}>
-          {PRODUCTS.map((p) =>
-            p.href ? (
-              <Link key={p.name} href={p.href} className={s.tile}>
-                <div className={s.tileEmoji}>{p.emoji}</div>
-                <div className={s.tileName}>{p.name}</div>
-                <div className={s.tileDesc}>{p.desc}</div>
-                <div className={s.tileFooter}>
-                  <span className={s.tileAction}>{p.action}</span>
+        <div className={s.grid}>
+          {PRODUCTS.map((p) => {
+            const tileClass = `${s.tile}${p.active ? "" : " " + s.tileDim}`;
+            const stripClass = `${s.tileStrip}${p.active ? "" : " " + s.tileStripMuted}`;
+            const iconClass = `${s.tileIcon}${p.active ? " " + s.tileIconActive : ""}`;
+            const ctaClass = `${s.tileCta}${p.active ? "" : " " + s.tileCtaMuted}`;
+
+            return p.href ? (
+              <Link key={p.name} href={p.href} className={tileClass}>
+                <div className={stripClass} />
+                <div className={s.tileBody}>
+                  <div className={iconClass}>{p.emoji}</div>
+                  <div className={s.tileName}>{p.name}</div>
+                  <div className={s.tileDesc}>{p.desc}</div>
+                  <span className={ctaClass}>Open help →</span>
                 </div>
               </Link>
             ) : (
-              <div key={p.name} className={`${s.tile} ${s.tileDisabled}`}>
-                <div className={s.tileEmoji}>{p.emoji}</div>
-                <div className={s.tileName}>{p.name}</div>
-                <div className={s.tileDesc}>{p.desc}</div>
-                <div className={s.tileFooter}>
-                  <span className={s.tileBadge}>Coming soon</span>
+              <div key={p.name} className={tileClass}>
+                <div className={stripClass} />
+                <div className={s.tileBody}>
+                  <div className={iconClass}>{p.emoji}</div>
+                  <div className={s.tileName}>{p.name}</div>
+                  <div className={s.tileDesc}>{p.desc}</div>
+                  <span className={ctaClass}>Coming soon</span>
                 </div>
               </div>
-            )
-          )}
+            );
+          })}
         </div>
       </div>
     </div>

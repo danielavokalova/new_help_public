@@ -1,110 +1,123 @@
 /* =========================================================
-   Help-center landing page — GOL IBE Admin Console style
+   Help-center landing — clean Google-Support-style
    ========================================================= */
 
-/* ── Page wrapper ──────────────────────────────────────── */
+/* ── Reset & page shell ────────────────────────────────── */
 .page {
   min-height: 100vh;
-  background: #eef3f6;
+  background: #f8f9fb;
   display: flex;
   flex-direction: column;
+  font-family: var(--font-inter, "Inter", system-ui, -apple-system, Arial, sans-serif);
 }
 
 /* ── Top bar ───────────────────────────────────────────── */
 .topBar {
-  height: 54px;
+  height: 56px;
   background: #ffffff;
-  border-bottom: 1px solid #c0d9eb;
+  border-bottom: 1px solid #e2e8f0;
   display: flex;
   align-items: center;
-  padding: 0 40px;
+  padding: 0 48px;
   flex-shrink: 0;
 }
 
 .topBarBrand {
-  font-size: 16px;
-  font-weight: 800;
+  font-size: 15px;
+  font-weight: 700;
   color: #131f6b;
-  letter-spacing: -0.03em;
+  letter-spacing: -0.02em;
   text-decoration: none;
+}
+
+.topBarDot {
+  display: inline-block;
+  width: 7px;
+  height: 7px;
+  background: #e85e20;
+  border-radius: 50%;
+  margin-left: 5px;
+  vertical-align: middle;
+  position: relative;
+  top: -1px;
 }
 
 /* ── Hero ──────────────────────────────────────────────── */
 .hero {
   background: #ffffff;
-  border-bottom: 1px solid #c0d9eb;
-  padding: 64px 40px 48px;
+  border-bottom: 1px solid #e2e8f0;
+  padding: 72px 48px 56px;
   text-align: center;
 }
 
 .heroTitle {
-  margin: 0 0 12px;
+  margin: 0 0 14px;
   color: #131f6b;
-  font-size: 44px;
+  font-size: 46px;
   font-weight: 800;
-  letter-spacing: -0.025em;
+  letter-spacing: -0.03em;
+  line-height: 1.1;
 }
 
 .heroSub {
-  margin: 0 0 32px;
-  color: #6b7a99;
+  margin: 0 0 36px;
+  color: #64748b;
   font-size: 17px;
+  font-weight: 400;
 }
 
-/* ── Search ────────────────────────────────────────────── */
+/* ── Search bar ────────────────────────────────────────── */
 .searchWrap {
   position: relative;
-  max-width: 640px;
-  margin: 0 auto 22px;
-  display: flex;
-  align-items: center;
+  max-width: 660px;
+  margin: 0 auto 28px;
 }
 
 .searchIcon {
   position: absolute;
-  left: 20px;
+  left: 22px;
   top: 50%;
   transform: translateY(-50%);
-  font-size: 15px;
+  font-size: 16px;
   pointer-events: none;
-  color: #9aa5b8;
+  color: #94a3b8;
 }
 
 .omnisearch {
   width: 100%;
-  border: 1.5px solid #c8cfe0;
+  border: 2px solid #e2e8f0;
   border-radius: 999px;
-  padding: 17px 50px 17px 52px;
+  padding: 18px 56px 18px 56px;
   font-size: 16px;
   outline: none;
   font-family: inherit;
   color: #131f6b;
-  background: #f4f6f9;
-  box-shadow: none;
-  transition: border-color 140ms, box-shadow 140ms, background 140ms;
+  background: #f8f9fb;
+  box-shadow: 0 1px 4px rgba(19, 31, 107, 0.06);
+  transition: border-color 150ms, box-shadow 150ms, background 150ms;
 }
 
 .omnisearch:focus {
   border-color: #131f6b;
   background: #ffffff;
-  box-shadow: 0 2px 14px rgba(26, 54, 104, 0.13);
+  box-shadow: 0 4px 20px rgba(19, 31, 107, 0.12);
 }
 
 .omnisearch::placeholder {
-  color: #9aa5b8;
+  color: #94a3b8;
 }
 
 .searchClear {
   position: absolute;
-  right: 18px;
+  right: 20px;
   top: 50%;
   transform: translateY(-50%);
   background: none;
   border: none;
-  font-size: 14px;
-  color: #9aa5b8;
+  font-size: 13px;
+  color: #94a3b8;
   cursor: pointer;
-  padding: 4px 6px;
+  padding: 4px 7px;
   border-radius: 999px;
   font-family: inherit;
   transition: color 120ms, background 120ms;
@@ -116,162 +129,184 @@
 }
 
 /* ── Quick-topic chips ─────────────────────────────────── */
-.heroChips {
+.chips {
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
   justify-content: center;
 }
 
-.heroChip {
+.chip {
   background: #ffffff;
-  border: 1.5px solid #c0d9eb;
+  border: 1.5px solid #cbd5e1;
   border-radius: 999px;
-  padding: 6px 18px;
+  padding: 7px 20px;
   font-size: 13px;
   font-weight: 500;
   color: #131f6b;
   cursor: pointer;
   font-family: inherit;
-  transition: background 120ms, border-color 120ms, color 120ms;
+  transition: background 130ms, border-color 130ms, color 130ms;
 }
 
-.heroChip:hover {
+.chip:hover {
   background: #131f6b;
   border-color: #131f6b;
   color: #ffffff;
 }
 
-/* ── Body ──────────────────────────────────────────────── */
-.body {
-  padding: 40px 40px 64px;
-  max-width: 1100px;
+/* ── Products section ──────────────────────────────────── */
+.products {
+  padding: 52px 48px 72px;
+  max-width: 1120px;
   margin: 0 auto;
   width: 100%;
+  box-sizing: border-box;
 }
 
-/* ── Section heading ───────────────────────────────────── */
 .sectionLabel {
-  font-size: 12px;
+  font-size: 11px;
   font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.12em;
   color: #e85e20;
-  margin: 0 0 18px;
+  margin: 0 0 20px;
 }
 
-/* ── Product grid ──────────────────────────────────────── */
-.productGrid {
+/* ── 4-tile grid ───────────────────────────────────────── */
+.grid {
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 18px;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
 }
 
-/* ── Product tile ──────────────────────────────────────── */
+/* ── Individual tile ───────────────────────────────────── */
 .tile {
   background: #ffffff;
-  border: none;
-  border-radius: 8px;
-  padding: 28px 24px 22px;
-  text-align: left;
-  cursor: pointer;
-  font-family: inherit;
-  box-shadow: 0 3px 16px rgba(26, 54, 104, 0.13);
-  transition: box-shadow 160ms, transform 160ms;
+  border-radius: 12px;
+  border: 1.5px solid #e2e8f0;
+  overflow: hidden;
   display: flex;
   flex-direction: column;
-  gap: 6px;
   text-decoration: none;
   color: inherit;
+  transition: box-shadow 180ms, transform 180ms, border-color 180ms;
+  box-shadow: 0 1px 6px rgba(19, 31, 107, 0.07);
 }
 
 .tile:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 10px 32px rgba(26, 54, 104, 0.22);
+  transform: translateY(-5px);
+  box-shadow: 0 12px 36px rgba(19, 31, 107, 0.16);
+  border-color: #c0d9eb;
   text-decoration: none;
 }
 
-.tileDisabled {
-  opacity: 0.6;
+.tileDim {
+  opacity: 0.55;
   cursor: default;
   pointer-events: none;
 }
 
-.tileEmoji {
-  font-size: 32px;
-  margin-bottom: 8px;
-  line-height: 1;
+/* Coloured accent strip at top of tile */
+.tileStrip {
+  height: 5px;
+  background: linear-gradient(90deg, #131f6b 0%, #1d2fa0 100%);
+  flex-shrink: 0;
+}
+
+.tileStripMuted {
+  background: #cbd5e1;
+}
+
+/* Tile content */
+.tileBody {
+  padding: 28px 26px 24px;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  gap: 0;
+}
+
+.tileIcon {
+  width: 48px;
+  height: 48px;
+  border-radius: 10px;
+  background: #eef3f6;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+  margin-bottom: 16px;
+  flex-shrink: 0;
+}
+
+.tileIconActive {
+  background: #e8ecf8;
 }
 
 .tileName {
-  font-size: 20px;
+  font-size: 19px;
   font-weight: 800;
   color: #131f6b;
   letter-spacing: -0.02em;
-  margin-bottom: 2px;
+  margin-bottom: 8px;
 }
 
 .tileDesc {
   font-size: 14px;
-  color: #6b7a99;
-  line-height: 1.45;
+  color: #64748b;
+  line-height: 1.55;
   flex: 1;
+  margin-bottom: 24px;
 }
 
-.tileFooter {
-  display: flex;
+.tileCta {
+  display: inline-flex;
   align-items: center;
-  justify-content: space-between;
-  margin-top: 16px;
-}
-
-.tileAction {
-  display: inline-block;
-  padding: 7px 16px;
+  gap: 6px;
+  padding: 9px 20px;
   background: #e85e20;
   color: #ffffff;
   font-size: 13px;
   font-weight: 600;
-  border-radius: 5px;
-  text-align: center;
+  border-radius: 6px;
+  align-self: flex-start;
+  transition: background 140ms;
 }
 
-.tileBadge {
-  font-size: 11px;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
-  color: #6b7a99;
-  background: #e8edf0;
-  padding: 3px 10px;
-  border-radius: 3px;
+.tile:hover .tileCta {
+  background: #c94f18;
+}
+
+.tileCtaMuted {
+  background: #e2e8f0;
+  color: #64748b;
 }
 
 /* ── Responsive ────────────────────────────────────────── */
-@media (max-width: 900px) {
-  .productGrid {
+@media (max-width: 960px) {
+  .grid {
     grid-template-columns: repeat(2, 1fr);
   }
-
-  .body {
-    padding: 28px 24px 48px;
+  .products {
+    padding: 36px 28px 56px;
   }
-
   .hero {
-    padding: 40px 24px 32px;
+    padding: 48px 28px 40px;
   }
-
   .heroTitle {
-    font-size: 32px;
+    font-size: 34px;
+  }
+  .topBar {
+    padding: 0 28px;
   }
 }
 
-@media (max-width: 520px) {
-  .productGrid {
+@media (max-width: 540px) {
+  .grid {
     grid-template-columns: 1fr;
   }
-
   .heroTitle {
-    font-size: 26px;
+    font-size: 28px;
   }
 }
