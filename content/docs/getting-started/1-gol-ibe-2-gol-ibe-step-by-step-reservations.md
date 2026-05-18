@@ -11,6 +11,7 @@ The **Reservations** section is where all flight bookings are managed — whethe
 - **Cancel** bookings and process refunds where applicable
 - **Issue tickets** manually or trigger auto-ticketing
 - **Export** booking lists to CSV or Excel for reporting
+- **Handle bookings with clients** — verify identity, discuss payment, and forward the full confirmation
 - **Block fake bookings** by configuring anti-abuse rules
 
 Use the articles below to learn how to handle each type of reservation action.

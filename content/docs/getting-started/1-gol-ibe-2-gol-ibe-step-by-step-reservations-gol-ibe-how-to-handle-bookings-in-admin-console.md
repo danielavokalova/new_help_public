@@ -1,63 +1,50 @@
-# GOL IBE - How to handle bookings in admin console
+# GOL IBE – How to handle bookings in admin console
 
-***
+<!-- tags: reservations, bookings, admin console, detail, edit, cancel, export, PNR -->
 
-In the section **Reservations** you will find the list all bookings made since the system was launched is at your disposal.
+In the **Reservations** section you will find the list of all bookings made since the system was launched.
 
-1\) Log into admin console.
+## Accessing the bookings list
 
-2\) Go to the section **Reservations**.
+1. Log into the admin console.
+2. Go to **Reservations** in the left-hand menu.
 
-**How to handle bookings in your ****GOL IBE****?** 
+The list gives you a quick overview of every booking.
 
-The list of bookings provides you with a fast information about each booking.
+## Booking actions
 
+For every entry in the list you can:
 
+- **DETAIL** — open the full booking detail. You can see more information than shown in the list. Every booking detail also includes the ticket itinerary.
+- **EDIT** — change payment status, add your own remarks, or cancel the booking.
+- **CANCEL** — cancels the booking immediately. The cancellation is also applied directly in Smartpoint.
 
+## Reservation details — field reference
 
+| Field | Description |
+|-------|-------------|
+| **Id** | Booking ID |
+| **Reservation code** | PNR |
+| **Var. symbol** | Variable symbol for payment by bank transfer or credit card |
+| **Created** | Date of booking creation |
+| **Connector** | Name of the connector linking your agency PCC to the system |
+| **Dealer** | Dealer name |
+| **Dealer's agency** | Agency name |
+| **Customer (Username)** | Filled if the booking was created by a registered customer |
+| **Reservation status** | **Active**, **Canceled**, or **Issued** |
+| **Payment status** | **Paid** or **Unpaid** — updates only when the booking is paid by credit card |
+| **Due Date** | Last ticketing date set by you (may be earlier than the carrier's deadline) |
+| **Total price** | Total booking price |
+| **Service fee** | Service fee amount |
+| **Dealer's comm.** | Dealer commission |
 
-If you click at:
+## Exporting the list of bookings
 
-**1) DETAIL** > you get to the detail of booking. You will be able to see even more information then showed in the list. Every single booking detail includes also ticket itinerary.
+1. Set the time period using **Created since** and **Created till**.
+2. Click **Export in CSV** or **Export in Excel**.
 
-**2) EDIT** > you will be able e.g. to change payment status, add own remarks, cancel the booking
+> **Important:** Cancel all bookings whose due date has passed and that remain unpaid. Check the list on a daily basis — uncancelled bookings may result in ADM charges or account blocks from carriers.
 
-3\) **CANCEL** > if you click at this button, that booking will be canceled immediately . 
+---
 
-                       ( Booking will be canceled also directly in Smartpoint.) 
-
-**Reservation details**
-
-
-
-
-
-*  **Id -** booking id 
-* **Reservation code -** PNR 
-*  **Var. symbol -** variable symbol for payment by bank transfer / by credit card
-*  **Created -** date of booking creation
-* **Connector -** name of connector that connects your agency PCC to the system
-*  **Dealer -** Dealer
-*  **Dealer´s agency** - Agency
-*  **Customer (Username) -** if booking created by registered customer
-*  **Resevation status -** status may be **Active - Canceled - Issued**
-*  **Payment status -** status may be Paid and Unpaid. Payment status changes only in case booking is paid via credit card.
-*  **Due Date -** Last ticketing date settled by you (if carrier does require payment earlier then you)
-* **Total price -** total price
-*  **Service fee -** service fee 
-* **Dealer´s comm.  -** commission
-* you may export the list of bookings out of the system
-
-**How to export the list of bookings?** 
-
-1\) Choose time period for your statistic
-
-2\) Press button **Export in CSV** or **Export in Excel**.
-
-
-
-
-
-***
-
-📩 Feel free to contact us at: [gol_support@cee-systems.com](mailto:gol_support@cee-systems.com).
+📩 Feel free to contact us at: [gol_support@cee-systems.com](mailto:gol_support@cee-systems.com)

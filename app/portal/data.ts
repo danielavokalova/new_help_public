@@ -102,7 +102,7 @@ export const CATEGORIES: Category[] = [
   },
   {
     icon: "🎫", name: "Reservations",
-    desc: "Create, modify and cancel bookings",
+    desc: "Create, modify, cancel bookings; handle clients; export lists",
     href: "/portal/getting-started/1-gol-ibe-2-gol-ibe-step-by-step-reservations",
     articles: [
       { title: "Create a New Air Reservation", href: "/portal/getting-started/create-booking" },
@@ -110,7 +110,8 @@ export const CATEGORIES: Category[] = [
       { title: "Cancel a Booking", href: "/portal/getting-started/cancel-booking" },
       { title: "Issue a Ticket", href: "/portal/getting-started/issue-ticket" },
       { title: "Handle bookings in Admin Console", href: "/portal/getting-started/1-gol-ibe-2-gol-ibe-step-by-step-reservations-gol-ibe-how-to-handle-bookings-in-admin-console" },
-      { title: "Handle bookings (front-end)", href: "/portal/getting-started/1-gol-ibe-2-gol-ibe-step-by-step-gol-ibe-reservations-gol-ibe-how-to-handle-bookings" },
+      { title: "Handle bookings in GOL IBE", href: "/portal/getting-started/1-gol-ibe-2-gol-ibe-step-by-step-gol-ibe-reservations-gol-ibe-how-to-handle-bookings" },
+      { title: "Handle bookings with clients", href: "/portal/troubleshooting/1-gol-ibe-5-gol-ibe-faqs-how-to-handle-bookings-with-clients" },
       { title: "Export list of bookings", href: "/portal/troubleshooting/1-gol-ibe-5-gol-ibe-faqs-how-to-export-the-list-of-bookings" },
       { title: "Stop fake bookings", href: "/portal/troubleshooting/1-gol-ibe-5-gol-ibe-faqs-how-to-stop-someone-from-sending-fake-booking" },
     ],
