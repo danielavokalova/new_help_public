@@ -1,26 +1,29 @@
-# GDS / NDC Connectors
+# GDS Connectors
 
-<!-- tags: GDS, NDC, connector, Amadeus, Sabre, Travelport, Galileo, API, source -->
+<!-- tags: GDS, connector, Galileo, Travelport, PCC, source, content -->
 
-Connectors define which content sources (GDS, NDC, LCC) GOL IBE uses to retrieve fares and availability.
+GOL IBE (Galileo On Line Internet Booking Engine) connects to the **Galileo / Travelport** GDS to retrieve fares and availability. The connector links your agency's PCC (Pseudo City Code) to the system.
 
-## Available connectors
+## Connector configuration
 
-| Connector | Type | Content |
-|-----------|------|---------|
-| Amadeus | GDS | Full-service carriers worldwide |
-| Sabre | GDS | Full-service carriers worldwide |
-| Travelport (Galileo) | GDS | Full-service carriers worldwide |
-| Lufthansa Group NDC | NDC | LH, Austrian, SWISS direct fares |
-| British Airways NDC | NDC | BA direct fares and ancillaries |
+Connector setup and credentials are configured by **CEE Systems support** — agencies do not set up connectors themselves through the admin console.
 
-## Add a connector
+If you need a new connector configured or an existing one modified, contact:
 
-1. Go to **Settings → Advanced Settings → Connectors**.
-2. Click **Add connector**.
-3. Select the connector type.
-4. Enter your credentials (PCC/Office ID, password, queue numbers).
-5. Click **Test connection**.
-6. If successful, click **Activate**.
+> 📩 [gol_support@cee-systems.com](mailto:gol_support@cee-systems.com)
 
-> ℹ️ Connector credentials are provided by your GDS account manager. Contact GOL support if you need help obtaining them.
+## Advanced connectivity options
+
+Once your basic connector is set up, GOL IBE supports additional query optimisation features:
+
+| Feature | Description |
+|---------|-------------|
+| **Multi-PCC queries** | Search across multiple Galileo office codes simultaneously to get fares from different markets |
+| **Parallel queries** | Send parallel requests with carrier preferences alongside the standard search for better results |
+| **MIR** | Machine Interface Record — Travelport tool for generating structured booking data |
+
+See the individual articles for each feature in the Advanced Settings section.
+
+---
+
+📩 Feel free to contact us at: [gol_support@cee-systems.com](mailto:gol_support@cee-systems.com)

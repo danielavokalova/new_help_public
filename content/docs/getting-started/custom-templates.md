@@ -1,20 +1,34 @@
-# Custom Email Templates
+# Customise Email Notification Templates
 
-<!-- tags: template, custom, email, HTML, branding, design -->
+<!-- tags: template, email, HTML, notifications, branding, edit -->
 
-Create fully custom HTML email templates with your agency branding.
+All notification templates can be customised directly in the admin console. You can edit the text, add a logo, change colours, or use full HTML editing.
 
-## Steps
+## How to edit a template
 
-1. Go to **Notifications → Custom Templates → New template**.
-2. Choose the trigger event (booking, ticketing, cancellation, reminder).
-3. Write your HTML or paste from an email editor.
-4. Add placeholders (see [Booking Confirmation](booking-confirmation.md) for full list).
-5. Set the **From name** and **Reply-to** address.
-6. Click **Save** and **Send test**.
+1. Log into the admin console.
+2. Go to **Notifications → Notification templates**.
+3. Find the template you want to change and click **EDIT**.
+4. If you have multiple language versions, select the language, then click **EDIT** again.
 
-## Tips
+## Editing options
 
-- Keep email width under 600px for best mobile rendering.
-- Always include a plain-text fallback version.
-- Test across email clients (Gmail, Outlook) before activating.
+**Simple editor:** Click the blue window on the task bar to open the visual editor. Edit text, paste in your logo, or change any element directly. Save when done.
+
+**HTML editor:** Click **HTML** on the task bar to switch to full HTML editing. Click **Update** and then **Save Changes** when done.
+
+## How to add a logo to a template
+
+1. Open the template in the simple editor.
+2. Click in the area where you want the logo.
+3. Copy your logo image (Ctrl+C) from its source.
+4. Paste it into the template (Ctrl+V).
+5. Save changes.
+
+## Tip
+
+To check how any sent notification looks, go to **Notifications → Sent notifications**, find the notification, and click **[SEND TO ME]** — a copy will be sent to your mailbox.
+
+---
+
+📩 Feel free to contact us at: [gol_support@cee-systems.com](mailto:gol_support@cee-systems.com)

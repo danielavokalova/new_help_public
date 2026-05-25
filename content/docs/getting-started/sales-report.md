@@ -1,31 +1,26 @@
-# Sales Report
+# Statistics and Sales Data
 
-<!-- tags: sales, report, statistics, bookings, revenue, period -->
+<!-- tags: statistics, bookings, CSV, Excel, export, sales -->
 
-The Sales Report shows all bookings made within a selected period with full detail.
+The **Statistics** section gives you an overview of all bookings made through your GOL IBE front-end. Use it to monitor sales and export data for accounting or management reporting.
 
-## Generate a report
+## Download booking data
 
-1. Go to **Statistics → Sales Report**.
-2. Set the **date range** (booking date or travel date).
-3. Filter by:
-   - Agent
-   - Carrier
-   - Route or destination
-   - Booking status (confirmed / ticketed / cancelled)
-4. Click **Generate**.
+1. Log into the admin console.
+2. Go to **Statistics**.
+3. Set the date range for the period you want.
+4. Export the data as **CSV** or **Excel**.
 
-## Report columns
+## Export from Reservations
 
-| Column | Description |
-|--------|-------------|
-| PNR | Booking reference |
-| Passenger | Lead passenger name |
-| Route | Origin → Destination |
-| Departure | Travel date |
-| Carrier | Operating airline |
-| Base fare | Net fare amount |
-| Taxes | Tax total |
-| Markup | Agency markup applied |
-| Total | Final charged amount |
-| Status | Current booking status |
+You can also export your full booking list directly from the **Reservations** section — useful for daily checks and reconciliation.
+
+1. Go to **Reservations**.
+2. Set the period using **Created since** and **Created till**.
+3. Click **Export in CSV** or **Export in Excel**.
+
+See: [How to export the list of bookings](/portal/getting-started/export-bookings)
+
+---
+
+📩 Feel free to contact us at: [gol_support@cee-systems.com](mailto:gol_support@cee-systems.com)

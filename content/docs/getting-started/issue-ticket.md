@@ -1,21 +1,27 @@
-# Issue a Ticket
+# Ticketing in GOL IBE
 
-<!-- tags: ticket, ticketing, issue, e-ticket, BSP, IATA -->
+<!-- tags: ticket, ticketing, e-ticket, auto-ticketing, working hours -->
 
-A confirmed booking (PNR) must be ticketed before the passenger can travel.
+GOL IBE issues tickets **automatically** — there is no manual "Issue ticket" button in the admin console.
 
-## Manual ticketing
+## How ticketing works
 
-1. Open the booking in **Reservations**.
-2. Click **Issue ticket**.
-3. Select the payment method (BSP, credit card, agency account).
-4. Confirm.
+When a customer completes a booking, a PNR is created in the GDS. The booking status is set to **Active**. Once payment is confirmed and all conditions are met, the ticket is issued automatically and the status changes to **Issued**.
 
-The e-ticket number (13-digit) is issued and sent to the passenger by email.
+## Working hours protect your ticketing window
 
-## Auto-ticketing
+GOL IBE uses your configured working hours to prevent customers from creating bookings at times when your agency cannot process e-ticketing. This ensures tickets are always issued within the required deadline.
 
-Set a ticketing deadline in **Settings → Basic Settings → Auto-ticketing**.  
-Bookings are ticketed automatically at the specified time before departure.
+> Set up working hours under **Agency → Working hours**. See [Set up working hours](/portal/getting-started/1-gol-ibe-2-gol-ibe-step-by-step-gol-ibe-agency-how-to-set-up-working-hours).
 
-> ⚠️ Make sure payment funds are available before the auto-ticketing deadline.
+## Auto-ticketing via payment gateway
+
+If you use one of the integrated payment gateways, GOL IBE can e-ticket bookings automatically as soon as payment is received — even outside your working hours.
+
+> We highly recommend using an integrated payment gateway with automated e-ticketing to maximise sales.
+
+See [Auto-ticketing setup](/portal/configuration/basic-auto-ticketing) for configuration details.
+
+---
+
+📩 Feel free to contact us at: [gol_support@cee-systems.com](mailto:gol_support@cee-systems.com)

@@ -1,19 +1,19 @@
-# Deactivate a User
+# Manage User Accounts
 
-<!-- tags: deactivate, disable, remove, user, access, offboarding -->
+<!-- tags: user, account, access, deactivate, remove -->
 
-Deactivating a user prevents them from logging in without deleting their booking history.
+User accounts in GOL IBE are managed in the **Users** section of the admin console.
 
-## Steps
+## View and edit users
 
-1. Go to **Settings → Users**.
-2. Find the user and click their name.
-3. Click **Deactivate account**.
-4. Confirm.
+1. Log into the admin console.
+2. Go to **Users**.
+3. Find the user you want to manage and click to open their account.
+4. Edit details or change their rights as needed.
+5. Click **Save**.
 
-The user is immediately logged out and cannot log back in.  
-All their past bookings remain visible in reports.
+## Removing access
 
-## Reactivate
+If a staff member leaves or should no longer have access, contact CEE Systems support to deactivate their account.
 
-To restore access, find the user in the list (filter by **Inactive**) and click **Reactivate**.
+> 📩 Contact us at: [gol_support@cee-systems.com](mailto:gol_support@cee-systems.com)

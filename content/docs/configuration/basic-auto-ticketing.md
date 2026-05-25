@@ -1,21 +1,26 @@
 # Auto-ticketing
 
-<!-- tags: auto-ticketing, automatic, ticket, deadline, queue, BSP -->
+<!-- tags: auto-ticketing, automatic, ticket, e-ticket, agency detail, GTID, working hours -->
 
-Auto-ticketing issues tickets automatically at a defined time before departure, so agents don't need to manually ticket every booking.
+GOL IBE can issue e-tickets automatically once payment is confirmed. This removes the need for manual intervention and allows tickets to be issued outside office hours when integrated with a payment gateway.
 
-## Enable auto-ticketing
+## How to enable auto-ticketing
 
-1. Go to **Settings → Basic Settings → Auto-ticketing**.
-2. Toggle **Enable auto-ticketing** to ON.
-3. Set the **ticketing deadline**: how many hours before departure to ticket automatically (e.g. 24h).
-4. Select the **payment method** for automatic charges.
-5. Click **Save**.
+Auto-ticketing is configured in **Agency → Agency detail**:
 
-## How it works
+- Set the **Auto-ticketing** field to enabled.
+- Set the **Auto-ticketing delay** — the number of minutes to wait after payment confirmation before issuing the ticket.
 
-- The system checks all confirmed-but-unissued bookings every hour.
-- Any booking within the deadline window is ticketed automatically.
-- Agents receive a notification email for each auto-issued ticket.
+## GTID printer codes (Galileo/Travelport)
 
-> ⚠️ Ensure sufficient credit/funds are available. Failed auto-ticketing generates a queue alert.
+To issue e-tickets automatically via the Galileo GDS, your **GTID printer codes** must be entered in the agency settings. See [Where to insert GTID printers](/portal/getting-started/1-gol-ibe-2-gol-ibe-step-by-step-gol-ibe-agency-where-to-insert-gtid-printers).
+
+## Working hours and auto-ticketing
+
+If you do not use auto-ticketing, GOL IBE uses your configured **working hours** to prevent customers from creating bookings at times when you cannot process e-ticketing. This ensures every booking can be ticketed within the required deadline.
+
+> We highly recommend using an integrated payment gateway together with auto-ticketing to maximise sales — tickets can then be issued at any time, not only during working hours.
+
+---
+
+📩 Feel free to contact us at: [gol_support@cee-systems.com](mailto:gol_support@cee-systems.com)

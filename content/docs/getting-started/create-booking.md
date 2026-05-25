@@ -1,24 +1,27 @@
-<!-- tags: booking, reservation, air, ticket, create, new, flight, PNR -->
-# Create a New Air Reservation
+# How are bookings created in GOL IBE?
 
-Step-by-step guide to making a flight booking in the GOL IBE Admin Console.
+<!-- tags: booking, reservation, air, PNR, front-end, customer -->
 
-## Before you start
+Bookings in GOL IBE are created by your **customers** through your GOL IBE front-end — not by agents manually in the admin console.
 
-Have ready: passenger full name (as on passport), date of birth, contact email, and passport details for international flights.
+## How the booking process works
 
-## Steps
+1. A customer visits your GOL IBE front-end and searches for flights.
+2. The customer selects a flight, fills in passenger details, and completes the booking.
+3. A **PNR** (booking reference) is generated in the GDS automatically.
+4. The booking appears immediately in the **Reservations** section of your admin console.
 
-1. **Reservations → New Booking** — choose One-way, Round-trip, or Multi-city.
-2. Enter origin, destination, dates, and passenger count.
-3. Click **Search**.
-4. Review fares — click any result to read full fare rules.
-5. Select a fare and click **Continue**.
-6. Fill in passenger details and contact information.
-7. Review the summary and click **Confirm Booking**.
+## Your role as the agency
 
-A **PNR** (booking reference) is generated immediately.
+Once a booking appears in the admin console, you:
 
-## Important
+- Review the booking details (DETAIL)
+- Verify the client and discuss payment
+- Update payment status or add remarks (EDIT)
+- Cancel the booking if needed (CANCEL)
 
-The booking is **not ticketed** until you issue the ticket manually or have auto-ticketing enabled.
+See also: [How to handle bookings in the Admin Console](/portal/getting-started/1-gol-ibe-2-gol-ibe-step-by-step-reservations-gol-ibe-how-to-handle-bookings-in-admin-console)
+
+---
+
+📩 Feel free to contact us at: [gol_support@cee-systems.com](mailto:gol_support@cee-systems.com)

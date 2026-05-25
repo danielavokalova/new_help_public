@@ -1,18 +1,25 @@
-# Export to Excel / CSV
+# Export Bookings to CSV / Excel
 
-<!-- tags: export, Excel, CSV, download, report, data -->
+<!-- tags: export, Excel, CSV, download, bookings, reservations -->
 
-All reports in the Statistics module can be exported for further analysis in Excel or other tools.
+You can export your bookings to CSV or Excel at any time from the **Reservations** section.
 
 ## Steps
 
-1. Generate the report you need (Sales, Revenue, Agent performance).
-2. Click **Export** in the top right corner.
-3. Choose format: **Excel (.xlsx)** or **CSV (.csv)**.
-4. The file downloads immediately.
+1. Log into the admin console.
+2. Go to **Reservations**.
+3. Set the time period using **Created since** and **Created till**.
+4. Click **Export in CSV** or **Export in Excel**.
 
-## Tips
+The file downloads immediately and contains all bookings created within the selected period.
 
-- For large date ranges (over 3 months) use CSV — it handles large datasets better.
-- The Excel export includes formatted headers and totals row.
-- Exported files use UTF-8 encoding — open in Excel with **Data → From Text/CSV** if special characters appear incorrectly.
+## Why export regularly?
+
+- Identify unpaid bookings that have passed their due date — cancel these promptly to avoid ADM charges from carriers.
+- Use the data for accounting, reconciliation, and management reporting.
+
+> We recommend checking and exporting the booking list on a daily basis.
+
+---
+
+📩 Feel free to contact us at: [gol_support@cee-systems.com](mailto:gol_support@cee-systems.com)

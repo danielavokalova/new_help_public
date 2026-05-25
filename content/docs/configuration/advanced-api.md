@@ -1,24 +1,21 @@
-# API Access
+# API and Integrations
 
-<!-- tags: API, integration, key, REST, developer, technical -->
+<!-- tags: API, integration, commission, cm.golibe.com, technical -->
 
-GOL IBE exposes a REST API for integration with third-party systems (CRM, ERP, corporate booking tools).
+## Commission calculation tool
 
-## Generate an API key
+If you want to verify how your commission rules will be calculated for a specific booking, you can use the commission calculation tool at:
 
-1. Go to **Settings → Advanced Settings → API Access**.
-2. Click **Generate new API key**.
-3. Name the key (e.g. "CRM integration").
-4. Set permissions: read-only or read/write.
-5. Copy the key immediately — it is shown only once.
+**[https://cm.golibe.com/](https://cm.golibe.com/)**
 
-## API documentation
+An authorization token is required. Contact CEE Systems support to request one.
 
-Full API reference is available at: `https://api.golibe.com/docs`
+## Using commission settings in third-party applications
 
-## Revoke a key
+If you want to use your GOL IBE commission rules in other systems (for example Travelport Smartpoint), you can export your commission settings from the **Prices → Commissions and discounts** section.
 
-If a key is compromised, click **Revoke** next to it in the list.  
-The key stops working immediately.
+## Technical integrations
 
-> ⚠️ Never share API keys in emails or chat messages. Rotate keys every 90 days.
+For other technical integration questions or custom API requirements, contact CEE Systems support directly.
+
+> 📩 [gol_support@cee-systems.com](mailto:gol_support@cee-systems.com)

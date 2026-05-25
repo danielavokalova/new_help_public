@@ -1,20 +1,19 @@
-# Roles and Permissions
+# User Rights and Permissions
 
-<!-- tags: role, permission, admin, supervisor, agent, access -->
+<!-- tags: rights, permissions, user, access, admin console -->
 
-## Available roles
+When creating or editing a user in GOL IBE, you assign their **rights** — the set of permissions that controls what they can see and do in the admin console.
 
-| Role | Book | Manage users | View reports | Change settings |
-|------|------|--------------|--------------|-----------------|
-| Agent | ✅ | ❌ | ❌ | ❌ |
-| Supervisor | ✅ | ✅ | ✅ | ❌ |
-| Admin | ✅ | ✅ | ✅ | ✅ |
+## Assigning rights
 
-## Change a user's role
+Rights are selected during user creation (see [Add a New User](add-user.md)) or by editing an existing user in **Users**.
 
-1. Go to **Settings → Users**.
-2. Click the user's name.
-3. Select the new role from the **Role** dropdown.
-4. Click **Save**.
+Click the title of each right to toggle it on or off for that user.
 
-Changes take effect at the user's next login.
+## Managing users
+
+Go to **Users** in the admin console to view, edit, or manage all staff accounts.
+
+---
+
+📩 Feel free to contact us at: [gol_support@cee-systems.com](mailto:gol_support@cee-systems.com)

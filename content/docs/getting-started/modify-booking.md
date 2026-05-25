@@ -1,21 +1,29 @@
-# Modify a Booking
+# Edit a Booking
 
-<!-- tags: modify, change, rebook, date change, passenger, reservation -->
+<!-- tags: edit, booking, payment status, remarks, admin console -->
 
-## What can be changed
+From the **Reservations** section in the admin console you can view and edit booking details.
 
-- Travel dates (subject to fare rules)
-- Passenger name correction (minor corrections only)
-- Contact details
-- Seat assignments
+## What you can do via EDIT
 
-## Steps
+Click **EDIT** on any booking to:
 
-1. Go to **Reservations** and search for the booking by PNR or passenger name.
-2. Click the booking to open the detail.
-3. Click **Modify**.
-4. Make the required changes.
-5. Review the fare difference (change fees may apply).
-6. Click **Confirm changes**.
+- Change the **payment status**
+- Add your own **remarks** to the booking
+- **Cancel** the booking
 
-> ⚠️ Some fare types are non-changeable. Always check fare rules before attempting a modification.
+## What you cannot change via the admin console
+
+Travel dates, passenger names, flights, or seat assignments cannot be modified through the GOL IBE admin console. If such a change is needed, cancel the existing booking and have the customer create a new one on the front-end.
+
+## Booking actions at a glance
+
+| Action | What it does |
+|--------|-------------|
+| **DETAIL** | View full booking information including the ticket itinerary |
+| **EDIT** | Change payment status, add remarks, or cancel the booking |
+| **CANCEL** | Cancel the booking immediately — cancellation is also applied in Smartpoint |
+
+---
+
+📩 Feel free to contact us at: [gol_support@cee-systems.com](mailto:gol_support@cee-systems.com)

@@ -2,41 +2,37 @@
 
 <!-- tags: booking, reservation, handle, manage, admin console, PNR -->
 
-This guide covers the full booking lifecycle — from creation to ticketing — as managed through the GOL IBE admin console.
+The **Reservations** section in the admin console shows all bookings created since the system was launched.
 
 ## Booking lifecycle
 
-1. **Customer searches** for flights on your front-end
-2. **Booking is created** — a PNR is generated in the GDS
-3. **Payment is processed** — online or offline
-4. **Ticket is issued** — e-ticket sent to the customer
-5. **Post-booking** — modifications, cancellations if needed
+1. **Customer searches** for flights on your GOL IBE front-end
+2. **Booking is created** — a PNR is generated in the GDS automatically
+3. **Payment is processed** — via integrated payment gateway or offline
+4. **Ticket is issued** — automatically once payment is confirmed; status changes to **Issued**
 
 ## Managing bookings in the admin console
 
 1. Log into the GOL IBE admin console.
 2. Go to **Reservations** in the left-hand menu.
-3. Use the search filters to find bookings:
-   - By **PNR** (booking reference)
-   - By **passenger name**
-   - By **booking date** or **departure date**
-   - By **status** (New, Ticketed, Cancelled)
+3. The list gives you a quick overview of every booking.
+
+For each entry you can:
+
+- **DETAIL** — open the full booking detail, including the ticket itinerary
+- **EDIT** — change payment status, add your own remarks, or cancel the booking
+- **CANCEL** — cancel the booking immediately (also applied in Smartpoint)
 
 ## Booking statuses
 
 | Status | Meaning |
 |--------|---------|
-| **New** | Booking created, not yet ticketed |
-| **Pending payment** | Awaiting customer payment |
-| **Ticketed** | E-ticket issued |
-| **Cancelled** | Booking cancelled |
-| **Expired** | Booking time limit passed without ticketing |
+| **Active** | Booking created and open |
+| **Canceled** | Booking has been cancelled |
+| **Issued** | Ticket has been issued |
 
-## Common tasks
+## Important reminder
 
-- **Issue a ticket** — select the booking and click **Issue ticket**
-- **Cancel a booking** — select and click **Cancel**
-- **Resend confirmation email** — click **Resend email**
-- **View booking details** — click the PNR to see full passenger and fare details
+Cancel all bookings whose due date has passed and that remain unpaid. Check the list on a daily basis — uncancelled bookings may result in ADM charges or account blocks from carriers.
 
 > 📩 Feel free to contact us at: [gol_support@cee-systems.com](mailto:gol_support@cee-systems.com)

@@ -1,23 +1,27 @@
 # Cancel a Booking
 
-<!-- tags: cancel, cancellation, refund, void, booking -->
+<!-- tags: cancel, cancellation, booking, admin console, ADM, Smartpoint -->
 
-## Before cancelling
-
-Always check the **fare rules** for cancellation fees and refund eligibility.
+You can cancel any booking directly from the **Reservations** section in the admin console.
 
 ## Steps
 
-1. Open the booking in **Reservations**.
-2. Click **Cancel booking**.
-3. Select cancellation reason.
-4. Review any cancellation fees.
-5. Click **Confirm cancellation**.
+1. Log into the admin console.
+2. Go to **Reservations**.
+3. Find the booking you want to cancel.
+4. Click **CANCEL** — the booking is cancelled immediately.
 
-## Refund
+The cancellation is also applied directly in Smartpoint.
 
-- **Refundable fares**: refund is processed automatically (allow 5–10 business days).
-- **Non-refundable fares**: only taxes may be refunded.
-- **Void** (same-day cancellation before midnight): full refund, no fees.
+## Important: cancel overdue unpaid bookings daily
 
-> ℹ️ Tickets cancelled after ticketing follow airline refund rules, not just system rules.
+If a booking passes its due date and remains unpaid, the carrier may charge you an **ADM** (Agency Debit Memo) or block your account entirely.
+
+- Check the list of bookings on a daily basis.
+- Cancel all bookings whose due date has passed and that remain unpaid.
+
+> Export the booking list to CSV or Excel to review overdue cases systematically. See [How to export the list of bookings](/portal/getting-started/export-bookings).
+
+---
+
+📩 Feel free to contact us at: [gol_support@cee-systems.com](mailto:gol_support@cee-systems.com)

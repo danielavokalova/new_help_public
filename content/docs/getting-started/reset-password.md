@@ -1,19 +1,17 @@
-<!-- tags: password, reset, login, locked, access, agent -->
-# Reset an Agent's Password
+# Manage Your Own User Account
 
-If an agent is locked out or has forgotten their password, an admin can trigger a password reset in seconds.
+<!-- tags: password, account, profile, user, login, reset -->
+
+You can update your own GOL IBE account details (including your password) directly from the admin console.
 
 ## Steps
 
-1. Go to **Settings → Users**.
-2. Find the agent by name or email.
-3. Click the **⋮** menu next to their name → **Send Password Reset Email**.
-4. Click **Confirm**.
+1. Log into the admin console.
+2. Click your **username** in the top-right corner of the screen.
+3. You are taken directly to your account settings.
+4. Make the required changes (name, email, password, etc.).
+5. Click **Save**.
 
-The agent receives an email with a secure reset link valid for **24 hours**.
+---
 
-## Troubleshooting
-
-- **No email received?** Ask the agent to check their spam/junk folder.
-- **Wrong email on file?** Edit the user profile first, then resend.
-- **Link expired?** Repeat the steps above to send a new link.
+📩 Feel free to contact us at: [gol_support@cee-systems.com](mailto:gol_support@cee-systems.com)
