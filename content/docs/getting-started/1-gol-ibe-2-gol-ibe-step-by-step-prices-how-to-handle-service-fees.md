@@ -2,21 +2,30 @@
 
 <!-- tags: service fee, booking fee, transaction fee, charge -->
 
-Service fees are fixed charges added per booking or per ticket, separate from fare markup.
+Service fees are charges added on top of the ticket price. You configure them under **Prices → Service fees – agency** (or **Service fees – dealers** for dealer-specific fees).
 
-## Create a service fee
+## How to add a service fee
 
-1. Go to **Settings → Prices → Service Fees → Add fee**.
-2. Set:
-   - **Name** (shown on invoice)
-   - **Amount** (fixed or per-segment)
-   - **Apply to**: all bookings / specific carriers / specific routes
-3. Click **Save**.
+1. Log into the GOL IBE admin console.
+2. Go to **Prices → Service fees – agency**.
+3. A default fee is already present — you can modify it or click **Add service fee** to create a new rule.
+4. Specify the criteria for your rule:
+   - **Carrier** — leave blank for all carriers, or select a specific one
+   - **Connector** — Air Ticket Galileo = GDS content
+   - **Origin / Destination** — without restrictions, or specify by IATA code, destination type, or country
+   - **Type** — OW (one way), RT (return), or both
+   - **Cabin class**
+5. Set the fee amount:
+   - **Fixed fee** — a fixed amount in your currency
+   - **Fixed fee + % fee** — combination of fixed amount and percentage
+6. Click **Save**.
 
-## Common examples
+## Default service fee
 
-| Fee name | Amount | Applied to |
-|----------|--------|------------|
-| Online booking fee | €5 | All bookings |
-| Long-haul surcharge | €15 | Flights over 6h |
-| Paper ticket fee | €20 | Non e-ticket routes |
+A default service fee is set up automatically in each GOL IBE account. It applies to all clients without restriction. Modify it by clicking **Edit** and setting the fee type and amount.
+
+See the full setup guide: [How to set up service fee](/portal/configuration/1-gol-ibe-3-gol-ibe-basic-settings-how-to-set-up-service-fee)
+
+---
+
+📩 Feel free to contact us at: [gol_support@cee-systems.com](mailto:gol_support@cee-systems.com)

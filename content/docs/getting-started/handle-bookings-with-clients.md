@@ -17,7 +17,7 @@ The full notification — with PNR and the ticket itinerary attached — is deli
 1. **Verify the client.** When you receive the booking notification, contact the client and confirm they are a real person, not a bot or abuser.
 2. **Discuss payment.** Use this contact to agree on the payment method and any other details.
 3. **Send the full confirmation.** Once you are satisfied the client is genuine, forward the complete notification (with the ticket itinerary) from your mailbox — or skip this step if you prefer.
-4. **Issue the ticket.** As soon as the client pays, provide the flight ticket as usual.
+4. **E-ticket is issued automatically.** Once the client pays, GOL IBE issues the e-ticket automatically (if auto-ticketing is enabled). The client then receives the ticket notification.
 
 > Skipping the forwarding step is fine — it is entirely up to you how you handle client communication after verification.
 

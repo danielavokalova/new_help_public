@@ -280,7 +280,7 @@ export const WALKTHROUGHS: Walkthrough[] = [
 export const HEALTH_CHECKS: HealthCheck[] = [
   {
     label: "GDS connector configured",
-    desc: "At least one active GDS or NDC source",
+    desc: "At least one active GDS source configured",
     status: "ok",
     href: "/portal/configuration/gol-ibe-advanced-settings",
   },
@@ -298,7 +298,7 @@ export const HEALTH_CHECKS: HealthCheck[] = [
   },
   {
     label: "Agent accounts created",
-    desc: "At least one non-admin user exists",
+    desc: "At least one agent account exists",
     status: "ok",
     href: "/portal/troubleshooting/1-gol-ibe-5-gol-ibe-faqs-how-to-create-a-new-user-s-access",
   },
