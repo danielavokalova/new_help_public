@@ -303,18 +303,19 @@
 .articleFooterBtnOutline {
   display: inline-flex;
   align-items: center;
-  gap: 6px;
+  justify-content: center;
   background: #fff;
   color: #e85e20;
-  border: 1.5px solid #e85e20;
-  border-radius: 5px;
-  padding: 11px 22px;
-  font-size: 14px;
+  border: 2px solid #e85e20;
+  border-radius: 6px;
+  padding: 14px 32px;
+  font-size: 15px;
   font-weight: 600;
   cursor: pointer;
   text-decoration: none;
   transition: background 140ms;
   font-family: inherit;
+  min-width: 200px;
 }
 
 .articleFooterBtnOutline:hover { background: #fff0e8; color: #e85e20; text-decoration: none; }
@@ -322,18 +323,19 @@
 .articleFooterBtnPrimary {
   display: inline-flex;
   align-items: center;
-  gap: 6px;
+  justify-content: center;
   background: #e85e20;
   color: #fff;
   border: none;
-  border-radius: 5px;
-  padding: 11px 22px;
-  font-size: 14px;
+  border-radius: 6px;
+  padding: 14px 32px;
+  font-size: 15px;
   font-weight: 600;
   cursor: pointer;
   text-decoration: none;
   transition: background 140ms;
   font-family: inherit;
+  min-width: 200px;
 }
 
 .articleFooterBtnPrimary:hover { background: #db4a17; }
