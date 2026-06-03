@@ -4,6 +4,7 @@ import { notFound } from "next/navigation";
 import { MarkdownBody } from "@/components/MarkdownBody";
 import { BackButton } from "@/components/BackButton";
 import { ShareButton } from "@/components/ShareButton";
+import { ArticleContactButton } from "@/components/ArticleContactButton";
 import { SECTIONS, getArticle, isSection, listArticleSlugs } from "@/lib/content";
 import { SECTION_LABELS } from "@/lib/sectionLabels";
 import { CATEGORIES } from "../../data";
@@ -124,6 +125,19 @@ export default async function PortalArticlePage({
           </div>
         </div>
       )}
+
+      {/* ── Article footer ── */}
+      <div className={s.articleFooter}>
+        <a
+          href="https://bo.golibe.com/"
+          target="_blank"
+          rel="noopener noreferrer"
+          className={s.articleFooterBtnOutline}
+        >
+          Open Admin Console ↗
+        </a>
+        <ArticleContactButton />
+      </div>
 
     </div>
   );

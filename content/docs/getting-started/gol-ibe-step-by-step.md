@@ -2,7 +2,7 @@
 
 1. [GOL IBE - Agency ](/getting-started/1-gol-ibe-2-gol-ibe-step-by-step-gol-ibe-agency)                                           
 2. [GOL IBE - Dealers](/getting-started/1-gol-ibe-2-gol-ibe-step-by-step-gol-ibe-dealers)
-3. [GOL IBE - Customers](https://app.gitbook.com/o/-LLoS2mTNvfQxKwv_onf/s/-LPjLiK_ydn4NIc66tQx/~/changes/ePMFANNwLqRshbIfo5Px/4.-gol-ibe-step-by-step/gol-ibe-customers)
+3. GOL IBE - Customers
 4. [GOL IBE - Reservations](/getting-started/1-gol-ibe-2-gol-ibe-step-by-step-reservations)
 5. [GOL IBE - Prices ](/getting-started/1-gol-ibe-2-gol-ibe-step-by-step-prices)
 6. [GOL IBE - Code lists](/getting-started/1-gol-ibe-2-gol-ibe-step-by-step-code-lists)

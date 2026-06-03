@@ -10,8 +10,6 @@
 
 5\) Save changes.
 
-\-----------------------------------------------------------------------------------------------------
-
 You can modify: 
 
 4.1. FE title
@@ -71,10 +69,6 @@ Colour customization starts in the section **Background**.
 2\) Save changes.
 
 3\) Check the result on your GOL IBE frontend.
-
-> 🎥 To get to know more about colour customization just visit our site: 
-> 
->  [How to customize colours of your GOL IBE front-end.](https://app.gitbook.com/o/-LLoS2mTNvfQxKwv_onf/s/-LPjLiK_ydn4NIc66tQx/~/changes/ePMFANNwLqRshbIfo5Px/4.-gol-ibe-step-by-step/gol-ibe-dealers/customization-via-dealer-front-end-settings/how-do-you-customize-colours-of-your-gol-ibe-front-end)
 
 ![](/images/docs/6f5158f5ffd91b9c.png)
 

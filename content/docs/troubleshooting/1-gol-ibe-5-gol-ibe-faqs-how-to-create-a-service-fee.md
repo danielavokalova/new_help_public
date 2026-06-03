@@ -10,8 +10,6 @@ You may create as many service fees as you wish in the section Prices - Service 
 
 See below how to continue: 
 
-\---------------------------------------------------------------------------------------------------
-
 Below you will find step by step instructions how to create a new service fee
 
 **1) ADD A RULE** - just click at **Add a service** fee button 
