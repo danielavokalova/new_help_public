@@ -78,7 +78,7 @@ export default function PortalOverviewPage() {
           )}
         </div>
         <div className={s.heroChips}>
-          {["Add user", "Service fee", "Working hours", "Email templates", "Cancel booking", "Flush caches"].map((chip) => (
+          {["Users", "Service fee", "Working hours", "Email templates", "Cancel booking", "Flush caches"].map((chip) => (
             <button key={chip} className={s.heroChip} onClick={() => setQuery(chip)}>
               {chip}
             </button>
