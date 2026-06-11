@@ -1,20 +1,17 @@
-# How to handle Parallel requests?
+# Parallel requests
 
-The search request sometimes return better results, if one more request is sent parallely including the preferred carrier, departure time, transfer airport etc. During the search using the BB entry, GOL IBE sends a request without any preference, and parallely another request with a preference, and it then merges the results. The overview below shows which preferred carrier (or multiple carriers) should be used for which itineraries.
+The search sometimes returns better results when an additional request is sent in parallel, including a preferred carrier, departure time, or transfer airport. During a search, GOL IBE sends one standard request and one parallel request with a preference, then merges the results.
 
-Here you may : 
+In this section you can add and manage preferences.
 
-* add new preference
-* modify already created preference
+## How to add a new preference
 
-1. How to add new preference? 
+Click **New preference** and fill in the fields:
 
-* Click on button **New preference.**
-
-* **Connector** - prefered connector to be used
-* **Type of origin** - Type of origin point. You can select the itinerary either by the destination type or by directly entering an IATA code - see the item below. 
-* **Origin** - IATA code of the departure point.
-* **Type of destination** - Type of destination point. You can select the itinerary either by the destination type or by directly entering an IATA code - see the item below. 
-* **Destination** - IATA code of the destination point.
-* **Return flight** - the preference is used only for the return flight.
-* **Carrier codes of preferred carriers** - the code of the carrier that should be preferred in case of multiple carriers separated by comma.
+- **Connector** — preferred connector to be used.
+- **Type of origin** — select by destination type or enter an IATA code directly.
+- **Origin** — IATA code of the departure point.
+- **Type of destination** — select by destination type or enter an IATA code directly.
+- **Destination** — IATA code of the destination point.
+- **Return flight** — if checked, the preference applies only to the return flight.
+- **Carrier codes of preferred carriers** — IATA codes of the preferred carriers, separated by commas.
