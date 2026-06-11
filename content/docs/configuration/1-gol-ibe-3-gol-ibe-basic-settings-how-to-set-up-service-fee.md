@@ -1,68 +1,73 @@
 # How to set up service fee?
 
 1. Log into the GOL IBE admin console.
-2. Go to the section **Prices** - **Service fees - agency** or **Service fee - dealers** (depends on your role)
-3. Default fee is to be found there.
+2. Go to the section **Prices** → **Service fees - agency** or **Service fee - dealers** (depending on your role).
+3. The default fee is shown there.
 
-  There you may : 
+From this screen you can:
 
-1. Add new service fee.
-2. Modify already existing service fee.
+- Add a new service fee.
+- Modify an already existing service fee.
 
- 
+## How to add a new service fee
 
-How to add new service fee? 
-
-1. Click on button **Add service fee**
+1. Click **Add service fee.**
 
    ![](/images/docs/391a2eecbc5a7232.png)
 
-2. Specify criterions of your service fee rule 
+2. Specify the criteria for your service fee rule.
 
-GENERAL 
+**GENERAL**
 
-* Carrier - if you would like to create rule for a specific carrier just choose from the list.
-* Connector - Air Ticket Galileo = GDS content 
+- **Carrier** — if you would like to create a rule for a specific carrier, choose it from the list.
+- **Connector** — Air Ticket Galileo = GDS content.
 
-VALIDITY 
+**VALIDITY**
 
-* Customer validity \ a) Generaly valid = valid for all customers \ b) Valid for chosen one = click on button **Choose** and you will be redirected to your Customer database from which you will be able to choose that client.  
+- **Customer validity:**
+  - a) Generally valid — valid for all customers.
+  - b) Valid for chosen one — click **Choose** and select a client from your Customer database.
 
-   
+- **Origin:**
+  - a) Without restrictions — no restrictions on destination.
+  - b) IATA code — IATA code of the destination.
+  - c) Destination type — choose from the options the system offers.
+  - d) Country — to specify the country of origin.
 
-* Origin\ a) Without restrictions - no resctrictions on destination\ b) IATA code - IATA code of destination\ c) Destination type - choose from the different options system offers you.\ d) Country - to specify country of origin. 
-* Destination -  choose from the different options system offers you.
-* Type - choose if the rule should apply to OW (OneWay), RT (ReTurn), OW+RT (Both)
+- **Destination** — choose from the options the system offers.
+- **Type** — choose whether the rule applies to OW (One Way), RT (Return), or OW+RT (Both).
 
-CABIN CLASS
+**CABIN CLASS**
 
-* Contains - choose from different options system offers you.
+- **Contains** — choose from the different options the system offers.
 
-FEE 
+**FEE**
 
-* **Assigned fee value** \ a) Fixed fee - to specify fee in fixed amount in your currency.\ b) Fixed fee regards to ticket price - to specify fee in fixed amount in your currency and the ticket price level or range for which the fee will apply.\ c) Fixed fee + % fee -to specify fee - combination of fixed amount and percents.\ d) Fixed + % fee, regards to ticket price - to specify fee - combination of fixed amount and percents w/ specifying price limits.
-* Fixed fee - to enter value of your fee 
+- **Assigned fee value:**
+  - a) Fixed fee — specify the fee as a fixed amount in your currency.
+  - b) Fixed fee regards to ticket price — specify a fixed amount and the ticket price level or range for which the fee applies.
+  - c) Fixed fee + % fee — combination of a fixed amount and a percentage.
+  - d) Fixed + % fee, regards to ticket price — combination of fixed amount and percentage, with specified price limits.
 
-* Fee in % height - to enter value counted in percents
+- **Fixed fee** — enter the value of your fee.
+- **Fee in % height** — enter the value as a percentage.
+- **Customer discount in %** — specify a discount in percent.
 
-* Customer discount in % - to specify discount in percents
+**SERVICE FEE FOR INFANT**
 
-SERVICE FEE FOR INFANT 
-
-* Service fee for infant in % from common service fee - to specify fee for infants.
-* Rounded - fee rounding
+- **Service fee for infant in % from common service fee** — specify the fee for infants.
+- **Rounded** — fee rounding.
 
 3. Save changes.
 
-What is default service fee good for? 
+## What is the default service fee for?
 
-* It is set up by the system automatically in each GOL IBE account.
-* There are no restrictions at all as these will be applied by you.
-* Default fee is to be applied to all clients without any exception.
+- It is set up by the system automatically in each GOL IBE account.
+- There are no restrictions — those will be applied by you.
+- The default fee is applied to all clients without any exception.
 
-How to modify  default service fee? 
+## How to modify the default service fee?
 
-1. Click at **EDIT.**
-2. To set up type and height of fee go to the section **FEE.**
-3. Once specified just save changes.
-
+1. Click **EDIT.**
+2. To set the type and amount of the fee, go to the section **FEE.**
+3. Once specified, save changes.

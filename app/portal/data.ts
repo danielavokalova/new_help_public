@@ -92,10 +92,8 @@ export const CATEGORIES: Category[] = [
       { title: "Create customer database", href: "/portal/getting-started/1-gol-ibe-2-gol-ibe-step-by-step-gol-ibe-customers-how-to-create-customer-database" },
       { title: "Benefits for your clients", href: "/portal/getting-started/1-gol-ibe-2-gol-ibe-step-by-step-gol-ibe-customers-advantages-of-customer-database-for-your-clients" },
       { title: "Benefits for your agency", href: "/portal/getting-started/1-gol-ibe-2-gol-ibe-step-by-step-gol-ibe-customers-advantages-of-customer-database-for-you" },
-      { title: "Create a Customer Profile", href: "/portal/getting-started/create-customer" },
       { title: "Manage travel documents", href: "/portal/troubleshooting/1-gol-ibe-5-gol-ibe-faqs-how-to-manage-travel-documents-in-gol-ibe" },
       { title: "Handle bookings with clients", href: "/portal/troubleshooting/1-gol-ibe-5-gol-ibe-faqs-how-to-handle-bookings-with-clients" },
-      { title: "Handle bookings in GOL IBE", href: "/portal/troubleshooting/1-gol-ibe-5-gol-ibe-faqs-how-to-handle-bookings-in-gol-ibe" },
     ],
   },
   {
@@ -103,12 +101,11 @@ export const CATEGORIES: Category[] = [
     desc: "View, cancel and export bookings; handle clients; block fake bookings",
     href: "/portal/getting-started/1-gol-ibe-2-gol-ibe-step-by-step-reservations",
     articles: [
+      { title: "Handle bookings in Admin Console", href: "/portal/getting-started/1-gol-ibe-2-gol-ibe-step-by-step-reservations-gol-ibe-how-to-handle-bookings-in-admin-console" },
       { title: "How bookings are created", href: "/portal/getting-started/create-booking" },
       { title: "Edit a booking (payment status, remarks)", href: "/portal/getting-started/modify-booking" },
       { title: "Cancel a Booking", href: "/portal/getting-started/cancel-booking" },
       { title: "Ticketing in GOL IBE", href: "/portal/getting-started/issue-ticket" },
-      { title: "Handle bookings in Admin Console", href: "/portal/getting-started/1-gol-ibe-2-gol-ibe-step-by-step-reservations-gol-ibe-how-to-handle-bookings-in-admin-console" },
-      { title: "Handle bookings in GOL IBE", href: "/portal/getting-started/1-gol-ibe-2-gol-ibe-step-by-step-gol-ibe-reservations-gol-ibe-how-to-handle-bookings" },
       { title: "Handle bookings with clients", href: "/portal/getting-started/handle-bookings-with-clients" },
       { title: "Export list of bookings", href: "/portal/getting-started/export-bookings" },
       { title: "Stop fake bookings", href: "/portal/getting-started/stop-fake-bookings" },
@@ -136,7 +133,6 @@ export const CATEGORIES: Category[] = [
       { title: "Carriers", href: "/portal/getting-started/1-gol-ibe-2-gol-ibe-step-by-step-code-lists-carriers" },
       { title: "Hide a carrier on search form", href: "/portal/troubleshooting/1-gol-ibe-5-gol-ibe-faqs-how-to-hide-carrier-on-your-search-form" },
       { title: "Destination filters", href: "/portal/getting-started/1-gol-ibe-2-gol-ibe-step-by-step-code-lists-destination-filters" },
-      { title: "Destination filters – what is it for?", href: "/portal/getting-started/1-gol-ibe-2-gol-ibe-step-by-step-gol-ibe-code-lists-what-is-section-destination-filters-good-for" },
       { title: "Blocked emails", href: "/portal/getting-started/1-gol-ibe-2-gol-ibe-step-by-step-code-lists-how-about-section-blocked-e-mails" },
       { title: "Flush caches", href: "/portal/getting-started/1-gol-ibe-2-gol-ibe-step-by-step-code-lists-what-is-section-flush-cashes-good-for" },
 { title: "Flush HTML caches", href: "/portal/getting-started/1-gol-ibe-2-gol-ibe-step-by-step-code-lists-what-is-section-flush-html-cashes-good-for" },
@@ -147,11 +143,10 @@ export const CATEGORIES: Category[] = [
     desc: "Staff accounts, rights, account management",
     href: "/portal/getting-started/1-gol-ibe-2-gol-ibe-step-by-step-users",
     articles: [
-      { title: "Add a New User", href: "/portal/getting-started/add-user" },
+      { title: "Create a new user access", href: "/portal/getting-started/add-user" },
       { title: "User Rights and Permissions", href: "/portal/getting-started/roles" },
       { title: "Manage your own account", href: "/portal/getting-started/reset-password" },
       { title: "Manage user accounts", href: "/portal/getting-started/deactivate-user" },
-      { title: "Create new user access", href: "/portal/troubleshooting/1-gol-ibe-5-gol-ibe-faqs-how-to-create-a-new-user-s-access" },
     ],
   },
   {
@@ -159,12 +154,12 @@ export const CATEGORIES: Category[] = [
     desc: "Email templates and sent notifications",
     href: "/portal/getting-started/1-gol-ibe-2-gol-ibe-step-by-step-notifications",
     articles: [
+      { title: "Notification templates", href: "/portal/getting-started/1-gol-ibe-2-gol-ibe-step-by-step-notifications-notification-templates" },
+      { title: "Most used notifications", href: "/portal/troubleshooting/1-gol-ibe-5-gol-ibe-faqs-what-types-of-notifications-are-the-most-used-ones-and-what-are-these-good-for" },
       { title: "Booking Confirmation Notifications", href: "/portal/getting-started/booking-confirmation" },
       { title: "Customise Notification Templates", href: "/portal/getting-started/custom-templates" },
-      { title: "Notification templates", href: "/portal/getting-started/1-gol-ibe-2-gol-ibe-step-by-step-notifications-notification-templates" },
       { title: "Sent notifications", href: "/portal/getting-started/1-gol-ibe-2-gol-ibe-step-by-step-notifications-sent-notifications" },
       { title: "Customize from-email section", href: "/portal/troubleshooting/1-gol-ibe-5-gol-ibe-faqs-how-to-customize-section-from-e-mail" },
-      { title: "Most used notification types", href: "/portal/troubleshooting/1-gol-ibe-5-gol-ibe-faqs-what-types-of-notifications-are-the-most-used-ones-and-what-are-these-good-for" },
     ],
   },
   {
@@ -172,13 +167,11 @@ export const CATEGORIES: Category[] = [
     desc: "Terms, footer, menu, ticket template, CSS",
     href: "/portal/getting-started/1-gol-ibe-2-gol-ibe-step-by-step-supporting-texts",
     articles: [
-      { title: "Terms and Conditions", href: "/portal/getting-started/terms" },
       { title: "Supporting Texts (footer, menu, content)", href: "/portal/getting-started/custom-blocks" },
       { title: "CSS customization", href: "/portal/getting-started/1-gol-ibe-2-gol-ibe-step-by-step-gol-ibe-supporting-texts-css" },
       { title: "Create a footer", href: "/portal/getting-started/1-gol-ibe-2-gol-ibe-step-by-step-gol-ibe-supporting-texts-how-to-create-a-footer" },
 { title: "Create menu on front-end", href: "/portal/getting-started/1-gol-ibe-2-gol-ibe-step-by-step-gol-ibe-supporting-texts-how-to-create-menu-on-your-front-end" },
 { title: "Edit ticket itinerary template", href: "/portal/getting-started/1-gol-ibe-2-gol-ibe-step-by-step-gol-ibe-supporting-texts-how-to-edit-your-ticket-itinerary-template" },
-{ title: "Manage terms and conditions", href: "/portal/getting-started/1-gol-ibe-2-gol-ibe-step-by-step-gol-ibe-supporting-texts-how-to-manage-terms-and-conditions" },
     ],
   },
   {
@@ -186,8 +179,6 @@ export const CATEGORIES: Category[] = [
     desc: "Booking data, CSV/Excel export",
     href: "/portal/getting-started/1-gol-ibe-2-gol-ibe-step-by-step-statistics",
     articles: [
-      { title: "Statistics and sales data", href: "/portal/getting-started/sales-report" },
-      { title: "Export bookings to CSV / Excel", href: "/portal/getting-started/export" },
       { title: "Download statistics", href: "/portal/getting-started/1-gol-ibe-2-gol-ibe-step-by-step-statistics" },
     ],
   },
@@ -306,7 +297,7 @@ export const HEALTH_CHECKS: HealthCheck[] = [
     label: "Agent accounts created",
     desc: "At least one agent account exists",
     status: "ok",
-    href: "/portal/troubleshooting/1-gol-ibe-5-gol-ibe-faqs-how-to-create-a-new-user-s-access",
+    href: "/portal/getting-started/add-user",
   },
   {
     label: "Terms & conditions published",
