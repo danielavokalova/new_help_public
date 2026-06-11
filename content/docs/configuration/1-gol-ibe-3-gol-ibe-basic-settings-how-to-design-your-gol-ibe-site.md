@@ -16,13 +16,13 @@ How does it looks like in GOL IBE admin console?
 
 How does it look like on GOL IBE frontend ? 
 
-4.2. SEO (Search Engine Optimization) 
+2. SEO (Search Engine Optimization)
 
 This space is fully at your disposal and you may insert whatever words and text you wish to.
 
 GOL IBE
 
-**4.3. How to redirect your GOL IBE site visitors to your agency site?**
+**3. How to redirect your GOL IBE site visitors to your agency site?**
 
 Just insert your agency site in section **URL Homepage**.
 
